@@ -1,0 +1,49 @@
+<html>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    
+    <title>Ponto de Vendas</title>
+    <body>
+            
+        <div class="col-md-12 jumbotron" name="titulo">
+            <h2><center>Ponto de Vendas</center></h2>
+        </div>
+        <div class="col-md-12 jumbotron">
+            <center>
+                <div class="col-md-12">                    
+                    <button class="btn" id="produtos">Cadastrar Produto</button> 
+                    <button class="btn" id="clientes">Cadastrar Cliente</button> 
+                    <button class="btn" id="pedidos">Cadastrar Pedido</button>                     
+                </div>                    
+            </center>
+        </div>
+        <div id="cadastro">
+        </div>
+    </body>
+    
+    <script src="js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+    
+        $(document).ready(function(){
+            $("#produtos").click(function(){
+                $.ajax({url: "produtos.html", success: function(r){
+                    $("#cadastro").html(r);
+                }});
+            });
+            $("#clientes").click(function(){
+                $.ajax({url: "clientes.html", success: function(r){
+                    $("#cadastro").html(r);
+                }});
+            });
+            $("#pedidos").click(function(){
+                $.ajax({url: "pedidos.html", success: function(r){
+                    $("#cadastro").html(r);
+                }});
+            });                        
+        });            
+        
+        
+    </script>
+</html>
