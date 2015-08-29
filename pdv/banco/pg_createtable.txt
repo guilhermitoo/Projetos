@@ -1,0 +1,76 @@
+--clientes
+
+CREATE TABLE clientes
+(
+  id serial NOT NULL,
+  nome character varying(100) NOT NULL,
+  cpf character varying(14) NOT NULL,
+  credito numeric(12,2),
+  CONSTRAINT clientes_pkey PRIMARY KEY (id),
+  CONSTRAINT clientes_cpf_key UNIQUE (cpf)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE clientes
+  OWNER TO postgres;
+
+-- produtos
+
+CREATE TABLE produtos
+(
+  id serial NOT NULL,
+  descricao character varying(50) NOT NULL,
+  unidade character(2),
+  preco numeric(12,2),
+  CONSTRAINT produtos_pkey PRIMARY KEY (id),
+  CONSTRAINT produtos_preco_check CHECK (preco > 0.00)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE produtos
+  OWNER TO postgres;
+
+-- pedidos
+CREATE TABLE pedidos
+(
+  id serial NOT NULL,
+  cliente_id integer NOT NULL,
+  valor_total numeric(12,2) NOT NULL,
+  status character(1) NOT NULL,
+  CONSTRAINT pedidos_pkey PRIMARY KEY (id),
+  CONSTRAINT pedidos_cliente_id_fkey FOREIGN KEY (cliente_id)
+      REFERENCES clientes (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT pedidos_status_check CHECK (status = 'P'::bpchar OR status = 'F'::bpchar),
+  CONSTRAINT pedidos_valor_total_check CHECK (valor_total > 0.00)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE pedidos
+  OWNER TO postgres;
+
+-- pedidos_itens
+
+CREATE TABLE pedidos_itens
+(
+  pedido_id integer NOT NULL,
+  produto_id integer NOT NULL,
+  valor_unitario numeric(12,2) NOT NULL,
+  quantidade integer NOT NULL,
+  CONSTRAINT pedidos_itens_pedido_id_fkey FOREIGN KEY (pedido_id)
+      REFERENCES pedidos (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT pedidos_itens_produto_id_fkey FOREIGN KEY (produto_id)
+      REFERENCES produtos (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT pedidos_itens_quantidade_check CHECK (quantidade > 0),
+  CONSTRAINT pedidos_itens_valor_unitario_check CHECK (valor_unitario > 0.00)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE pedidos_itens
+  OWNER TO postgres;
