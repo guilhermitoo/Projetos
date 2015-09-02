@@ -18,9 +18,9 @@
                 </div>
                 <br><br>
                 <div class="col-md-12">                    
-                    <button class="btn" id="produtos">Listar Produtos</button> 
-                    <button class="btn" id="clientes">Listar Clientes</button> 
-                    <button class="btn" id="pedidos">Listar Pedidos</button>                     
+                    <button class="btn" id="listprodutos">Listar Produtos</button> 
+                    <button class="btn" id="listclientes">Listar Clientes</button> 
+                    <button class="btn" id="listpedidos">Listar Pedidos</button>                     
                 </div>
             </center>
         </div>
@@ -48,6 +48,24 @@
                     $("#cadastro").html(r);
                 }});
             });                        
+					
+						// ==================
+					
+					  $("#listprodutos").click(function(){
+                $.ajax({url: "ListaProdutos.html", success: function(r){
+                    $("#cadastro").html(r);
+                }});
+            });
+            $("#listclientes").click(function(){
+                $.ajax({url: "ListaClientes.html", success: function(r){
+                    $("#cadastro").html(r);
+                }});
+            });
+            $("#listpedidos").click(function(){
+                $.ajax({url: "ListaPedidos.html", success: function(r){
+                    $("#cadastro").html(r);
+                }});
+            });     
         });            
         
         
