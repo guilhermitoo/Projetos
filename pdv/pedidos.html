@@ -1,0 +1,47 @@
+<html>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    
+    <body>
+        <div class="col-md-12 jumbotron">
+            <form method="post" action="pedidos.php">                
+                    <div class="col-md-4">
+                        <label>Código do cliente</label>
+                        <input type="text" name="cliente_id" class="form-control">                        
+                    </div><br><br><br>
+                    <div class="col-md-4">
+                        <label>Nome do Cliente</label>
+                        <input type="text" name="cliente_nome" class="form-control">                         
+                    </div><br><br><br>
+										<div class="col-md-12">		
+											<div class="col-md-2">
+												<label>Código Produto</label>
+												<input type="number" name="produto_id" class="form-control">
+											</div>
+											<button type="button" id="adicionarpro" class="btn btn-default">Adicionar Produto</button>
+											<table class="table">
+												<thead>										
+													<td>Código</td>
+													<td>Nome do Produto</td>
+													<td>Quantidade</td>
+													<td>Valor</td>												
+												</thead>
+												<tbody></tbody>											
+											</table>
+										</div>
+                    <div class="col-md-4">                        
+                        <button type="submit" class="btn btn-success">Cadastrar Pedido</button> 
+                    </div>                
+            </form>
+        </div>
+    </body>
+    
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#adicionarpro").click(function(r){
+					
+				});
+			});	
+	</script>
+</html>

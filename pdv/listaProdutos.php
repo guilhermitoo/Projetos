@@ -3,7 +3,11 @@
 
 	$database = new medoo();
 
-	$query = $database->select('produtos',['id','descricao','unidade','preco']);
+  if (isset($_GET['id'])){
+	  $query = $database->select('produtos',['id','descricao','unidade','preco'],['id'=>$_GET['id']]);
+	}else{
+	  $query = $database->select('produtos',['id','descricao','unidade','preco']);
+	}
 
 	echo json_encode($query);
 

@@ -1,4 +1,5 @@
 <html>	
+	
 	<link rel="stylesheet" href="css/bootstrap.min.css">  
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">	
 	<body>		
@@ -7,9 +8,9 @@
 				<thead>
 					<tr>
 						<th>Código</th>
-						<th>Descrição</th>
-						<th>Unidade</th>
-						<th>Preço</th>
+						<th>Nome</th>
+						<th>C.P.F.</th>
+						<th>Crédito</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -23,16 +24,16 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$.ajax({
-				url: "listaProdutos.php", dataType: "json", success : function(data) {
-					var html = "";
-				
+				url: "listaClientes.php", dataType: "json", success : function(data) {
+					var html = "";	
+					
 					// percorre o data
 					for($i=0; $i < data.length; $i++){
 						html += " 	<tr>  " +
 										"   <td>  " + data[$i].id + " </td> " +
-										"   <td>  " + data[$i].descricao + " </td> " +
-										"   <td>  " + data[$i].unidade + " </td> " +
-										"   <td>  " + data[$i].preco + " </td> " +
+										"   <td>  " + data[$i].nome + " </td> " +
+										"   <td>  " + data[$i].cpf + " </td> " +
+										"   <td>  " + data[$i].credito + " </td> " +
 										"   </tr> ";
 						$('tbody').html(html);																			
 					}

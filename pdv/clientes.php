@@ -9,7 +9,7 @@
         "credito"=> (float) $_POST["credito"]
     ]);    
 
-<!-- retorna para a tela index.html -->
+// retorna para a tela index.html
 include("index.html");
     
     
