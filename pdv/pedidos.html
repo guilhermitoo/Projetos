@@ -1,122 +1,152 @@
 <html>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    
-    <body>
-        <div class="col-md-12 jumbotron">
-            <form method="post" action="pedidos.php">                
-                <div class="col-md-4">
-                    <label>Código do cliente</label>
-                    <input type="text" name="cliente_id" class="form-control">                        
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
-                    <label>Nome do Cliente</label>
-                    <input type="text" name="cliente_nome" class="form-control">                         
-                </div>
-                <div class="col-md-8">		
+	<body>
+		<div class="col-md-12 jumbotron">
+			<form class="form">                
+				<div class="col-xs-12">
+					<div class="row">
+						<div class="col-md-2">
+							<label>Código do cliente</label>
+							<input type="text" name="cliente_id" class="form-control">                        
+						</div>
+						<div class="col-md-4">
+							<label>Nome do Cliente</label>
+							<input type="text" name="cliente_nome" class="form-control">                         
+						</div>
+					</div>
+					<br />
+					<div class="row">		
+						<div class="col-md-2">
+							<label>Código Produto</label>
+							<input type="number" id="produto_id" class="form-control">
+						</div>
+						<div class="col-md-1">
+							<label>Quantidade</label>
+							<input type="number" id="produto_qtd" class="form-control">
+						</div>
+						<div class="col-md-2">
+							<br/>
+							<button type="button" id="adicionarpro" class="btn btn-default">Adicionar Produto</button>
+						</div>	
 
-                    <div class="col-md-2">
-                        <label>Código Produto</label>
-                        <input type="number" id="produto_id" class="form-control">
-                    </div>
-                    <div class="col-md-2">
-                        <label>Quantidade</label>
-                        <input type="number" id="produto_qtd" class="form-control">
-                    </div>                
-                    <br />
-                    <button type="button" id="adicionarpro" class="btn btn-default">Adicionar Produto</button>
-                    
-                </div>                
-                <div class="col-md-12">
-                    <br />
-                    <table class="table table-striped table-bordered">
-                        <thead>										
-                            <td>Código</td>
-                            <td>Nome do Produto</td>
-                            <td>Unidade</td>
-                            <td>Quantidade</td>
-                            <td>Valor Unitário</td>	
-                            <td></td>
-                        </thead>
-                        <tbody></tbody>											
-                    </table>
-                </div>
-                <div class="col-md-4">                        
-                    <button type="submit" class="btn btn-success">Cadastrar Pedido</button> 
-                </div>                
-            </form>
-        </div>
-    </body>
-    
-		<script src="js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-            var produtos = [];            
-			$(document).ready(function(){
+					</div>
+				</div>                
+				<div class="col-md-12">
+						<br />
+						<table class="table table-striped table-bordered">
+								<thead>										
+										<td>Código</td>
+										<td>Nome do Produto</td>
+										<td>Unidade</td>
+										<td>Quantidade</td>
+										<td>Valor Unitário</td>	
+										<td></td>
+								</thead>
+								<tbody></tbody>											
+						</table>
+				</div>		
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-2">
+							<label>Valor Total</label>
+							<p id="valor_total"></p>
+						</div>           
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-2">                        
+								<button id="btn_confirmar" class="btn btn-success" id="btn_cadastrar">Cadastrar Pedido</button> 
+						</div>           
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
 
-                $("#adicionarpro").click(function(r){                    
-                    var pro_id = $('#produto_id').val();
-                    var pro_qtd = $('#produto_qtd').val();
-                    if ( (pro_id > 0) && (pro_qtd > 0) ) {
-                        $.ajax({
-                            url: "listaProdutos.php?id="+pro_id, 
-                            method: 'get', 
-                            dataType: "json",
-                            success : function(data) 
-                            {   
-                                // verifica se a busca no banco retornou algo
-                                if ( data.length != 0 ) {         
-                                    // for para verificar se o id informado já está no array, se sim, apenas incrementa a quantidade
-                                    $TemProduto = false;
-                                    for ( $i = 0 ; $i < produtos.length; $i++ ) {                                    
-                                        if ( produtos[$i].id === data[0].id ){
-                                            produtos[$i].quantidade = parseInt(pro_qtd) + parseInt(produtos[$i].quantidade);
-                                            $TemProduto = true;
-                                        }
-                                    }
-                                    if ( ! $TemProduto ) {
-                                        var produto='{"id":'+data[0].id+', "descricao": "' +data[0].descricao+ '" , "unidade": "'+data[0].unidade+'", "quantidade":' + pro_qtd+', "valor": "'+data[0].preco+'" }';
-                                        produto = JSON.parse(produto);
-                                        produtos.push(produto);
-                                    }
-                                    //função que monta a tabela no html
-                                    MontaTabela(produtos);                                
-                                }
-                            }
-                        });
-                    }
-				});                              
-			});                        
-            
-            function Excluir(){
-                // pega a tr que foi clicada (linha)
-                var par = $(this).closest('tr');    
-                // pega o id da linha clicada (utilizando data-)
-                var pro_id = par.find('td[data-id]').data('id');                                
-                // remove o produto do array
-                for ( $i = 0 ; $i < produtos.length; $i++ ) {
-                    if ( produtos[$i].id === pro_id ){    
-                        produtos.splice($i,1);
-                    }
-                }
-                // remove o produto da tabela
-                par.remove();                
-            };
-            
-            function MontaTabela(produtos)
-            {                                
-                var html = "";
-                for ( $i = 0 ; $i < produtos.length; $i++ ) {
-                    html += " 	<tr>  " +
-                            "   <td data-id = '"+produtos[$i].id+"'>  " + produtos[$i].id + " </td> " +
-                            "   <td>  " + produtos[$i].descricao + " </td> " +
-                            "   <td>  " + produtos[$i].unidade + " </td> " +
-                            "   <td>  " + produtos[$i].quantidade + " </td> " +
-                            "   <td>  " + produtos[$i].valor + " </td> " +
-                            "   <td> <button type='button' class='btn btn-default remover'>Remover</button> </td>" +
-                            "   </tr> ";
-                    $('tbody').html(html);		
-                }
-                // atribui a função click para o botão remover somente depois de inserir algo na tabela
-                $(".remover").bind("click", Excluir);
-            }
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		var produtos = [];            
+		$(document).ready(function(){
+			$("#adicionarpro").click(function(r){                    
+				var pro_id = $('#produto_id').val();
+				var pro_qtd = $('#produto_qtd').val();
+				if ( (pro_id > 0) && (pro_qtd > 0) ) {
+					$.ajax({
+						url: "listaProdutos.php?id="+pro_id, 
+						method: 'get', 
+						dataType: "json",
+						success : function(data) {   
+							// verifica se a busca no banco retornou algo
+							if ( data.length != 0 ) {         
+								// for para verificar se o id informado já está no array, se sim, apenas incrementa a quantidade
+								$TemProduto = false;
+								for ( $i = 0 ; $i < produtos.length; $i++ ) {                                    
+										if ( produtos[$i].id === data[0].id ){
+												produtos[$i].quantidade = parseInt(pro_qtd) + parseInt(produtos[$i].quantidade);
+												$TemProduto = true;
+										}
+								}
+								if ( ! $TemProduto ) {
+									var produto='{"id":'+	data[0].id+', "descricao": "' +
+															data[0].descricao+ '" , "unidade": "'+
+															data[0].unidade+'", "quantidade":' + 
+															pro_qtd+', "valor": "'+data[0].preco+'" }';
+									produto = JSON.parse(produto);
+									produtos.push(produto);
+								}
+								//função que monta a tabela no html
+								MontaTabela(produtos);                                
+							}
+						}
+					});
+				}
+			});
+			function CalculaTotal(){
+				$total = 0.0;
+				for ( $i = 0 ; $i < produtos.length; $i++ ) {
+					$total += ( produtos[$i].quantidade * produtos[$i].valor );
+				}
+				$('p#valor_total').text(""+ $total );
+			}
+		});                        
+
+		function Excluir(){
+			// pega a tr que foi clicada (linha)
+			var par = $(this).closest('tr');    
+			// pega o id da linha clicada (utilizando data-)
+			var pro_id = par.find('td[data-id]').data('id');                                
+			// remove o produto do array
+			for ( $i = 0 ; $i < produtos.length; $i++ ) {
+					if ( produtos[$i].id === pro_id ){    
+							produtos.splice($i,1);
+					}
+			}
+			// remove o produto da tabela
+			par.remove(); 
+			CalculaTotal;
+		};
+
+		function MontaTabela(produtos)
+		{                                
+			var html = "";
+			for ( $i = 0 ; $i < produtos.length; $i++ ) {
+				html += " 	<tr>  " +
+						"   <td data-id = '"+produtos[$i].id+"'>  " + produtos[$i].id + " </td> " +
+						"   <td>  " + produtos[$i].descricao + " </td> " +
+						"   <td>  " + produtos[$i].unidade + " </td> " +
+						"   <td>  " + produtos[$i].quantidade + " </td> " +
+						"   <td>  " + produtos[$i].valor + " </td> " +
+						"   <td> <button type='button' class='btn btn-default remover'>Remover</button> </td>" +
+						"   </tr> ";
+				$('tbody').html(html);		
+			}
+			// atribui a função click para o botão remover somente depois de inserir algo na tabela
+			$(".remover").bind("click", Excluir);	
+			CalculaTotal;
+		}
+
+
 	</script>
 </html>
