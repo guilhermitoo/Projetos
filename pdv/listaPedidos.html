@@ -1,0 +1,46 @@
+<html>	
+	
+	<link rel="stylesheet" href="css/bootstrap.min.css">  
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">	
+	<body>		
+		<div class="col-md-12 jumbotron">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Código</th>
+						<th>Código Cliente</th>
+						<th>Nome Cliente</th>
+						<th>Valor Total</th>
+                        <th>Status</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			
+			
+		</div>
+		
+	</body>	
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.ajax({
+				url: "listaPedidos.php", method: 'get', dataType: "json", success : function(data) {
+					var html = "";
+				
+					// percorre o data
+					for($i=0; $i < data.length; $i++){
+						html += " 	<tr>  " +
+										"   <td>  " + data[$i].id + " </td> " +
+										"   <td>  " + data[$i].cliente_id + " </td> " +
+										"   <td>  " + data[$i].cliente_nome + " </td> " +
+										"   <td>  " + data[$i].valor_total + " </td> " +
+										"   <td>  " + data[$i].status + " </td> " +                                        
+										"   </tr> ";
+						$('tbody').html(html);																			
+					}
+				}
+			});
+		});
+	</script>
+</html>
