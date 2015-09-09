@@ -105,9 +105,14 @@
 			});
 			// envia os dados para o banco
 			$("#btn_confirmar").click(function(r){
+				$cliente_id = $('#cliente_id').text();
+				$valor_total = $('p#valor_total').text();
+				$dados = { itens:JSON.stringify(produtos) , cliente_id : $cliente_id , valor_total : $valor_total };
+				
 				$ajax({
 					url: "pedidos.php", 
 					type: "post",
+					data: $dados,
 					success : function(r) {
 						alert(r);	
 					}
