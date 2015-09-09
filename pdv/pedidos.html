@@ -103,7 +103,16 @@
 					});
 				}
 			});
-			
+			// envia os dados para o banco
+			$("#btn_confirmar").click(function(r){
+				$ajax({
+					url: "pedidos.php", 
+					type: "post",
+					success : function(r) {
+						alert(r);	
+					}
+				});
+			});
 		});                        
 
 		function Excluir(){
