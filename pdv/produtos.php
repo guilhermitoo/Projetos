@@ -1,21 +1,23 @@
 <?php
-    require_once 'medoo.min.php';
- 
-    $database = new medoo();
-    
-    if ( isset($_POST) ){
-        
-        $descricao = $_POST['descricao'];
-        $unidade = $_POST['unidade'];
-        $preco = str_replace(',','.', (string)(float)$_POST['preco']);
-        
-        $id = $database->insert("produtos",[
-            "descricao"=> $descricao,
-            "unidade"=> $unidade,
-            "preco"=> $preco
-        ]);    
-    }
-    
-include("index.html");
+    require_once 'db.php';
+
+	require_once 'index.php';
+
+	require_once 'produto.class.php';
+
+	if ( isset($_POST) ){        		
+		$descricao = $_POST['descricao'];
+		$unidade = $_POST['unidade'];	
+		$preco = str_replace(',','.', $_POST['preco']);
+
+		$p = new Produto();
+		$p->setDescricao($descricao);
+		$p->setUnidade($unidade);
+		$p->setPreco($preco);
+		
+		$p->incluir();
+	}   
+
+//include("index.html");
     
     

@@ -1,14 +1,12 @@
 <?php
-	require_once 'medoo.min.php';
+	require_once 'db.php';
 
-	$database = new medoo();
-
-  if (isset($_GET['id'])){
+  	if (isset($_GET['id'])){
 	  $query = $database->select('produtos',['id','descricao','unidade','preco'],['id'=>$_GET['id']]);
 	}else{
 	  $query = $database->select('produtos',['id','descricao','unidade','preco']);
 	}
 
-	echo json_encode($query);
-
+	$query = json_encode($query);
 	
+	echo $query;

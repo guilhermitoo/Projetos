@@ -3,13 +3,16 @@
 //      $conn = "host=localhost port=5432 user=postgres password=masterkey";
 //      $conexao = pg_connect($conn);
     require "medoo.min.php";
+	
+	if ( empty($database) )
+	{
+    	$database = new medoo(); 		
+	}
 
-    $database = new medoo([
-        'database_type' => 'pgsql',
-        'database_name' => 'pdv',
-        'server' => 'localhost',
-        'username' => 'postgres',
-        'password' => 'masterkey',
-        'charset' => 'utf8',
-        'port' => 5432
-    ]);   
+//			['database_type' => 'pgsql',
+//			'database_name' => 'pdv',
+//			'server' => 'localhost',
+//			'username' => 'postgres',
+//			'password' => 'masterkey',
+//			'charset' => 'utf8',
+//			'port' => 5432]

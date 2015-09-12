@@ -1,7 +1,5 @@
 <?php
-	require_once 'medoo.min.php';
-
-	$database = new medoo();
+	require_once 'db.php';
 
   if (isset($_GET['id'])){
 	  $query = $database->select('pedidos',
@@ -14,7 +12,7 @@
                                  ['pedidos.id'=>$_GET['id']]);
 	}else{
         $query = $database->select('pedidos',
-                                 ["[<>]clientes"=>["cliente_id"=>"id"]],
+                                 ["[><]clientes"=>["cliente_id"=>"id"]],
                                  ['pedidos.id',
                                   'pedidos.cliente_id',
                                   'clientes.nome(cliente_nome)',

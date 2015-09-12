@@ -1,12 +1,14 @@
 <?php
-    require_once 'medoo.min.php';
- 
-    $database = new medoo();
+    require_once 'db.php';
+
+	$nome = $_POST["nome"];
+	$cpf = $_POST["cpf"];
+	$credito = str_replace(',','.', $_POST["credito"]);
 
     $id = $database->insert("clientes",[
-        "nome"=> (string) $_POST["nome"],
-        "cpf"=> (string) $_POST["cpf"],
-        "credito"=> (float) $_POST["credito"]
+        "nome"=> $nome,
+        "cpf"=> $cpf,
+        "credito"=> $credito
     ]);    
 
 // retorna para a tela index.html

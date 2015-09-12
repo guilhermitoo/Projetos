@@ -26,14 +26,14 @@
 			$.ajax({
 				url: "listaProdutos.php", method: 'get', dataType: "json", success : function(data) {
 					var html = "";
-				
+					
 					// percorre o data
 					for($i=0; $i < data.length; $i++){
 						html += " 	<tr>  " +
 										"   <td>  " + data[$i].id + " </td> " +
 										"   <td>  " + data[$i].descricao + " </td> " +
 										"   <td>  " + data[$i].unidade + " </td> " +
-										"   <td>  " + data[$i].preco + " </td> " +
+										"   <td>  " + data[$i].preco.replace('.',',') + " </td> " +
 										"   </tr> ";
 						$('tbody').html(html);																			
 					}
