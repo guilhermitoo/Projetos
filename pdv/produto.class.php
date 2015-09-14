@@ -2,7 +2,7 @@
 	require_once 'db.php';
 	require_once 'index.php';
  
- 	$_SERVER[]
+// 	$_SERVER[]
 
 class Produto {
 	

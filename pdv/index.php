@@ -13,21 +13,24 @@ function retorno($data){
 if ( !isset($_SESSION['user']) ){
 	header('Location: login.html');
 }
-
+else{
+    header('Location: index.html');
+}
 if ( !isset($_GET) ){
-	header('..pagina de erro');
+	header('Location: erro.html');
 }
 
 require_once 'produto.class.php';
-require_once 'pedido.class.php';
-require_once 'cliente.class.php';
+//require_once 'pedido.class.php';
+//require_once 'cliente.class.php';
 
-if ( !class_exists($_GET['c'])){
-	header('...pagina erro (nao existe classe)');
-}
-if ( !method_exists($_GET['a'])){
-	header('...pagina erro (nao existe metodo)');
-}
+//if ( !class_exists($_GET['c'])){
+//	header('...pagina erro (nao existe classe)');
+//}
+//
+//if ( !method_exists($_GET['a'])){
+//	header('...pagina erro (nao existe metodo)');
+//}
 
-$app = new $_GET['c']();	
-$app->$_GET['a'];
+//$app = new $_GET['c']();	
+//$app->$_GET['a'];

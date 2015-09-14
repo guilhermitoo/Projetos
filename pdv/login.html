@@ -11,12 +11,13 @@
 			<div class="center">
 				<div class="col-md-4 col-xs-offset-4 jumbotron">				
 					<div class="col-xs-12">
-						<input type="text" class="form-control">
-						<br />
-						<input type="password" class="form-control">
-						<br />
-						<button class="btn btn-primary">Entrar</button>
-						<button class="btn btn-danger">Limpar</button>
+                        <form type="post" action="login.php">
+                            <input id="usuario" type="text" class="form-control">
+                            <br />
+                            <input id="senha" type="password" class="form-control">
+                            <br />
+                            <button class="btn btn-primary" type="submit">Entrar</button>
+                        </form>						
 					</div>
 				</div>								
 			</div>

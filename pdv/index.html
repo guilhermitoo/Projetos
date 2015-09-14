@@ -7,6 +7,7 @@
     <body>           
         <div name="titulo">
             <h2><center>Ponto de Vendas</center></h2>
+            <div class="col-md-2 col-xs-offset-10"><button class="btn btn-danger" id="sair" type="submit">Sair</button></div>
         </div>
         <div class="col-md-12 jumbotron" name="menu">
             <center>
@@ -61,7 +62,11 @@
                 $.ajax({url: "ListaPedidos.html", success: function(r){
                     $("#cadastro").html(r);
                 }});
-            });     
+            });
+            
+            $('#sair').click(function(){
+                session.removeAttribute('user');
+            });
         });            
         
         
