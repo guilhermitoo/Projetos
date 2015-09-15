@@ -4,17 +4,14 @@
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 	<title>PDV Login</title>
 	<body>	
-		<?php include('header.html'); 			
-//			$_SESSION['senha'] = '123';
-//			echo $_SESSION['senha'];
-			?>
+		<?php include('header.html'); ?>
 		<div class="center">
 			<div class="col-md-4 col-xs-offset-4 jumbotron">				
 				<div class="col-xs-12">
-					<form type="post" action="index.php">
-						<input id="usuario" type="text" class="form-control">
+					<form method="post" action="vlog.php" name="formulario">
+						<input name="login" type="text" class="form-control">
 						<br />
-						<input id="senha" type="text" class="form-control">
+						<input name="senha" type="text" class="form-control">
 						<br />
 						<button class="btn btn-primary" type="submit">Entrar</button>
 					</form>						

@@ -1,41 +1,6 @@
 <?php
-
-if ( session_status() == PHP_SESSION_DISABLED ){
-	session_start();
-}
-
-require_once 'db.php';
-
-if ( isset($_POST) ){	
-	// obtem os parâmetros do post
-	$usuario = (string) $_POST['usuario'];
-	$senha = (string) $_POST['senha'];
-	// faz a busca do usuário
-	$query = $database->select('usuarios',['usuario','senha'],['AND' => ['usuario'=>$usuario,'senha'=>$senha]]);		
-	
-//	$user = json_encode($query);	
-	
-	if ( empty($query) ){		
-		$_SESSION['usuario'] = $usuario;		
-		$_SESSION['senha'] = $senha;						
-		
-		echo "<script> alert('deu certo') </script>";
-	}
-	else{					
-		unset($_SESSION['usuario']);
-		unset($_SESSION['senha']);				
-		
-		echo "<script> alert('deu ruim') </script>";
-	}
-}
-
-if ( !isset($_SESSION['usuario']) and !isset($_SESSION['senha']) ){
-//	session_destroy();
-	header("Location: login.php");	
-}
-
+	include "valida_usuario.php";
 ?>
-
 <html>
     <script src="js/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -43,7 +8,9 @@ if ( !isset($_SESSION['usuario']) and !isset($_SESSION['senha']) ){
 
     <title>Ponto de Vendas</title>
     <body>           
-		<?php include('header.html'); ?>
+		<?php include "header.html"; ?>
+		<form action='logout.php' type='post'><button type='submit' class='btn btn-danger' id='sair'>Sair</button></form>
+		
         <div class="col-md-12 jumbotron" name="menu">
             <center>
                 <div class="col-md-12">                    
