@@ -12,6 +12,6 @@
     ]);    
 
 // retorna para a tela index.html
-include("index.html");
+include("index.php");
     
     

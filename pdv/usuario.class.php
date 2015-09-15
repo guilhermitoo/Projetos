@@ -1,5 +1,5 @@
 <?php
-	require_once 'db.php';
+	
 	require_once 'index.php';
  
 // 	$_SERVER[]
@@ -40,15 +40,16 @@ class Usuario {
 		
 	public function login($usuario,$senha){
         //função que verifica se o usuário que está tentando logar está cadastrado       
-        
+        require_once 'db.php';
         $query = $database->select('usuarios',['usuario','senha'],['usuario'=>$usuario,'senha'=>$senha]);
-        
-        if ( ! empty($query) ){
-            retorno(true);
-        }    
-        else{
-            retorno(false);
-        }
+		
+		echo $query;
+//        if ( sizeof($query) > 0 ){
+//            retorno(true);					
+//        }    
+//        else{
+//            retorno(false);
+//        }
     }
 	
 }

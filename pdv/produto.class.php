@@ -1,7 +1,7 @@
-<?php
-	require_once 'db.php';
-	require_once 'index.php';
- 
+<?php	
+
+require_once 'index.php';
+
 // 	$_SERVER[]
 
 class Produto {
@@ -36,30 +36,37 @@ class Produto {
 	}
 	
 	public function setPreco($preco){
-		$this->preco = $preco;
+		$this->preco = str_replace(',','.', $preco);
 	}
 	
 	public function getPreco(){
-		retorno($this->preco);
+		retorno(str_replace('.',',', $this->preco));
 	}	
 
-	public function __construct($id, $descricao, $unidade, $preco){
+	public function __construct(){
 		//nada aqui.
 	}
+	
+//	public function __construct($descricao,$unidade,$preco){
+//		$this->descricao = $descricao,
+//		$this->unidade = $unidade,
+//		$this->preco = $preco
+//	}
 		
 	public function incluir(){
-		try
-		{
-			$id = $database->insert("produtos",[
-				"descricao"=> getDescricao(),
-				"unidade"=> getUnidade(),
-				"preco"=> getPreco()
-			]);
-			retorno("cadastrado com sucesso");
-		}catch()
-		{
-			retorno("erro ao cadastrar");
-		}
+		require_once 'db.php';
+
+		$id = $database->insert("produtos",[
+			"descricao"=> $this->descricao,
+			"unidade"=> $this->unidade,
+			"preco"=> $this->preco
+		]);				
+	}
+	
+	public function listar($id=''){						
+		require_once 'db.php';
+		
+		
 	}
 	
 }
