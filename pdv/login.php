@@ -8,10 +8,10 @@
 		<div class="center">
 			<div class="col-md-4 col-xs-offset-4 jumbotron">				
 				<div class="col-xs-12">
-					<form method="post" action="vlog.php" name="formulario">
-						<input name="login" type="text" class="form-control">
+					<form method="post" action="index.php" name="formulario">
+						<input name="usuario" type="text" class="form-control">
 						<br />
-						<input name="senha" type="text" class="form-control">
+						<input name="senha" type="password" class="form-control">
 						<br />
 						<button class="btn btn-primary" type="submit">Entrar</button>
 					</form>						

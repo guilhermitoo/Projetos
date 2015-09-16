@@ -1,5 +1,19 @@
 <?php
 	include "valida_usuario.php";
+
+    if ( isset($_POST) && ( isset($_POST['usuario']) && isset($_POST['senha'])) ) {
+        $usuario = $_POST['usuario'];
+        $senha = $_POST['senha'];
+        
+        if ( ! validaLogin($usuario,$senha) ) {
+            header("location: login.php");
+        }
+    }
+    else {
+        if ( ! Logado() ){
+            header("location: login.php");
+        }    
+    }
 ?>
 <html>
     <script src="js/jquery-1.10.2.js"></script>
@@ -8,7 +22,10 @@
 
     <title>Ponto de Vendas</title>
     <body>           
-		<?php include "header.html"; ?>
+		<?php 
+            include "header.html";             
+            echo "Usuario logado: " . $_SESSION['usuario'];
+        ?>
 		<form action='logout.php' type='post'><button type='submit' class='btn btn-danger' id='sair'>Sair</button></form>
 		
         <div class="col-md-12 jumbotron" name="menu">

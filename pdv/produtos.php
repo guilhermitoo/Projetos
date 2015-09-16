@@ -14,6 +14,4 @@
 			]);	
 	}   
 
-include("index.php");
-    
-    
+header("location: index.php");

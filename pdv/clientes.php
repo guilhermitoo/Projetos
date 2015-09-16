@@ -11,7 +11,4 @@
         "credito"=> $credito
     ]);    
 
-// retorna para a tela index.html
-include("index.php");
-    
-    
+header("location: index.php");    

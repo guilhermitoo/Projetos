@@ -8,11 +8,11 @@
 				<div class="row">
 					<div class="col-md-2">
 						<label>Código do cliente</label>
-						<input type="text" name="cliente_id" class="form-control">                        
+						<input type="text" id="cliente_id" class="form-control">                        
 					</div>
 					<div class="col-md-4">
 						<label>Nome do Cliente</label>
-						<input type="text" name="cliente_nome" class="form-control">                         
+						<input type="text" id="cliente_nome" class="form-control">                         
 					</div>
 				</div>
 				<br />
@@ -103,14 +103,14 @@
 			});
 			// envia os dados para o banco
 			$("#btn_confirmar").click(function(r){
-				$cliente_id = $('#cliente_id').text();
-				$valor_total = $('p#valor_total').text();
+				$cliente_id = $('#cliente_id').val();
+				$valor_total = $('#valor_total').text();
+                                
 				$dados = { itens:JSON.stringify(produtos) , cliente_id : $cliente_id , valor_total : $valor_total };				
 				$.ajax({
 					url: "pedidos.php", 
 					type: "POST",					
-					data: $dados,
-					dataType: 'text',
+					data: $dados,					
 					success: function(response) {
 						alert(response);
 					}
