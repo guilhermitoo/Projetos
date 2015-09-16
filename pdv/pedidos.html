@@ -3,12 +3,14 @@
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
 	<body>
+<!--        <form action="teste.php" method="post">-->
 		<div class="col-md-12 jumbotron">		                
 			<div class="col-xs-12">
-				<div class="row">
+                
+				<div class="row">                    
 					<div class="col-md-2">
 						<label>Código do cliente</label>
-						<input type="text" id="cliente_id" class="form-control">                        
+						<input type="text" id="cliente_id" name="cliente_id" class="form-control">                        
 					</div>
 					<div class="col-md-4">
 						<label>Nome do Cliente</label>
@@ -50,7 +52,7 @@
 				<div class="row">
 					<div class="col-md-2">
 						<label>Valor Total</label>
-						<p id="valor_total"></p>
+						<input type="text" readonly="true" class="form-control" id="valor_total" name="valor_total" onchange="formataValor(this,event);"></p>
 					</div>           
 				</div>
 				<br />
@@ -60,9 +62,10 @@
 					</div>           
 				</div>
 			</div>
-		</form>	
+<!--		</form>	-->
 	</body>
-
+        
+    <script src="js/mascara.js">
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		var produtos = [];            
@@ -86,6 +89,7 @@
 												$TemProduto = true;
 										}
 								}
+                                // se tem produto cria uma string json com os produtos
 								if ( ! $TemProduto ) {
 									var produto='{"id":'+	data[0].id+', "descricao": "' +
 															data[0].descricao+ '" , "unidade": "'+
@@ -104,7 +108,7 @@
 			// envia os dados para o banco
 			$("#btn_confirmar").click(function(r){
 				$cliente_id = $('#cliente_id').val();
-				$valor_total = $('#valor_total').text();
+				$valor_total = $('#valor_total').val();
                                 
 				$dados = { itens:JSON.stringify(produtos) , cliente_id : $cliente_id , valor_total : $valor_total };				
 				$.ajax({
@@ -113,6 +117,7 @@
 					data: $dados,					
 					success: function(response) {
 						alert(response);
+                        
 					}
 				});
 			});
@@ -143,7 +148,7 @@
 						"   <td>  " + produtos[$i].descricao + " </td> " +
 						"   <td>  " + produtos[$i].unidade + " </td> " +
 						"   <td>  " + produtos[$i].quantidade + " </td> " +
-						"   <td>  " + produtos[$i].valor + " </td> " +
+						"   <td>  " + produtos[$i].valor.replace('.',',')  + " </td> " +
 						"   <td> <button type='button' class='btn btn-default remover'>Remover</button> </td>" +
 						"   </tr> ";
 				$('tbody').html(html);		
@@ -158,7 +163,7 @@
             for ( $i = 0 ; $i < produtos.length; $i++ ) {
                 $total += ( parseFloat(produtos[$i].quantidade) * parseFloat(produtos[$i].valor) );
             }
-            $('p#valor_total').text($total);
+            $('#valor_total').val($total);
         }
 	</script>
 </html>
