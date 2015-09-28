@@ -19,8 +19,10 @@
     <script src="js/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-
-    <title>Ponto de Vendas</title>
+    <head>
+        <meta charset="UTF-8" lang="pt-BR">
+        <title>Ponto de Vendas</title>	    
+    </head>			
     <body>           
 		<?php 
             include "header.html";             
