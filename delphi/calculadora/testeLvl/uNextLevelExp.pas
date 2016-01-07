@@ -4,16 +4,24 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, StdCtrls, Math;
 
 type
   TfrmNextLevelExp = class(TForm)
     edt1: TEdit;
     btn1: TButton;
-    lbl1: TLabel;
+    lblProxLevel: TLabel;
     lbl2: TLabel;
     lbl3: TLabel;
+    lblManaNecGasta: TLabel;
+    lbl5: TLabel;
+    lbl6: TLabel;
+    edtML: TEdit;
+    btn2: TButton;
+    lblExpAtual: TLabel;
+    lbl7: TLabel;
     procedure btn1Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,8 +42,27 @@ var
 begin
   try
     lvl := StrToInt(edt1.Text);
+    //calcula exp level atual
+    exp := ( ( 50 * Power((lvl-1),3) ) - (150 * Power((lvl-1),2) ) + ( 400*(lvl - 1) ) )/3;
+    lblExpAtual.Caption := FormatFloat('0,00', exp);
+    //calcula prox level
     exp := ( 50*( lvl*lvl ) ) - (150*lvl) + 200;
-    lbl1.Caption := FormatFloat('0,00', exp);
+    lblProxLevel.Caption := FormatFloat('0,00', exp);
+  except
+    on E : Exception do
+      ShowMessage(E.ClassName+' error gerado, com a mensagem : '+E.Message);
+  end;
+end;
+
+procedure TfrmNextLevelExp.btn2Click(Sender: TObject);
+var
+  lvl : Integer;
+  exp : Double;
+begin
+  try
+    lvl := StrToInt(edtML.Text);
+    exp := 1600 * Power(1.1,lvl);
+    lblManaNecGasta.Caption := FormatFloat('0,00', exp);
   except
     on E : Exception do
       ShowMessage(E.ClassName+' error gerado, com a mensagem : '+E.Message);
