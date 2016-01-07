@@ -1,0 +1,13 @@
+program DanoFisico;
+
+uses
+  Forms,
+  uDanoFisico in 'uDanoFisico.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.
