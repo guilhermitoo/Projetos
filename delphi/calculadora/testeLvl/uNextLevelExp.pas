@@ -1,4 +1,4 @@
-unit Unit1;
+unit uNextLevelExp;
 
 interface
 
@@ -7,11 +7,12 @@ uses
   Dialogs, StdCtrls;
 
 type
-  TForm1 = class(TForm)
+  TfrmNextLevelExp = class(TForm)
     edt1: TEdit;
     btn1: TButton;
     lbl1: TLabel;
     lbl2: TLabel;
+    lbl3: TLabel;
     procedure btn1Click(Sender: TObject);
   private
     { Private declarations }
@@ -20,19 +21,21 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmNextLevelExp: TfrmNextLevelExp;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.btn1Click(Sender: TObject);
+procedure TfrmNextLevelExp.btn1Click(Sender: TObject);
 var
-  lvl: integer;
+  lvl : Integer;
+  exp : Double;
 begin
   try
     lvl := StrToInt(edt1.Text);
-    lbl1.Caption := IntToStr( ( 50*( lvl*lvl ) ) - (150*lvl) + 200 );
+    exp := ( 50*( lvl*lvl ) ) - (150*lvl) + 200;
+    lbl1.Caption := FormatFloat('0,00', exp);
   except
     on E : Exception do
       ShowMessage(E.ClassName+' error gerado, com a mensagem : '+E.Message);
