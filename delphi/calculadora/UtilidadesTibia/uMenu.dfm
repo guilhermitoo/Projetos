@@ -4,7 +4,7 @@ object frmMenu: TfrmMenu
   BorderIcons = [biSystemMenu]
   BorderStyle = bsNone
   Caption = 'Utilidades Tibia'
-  ClientHeight = 97
+  ClientHeight = 143
   ClientWidth = 360
   Color = clTeal
   Font.Charset = DEFAULT_CHARSET
@@ -14,25 +14,35 @@ object frmMenu: TfrmMenu
   Font.Style = [fsBold]
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 18
-  object btn4: TSpeedButton
+  object btnMage: TSpeedButton
     Left = 8
     Top = 48
     Width = 169
     Height = 41
     Caption = 'Druid / Sorcerer'
     Flat = True
-    OnClick = btn4Click
+    OnClick = btnMageClick
   end
-  object btn1: TSpeedButton
+  object btnFisico: TSpeedButton
     Left = 184
     Top = 48
     Width = 169
     Height = 41
     Caption = 'Knight / Paladin'
     Flat = True
-    OnClick = btn1Click
+    OnClick = btnFisicoClick
+  end
+  object btnExp: TSpeedButton
+    Left = 8
+    Top = 96
+    Width = 345
+    Height = 41
+    Caption = 'C'#225'lculo de Experi'#234'ncia'
+    Flat = True
+    OnClick = btnExpClick
   end
   object JvPanel1: TJvPanel
     Left = 0

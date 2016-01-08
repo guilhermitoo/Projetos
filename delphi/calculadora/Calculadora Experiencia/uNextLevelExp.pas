@@ -20,6 +20,8 @@ type
     btn2: TButton;
     lblExpAtual: TLabel;
     lbl7: TLabel;
+    cbbClasses: TComboBox;
+    lbl1: TLabel;
     procedure btn1Click(Sender: TObject);
     procedure btn2Click(Sender: TObject);
   private
@@ -58,10 +60,15 @@ procedure TfrmNextLevelExp.btn2Click(Sender: TObject);
 var
   lvl : Integer;
   exp : Double;
+  vBase : array of Double;
 begin
+  SetLength(vBase,3);
+  vBase[0] := 1.1;
+  vBase[1] := 3;
+  vBase[2] := 1.4;
   try
     lvl := StrToInt(edtML.Text);
-    exp := 1600 * Power(1.1,lvl);
+    exp := 1600 * Power(vBase[cbbClasses.ItemIndex],lvl);
     lblManaNecGasta.Caption := FormatFloat('0,00', exp);
   except
     on E : Exception do
