@@ -22,6 +22,10 @@ type
     lbl7: TLabel;
     cbbClasses: TComboBox;
     lbl1: TLabel;
+    lblDinheiroMP: TLabel;
+    Label2: TLabel;
+    Label1: TLabel;
+    lblQtd: TLabel;
     procedure btn1Click(Sender: TObject);
     procedure btn2Click(Sender: TObject);
   private
@@ -59,8 +63,8 @@ end;
 procedure TfrmNextLevelExp.btn2Click(Sender: TObject);
 var
   lvl : Integer;
-  exp : Double;
-  vBase : array of integer;
+  exp, dinheiro, qtd : Double;
+  vBase : array of Double;
 begin
   SetLength(vBase,3);
   vBase[0] := 1.1;
@@ -70,6 +74,10 @@ begin
     lvl := StrToInt(edtML.Text);
     exp := 1600 * Power(vBase[cbbClasses.ItemIndex],lvl);
     lblManaNecGasta.Caption := FormatFloat('0,00', exp);
+    qtd := ( exp / 100 );
+    dinheiro := ( exp / 100 ) * 50;
+    lblDinheiroMP.Caption := FormatFloat('0,00', dinheiro);
+    lblQtd.Caption := FloatToStr(qtd);
   except
     on E : Exception do
       ShowMessage(E.ClassName+' error gerado, com a mensagem : '+E.Message);

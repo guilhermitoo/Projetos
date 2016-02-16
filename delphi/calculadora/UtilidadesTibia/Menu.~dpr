@@ -9,7 +9,8 @@ uses
   Forms,
   uMenu in 'uMenu.pas' {frmMenu},
   UCalcMage in '..\Calculadora de Mages\UCalcMage.pas' {frmCalcMage},
-  uDanoFisico in '..\Calculadora Dano Físico\uDanoFisico.pas' {frmDanoFisico};
+  uDanoFisico in '..\Calculadora Dano Físico\uDanoFisico.pas' {frmDanoFisico},
+  uNextLevelExp in '..\Calculadora Experiencia\uNextLevelExp.pas' {frmNextLevelExp};
 
 {$R *.res}
 

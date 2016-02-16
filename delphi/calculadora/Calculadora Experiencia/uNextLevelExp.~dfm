@@ -4,7 +4,7 @@ object frmNextLevelExp: TfrmNextLevelExp
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Experi'#234'ncia e Leveis'
-  ClientHeight = 141
+  ClientHeight = 172
   ClientWidth = 584
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -107,6 +107,54 @@ object frmNextLevelExp: TfrmNextLevelExp
     Width = 31
     Height = 13
     Caption = 'Classe'
+  end
+  object lblDinheiroMP: TLabel
+    Left = 408
+    Top = 129
+    Width = 161
+    Height = 25
+    Alignment = taCenter
+    AutoSize = False
+    Color = clActiveCaption
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    Layout = tlCenter
+  end
+  object Label2: TLabel
+    Left = 408
+    Top = 114
+    Width = 124
+    Height = 13
+    Caption = 'Gasto MP'#39's (50 gold cada)'
+  end
+  object Label1: TLabel
+    Left = 312
+    Top = 114
+    Width = 80
+    Height = 13
+    Caption = 'Quantidade MP'#39's'
+  end
+  object lblQtd: TLabel
+    Left = 312
+    Top = 129
+    Width = 89
+    Height = 25
+    Alignment = taCenter
+    AutoSize = False
+    Color = clActiveCaption
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    Layout = tlCenter
   end
   object edt1: TEdit
     Left = 16

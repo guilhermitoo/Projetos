@@ -1,11 +1,6 @@
 program Menu;
 
 uses
-  madExcept,
-  madLinkDisAsm,
-  madListHardware,
-  madListProcesses,
-  madListModules,
   Forms,
   uMenu in 'uMenu.pas' {frmMenu},
   UCalcMage in '..\Calculadora de Mages\UCalcMage.pas' {frmCalcMage},
