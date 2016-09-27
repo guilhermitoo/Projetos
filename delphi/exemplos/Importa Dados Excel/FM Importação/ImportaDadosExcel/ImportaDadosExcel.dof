@@ -91,7 +91,7 @@ ImageBase=4194304
 ExeDescription=
 [Directories]
 OutputDir=
-UnitOutputDir=
+UnitOutputDir=C:\delphi_temp
 PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=
@@ -134,3 +134,12 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
+[Excluded Packages]
+c:\program files (x86)\borland\delphi7\Projects\Bpl\dclIndyProtocols70.bpl=Indy 10 Protocols Design Time
+C:\Program Files (x86)\Borland\Delphi7\Projects\Bpl\dclIndyCore70.bpl=Indy 10 Core Design Time
+[HistoryLists\hlUnitAliases]
+Count=1
+Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
+[HistoryLists\hlUnitOutputDirectory]
+Count=1
+Item0=C:\delphi_temp

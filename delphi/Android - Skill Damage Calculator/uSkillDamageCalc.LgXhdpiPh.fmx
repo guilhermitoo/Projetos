@@ -1,0 +1,26 @@
+inherited frmSkillDamageCalc_LgXhdpiPh: TfrmSkillDamageCalc_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited Header: TToolBar
+    Size.Width = 450.000000000000000000
+    inherited HeaderLabel: TLabel
+      Size.Width = 450.000000000000000000
+    end
+  end
+  inherited Footer: TToolBar
+    Position.Y = 647.000000000000000000
+    Size.Width = 450.000000000000000000
+  end
+  inherited img1: TImageControl
+    Position.X = 391.000000000000000000
+  end
+  inherited pnlDanoFisico: TPanel
+    inherited nmbrbxSkill: TNumberBox
+      Position.X = 16.000000000000000000
+    end
+    inherited lblSkill: TLabel
+      Position.X = 16.000000000000000000
+    end
+  end
+end

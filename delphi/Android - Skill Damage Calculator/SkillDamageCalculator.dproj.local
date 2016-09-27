@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>  <Transactions>
+    <Transaction>2016/09/27 13:05:30.234,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\SkillDamageCalculator.dproj=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterApplication.dproj</Transaction>
+    <Transaction>2016/09/27 13:05:56.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.fmx=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.fmx</Transaction>
+    <Transaction>2016/09/27 13:05:56.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.pas=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.pas</Transaction>
+  </Transactions>
+</BorlandProject>
