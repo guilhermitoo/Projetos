@@ -18,14 +18,11 @@ ExplicitSubNodes=Position.Y
 [tmr1]
 Coordinates=84,65,40,36
 
-[FloatAnimation1]
-Coordinates=320,60,108,58
-Visible=True
-ExplicitSubNodes=StopValue
-
 [txtStatus]
 Coordinates=0,0,65,58
 
-[stylbk1]
-Coordinates=25,77,55,36
+[faVert]
+Coordinates=320,60,108,58
+Visible=True
+ExplicitSubNodes=StopValue
 

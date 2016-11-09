@@ -8,23 +8,25 @@ uses
   FMX.Ani, FMX.Controls.Presentation, FMX.StdCtrls, Windows;
 
 const
-  OFFSET = 2;
+  OFFSET = 3.5;
 
 type
   TfrmPong = class(TForm)
     pnlFundo: TPanel;
     rrBola: TRoundRect;
-    stylbk1: TStyleBook;
-    FloatAnimation1: TFloatAnimation;
+    faVert: TFloatAnimation;
     rectBaseTopo: TRectangle;
     rectBaseBaixo: TRectangle;
     tmr1: TTimer;
     txtStatus: TText;
+    stylbk1: TStyleBook;
+    faHorz: TFloatAnimation;
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure tmr1Timer(Sender: TObject);
-    procedure FloatAnimation1Process(Sender: TObject);
+    procedure faVertProcess(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure faHorzProcess(Sender: TObject);
   private
     function KeyIsDown(const Key: integer): boolean;
     function CheckCollision(r1 , r2 : TShape): boolean;
@@ -67,18 +69,28 @@ begin
             ( Between(r1x, r2x, r2xw) or Between(r1xw, r2x, r2xw) );
 end;
 
-procedure TfrmPong.FloatAnimation1Process(Sender: TObject);
+procedure TfrmPong.faHorzProcess(Sender: TObject);
 begin
   if CheckCollision(rrBola,rectBaseTopo) then
-    FloatAnimation1.Inverse := False;
+    faHorz.Inverse := not faHorz.Inverse;
   if CheckCollision(rrBola,rectBaseBaixo) then
-    FloatAnimation1.Inverse := True;
+    faHorz.Inverse := not faHorz.Inverse;
+end;
+
+procedure TfrmPong.faVertProcess(Sender: TObject);
+begin
+//  if CheckCollision(rrBola,rectBaseTopo) then
+//    faVert.Inverse := not faVert.Inverse;
+//  if CheckCollision(rrBola,rectBaseBaixo) then
+//    faVert.Inverse := not faVert.Inverse;
 end;
 
 procedure TfrmPong.FormCreate(Sender: TObject);
 begin
-  FloatAnimation1.StopValue := pnlFundo.Height;
-  FloatAnimation1.StartValue := 0;
+  faVert.StopValue := pnlFundo.Height - OFFSET;
+  faVert.StartValue := 0;
+  faHorz.StopValue := pnlFundo.Width - OFFSET;
+  faHorz.StartValue := 0;
 end;
 
 procedure TfrmPong.FormKeyDown(Sender: TObject; var Key: Word;
@@ -133,14 +145,15 @@ end;
 
 procedure TfrmPong.tmr1Timer(Sender: TObject);
 begin
-  txtStatus.Text := 'azul   Y:  ' + rectBaseTopo.Position.Y.ToString + #13#10 +
-                    'azul   X:  ' + rectBaseTopo.Position.X.ToString + #13#10 +
-                    'azul   YH: ' + (rectBaseTopo.Position.Y + rectBaseTopo.Height).ToString + #13#10 +
-                    'azul   XW: ' + (rectBaseTopo.Position.X + rectBaseTopo.Width).ToString + #13#10 +
-                    'cinza  Y:  ' + rectBaseBaixo.Position.Y.ToString + #13#10 +
-                    'cinza  X:  ' + rectBaseBaixo.Position.X.ToString + #13#10 +
-                    'cinza  YH: ' + (rectBaseBaixo.Position.Y + rectBaseBaixo.Height).ToString + #13#10 +
-                    'cinza  XW: ' + (rectBaseBaixo.Position.X + rectBaseBaixo.Width).ToString;
+//  txtStatus.Text := 'azul   Y:  ' + rectBaseTopo.Position.Y.ToString + #13#10 +
+//                    'azul   X:  ' + rectBaseTopo.Position.X.ToString + #13#10 +
+//                    'azul   YH: ' + (rectBaseTopo.Position.Y + rectBaseTopo.Height).ToString + #13#10 +
+//                    'azul   XW: ' + (rectBaseTopo.Position.X + rectBaseTopo.Width).ToString + #13#10 +
+//                    'cinza  Y:  ' + rectBaseBaixo.Position.Y.ToString + #13#10 +
+//                    'cinza  X:  ' + rectBaseBaixo.Position.X.ToString + #13#10 +
+//                    'cinza  YH: ' + (rectBaseBaixo.Position.Y + rectBaseBaixo.Height).ToString + #13#10 +
+//                    'cinza  XW: ' + (rectBaseBaixo.Position.X + rectBaseBaixo.Width).ToString;
+
 end;
 
 end.
