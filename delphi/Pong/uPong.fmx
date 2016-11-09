@@ -1,0 +1,104 @@
+object frmPong: TfrmPong
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Pong'
+  ClientHeight = 391
+  ClientWidth = 640
+  StyleBook = stylbk1
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  DesignerMasterStyle = 0
+  object pnlFundo: TPanel
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 391.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object rrBola: TRoundRect
+      Fill.Color = claChartreuse
+      Position.X = 331.000000000000000000
+      Position.Y = 81.000000000000000000
+      Size.Width = 22.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      object FloatAnimation1: TFloatAnimation
+        AutoReverse = True
+        Enabled = True
+        Duration = 1.000000000000000000
+        Loop = True
+        OnProcess = FloatAnimation1Process
+        PropertyName = 'Position.Y'
+        StartValue = 25.000000000000000000
+        StartFromCurrent = True
+        StopValue = 999.000000000000000000
+      end
+    end
+    object rectBaseTopo: TRectangle
+      Fill.Color = claAqua
+      Position.X = 280.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object rectBaseBaixo: TRectangle
+      Position.X = 280.000000000000000000
+      Position.Y = 320.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object txtStatus: TText
+      Position.X = 16.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 161.000000000000000000
+      Size.Height = 201.000000000000000000
+      Size.PlatformDefault = False
+      Text = '123'
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Leading
+      TextSettings.VertAlign = Leading
+      Visible = False
+    end
+  end
+  object stylbk1: TStyleBook
+    Styles = <
+      item
+      end
+      item
+        Platform = 'Windows 10 Desktop'
+        ResourcesBin = {
+          464D585F5354594C4520322E3501060A50616E656C7374796C6503D600060A6C
+          626C315374796C6531033B0100545046300A5452656374616E676C6500095374
+          796C654E616D65060A50616E656C7374796C650A46696C6C2E436F6C6F720708
+          636C61426C61636B0748697454657374080A506F736974696F6E2E5805000000
+          00000000D406400A506F736974696F6E2E5905000000000000008C05C00A5369
+          7A652E57696474680500000000000000A008400B53697A652E48656967687405
+          00000000000000F007401453697A652E506C6174666F726D44656661756C7408
+          0C5374726F6B652E436F6C6F7207097846464343434343430756697369626C65
+          0800005450463007544C61796F757400095374796C654E616D65060A6C626C31
+          5374796C65310A506F736974696F6E2E580500000000000000AA07400A506F73
+          6974696F6E2E590500000000000000A406400A53697A652E5769647468050000
+          0000000000F005400B53697A652E486569676874050000000000000088034014
+          53697A652E506C6174666F726D44656661756C7408085461624F726465720201
+          0005545465787400095374796C654E616D6506047465787405416C69676E0706
+          436C69656E74064C6F636B6564090748697454657374080A53697A652E576964
+          74680500000000000000F005400B53697A652E48656967687405000000000000
+          008803401453697A652E506C6174666F726D44656661756C7408165465787453
+          657474696E67732E466F6E74436F6C6F720708636C615768697465000000}
+      end>
+    Left = 496
+    Top = 128
+  end
+  object tmr1: TTimer
+    Enabled = False
+    Interval = 10
+    OnTimer = tmr1Timer
+    Left = 192
+    Top = 104
+  end
+end
