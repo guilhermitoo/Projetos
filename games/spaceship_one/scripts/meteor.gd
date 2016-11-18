@@ -1,8 +1,12 @@
 extends Area2D
 
 var vel = 0
+var vel_ini = 75
+var vel_fim = 150
 var rotation = 0
-var vida = 4
+var rot_ini = -3
+var rot_fim = 3
+var vida = 7
 
 func _ready():
 	# adiciona o meteoro criado ao grupo inimigos
@@ -13,8 +17,8 @@ func _ready():
 	set_process(true)
 	# GERA UM NÚMERO ALEATÓRIO ENTRE -20 E 20 
 	# PARA UTILIZAR NA FUNÇÃO DE ROTAÇÃO (ESQUERDA OU DIREITA ALEATORIO)
-	rotation = rand_range(-3,3)
-	vel = rand_range(200,350)
+	rotation = rand_range(rot_ini,rot_fim)
+	vel = rand_range(vel_ini,vel_fim)
 	pass
 
 func _process(delta):
@@ -26,6 +30,10 @@ func _process(delta):
 	
 func aplica_dano(valor):
 	vida -= valor
+	get_node("anim").play("hit")
 	if vida <= 0:
-		queue_free()
+		set_z(10)
+		remove_from_group(game.GRUPO_INIMIGO)
+		get_node("anim").play("destroy")
+		set_process(false)
 	pass
