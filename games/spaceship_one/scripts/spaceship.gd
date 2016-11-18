@@ -1,9 +1,9 @@
 
 extends Node2D
 
-var vel = 300
+var vel = 350
 var pre_tiro = preload("res://scenes/shoot.tscn")
-var intervalo = 0.3
+var intervalo = 0.1
 var ultimo_disparo = 0
 
 func _ready():
@@ -20,22 +20,19 @@ func _process(delta):
 	if (Input.is_action_pressed("ui_left")):
 		left = -1 # esquerda subtrai X
 		
-	if get_pos().x > (1024 - 50):
+	# NÃO PERMITE QUE A NAVE SAIA DA TELA
+	if get_pos().x > (OS.get_window_size().x - 50):
 		right = 0
 	if get_pos().x < (50):
 		left = 0
 		
-	set_pos(get_pos() + Vector2(vel, 0) * delta * (right + left))
+	set_pos(get_pos() + Vector2(1, 0) * vel * delta * (right + left))
 		
 	# SE PRESSIONAR O BOTÃO DE DISPARO
-	if Input.is_action_pressed("ui_action"):
+	if Input.is_action_pressed("ui_action"):		
 		if ultimo_disparo <= 0:
-			# INSTANCIA O TIRO A PARTIR DO PRE_TIRO
-			var tiro = pre_tiro.instance()
-			# DEFINE A POSIÇÃO DELE NA POSIÇÃO DA NAVE
-			tiro.set_global_pos(get_global_pos())
-			# VICULA ELE NO MAIN
-			get_parent().add_child(tiro)
+			disparar(get_node("position_cannon_left"))
+			disparar(get_node("position_cannon_right"))
 			ultimo_disparo = intervalo
 		pass
 		
@@ -44,4 +41,12 @@ func _process(delta):
 	
 	pass
 
+func disparar(node):
+	# INSTANCIA O TIRO A PARTIR DO PRE_TIRO
+	var tiro = pre_tiro.instance()
+	# DEFINE A POSIÇÃO DELE NA POSIÇÃO DA NAVE
+	tiro.set_global_pos(node.get_global_pos())
+	# VICULA ELE NO MAIN
+	get_owner().add_child(tiro)
+	pass
 
