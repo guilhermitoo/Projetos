@@ -7,6 +7,7 @@ var vel = 600
 
 func _ready():
 	set_process(true)
+	get_node("sample").play("shoot")
 	pass
 
 func _process(delta):

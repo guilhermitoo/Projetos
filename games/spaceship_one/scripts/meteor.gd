@@ -36,4 +36,6 @@ func aplica_dano(valor):
 		remove_from_group(game.GRUPO_INIMIGO)
 		get_node("anim").play("destroy")
 		set_process(false)
+		game.getCamera().shake()
+		get_node("sample").play("explosion")
 	pass
