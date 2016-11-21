@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://sprites/Power-ups/pill_red.png" type="Texture" id=1]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 10.7132, -2.13705, -2.60513, 10.4678, -9.50211, 8.32735, -10.9291, 1.66819, -0.226852, -9.74752, 7.62145, -9.50969 )
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Area2D\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_powerup_tiro_rapido_area_enter( area ):\n\tif area.is_in_group(game.GRUPO_NAVE):\n\t\tarea.set_arma(1);\n\t\tqueue_free()\n\tpass # replace with function body\n"
+
+[node name="powerup_tiro_rapido" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = SubResource( 2 )
+
+[node name="powerup_tiro_rapido" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+
+[node name="poligon" type="CollisionPolygon2D" parent="."]
+
+build_mode = 0
+polygon = Vector2Array( 7.62145, -9.50969, -0.226852, -9.74752, -10.9291, 1.66819, -9.50211, 8.32735, -2.60513, 10.4678, 10.7132, -2.13705 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[connection signal="area_enter" from="." to="." method="_on_powerup_tiro_rapido_area_enter"]
+
+

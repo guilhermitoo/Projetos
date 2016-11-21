@@ -3,8 +3,12 @@ extends Node2D
 
 var vel = 350
 var arma
+var tiro_simples = preload("res://scripts/classes/armas/tiro_simples.gd")
+var tiro_rapido = preload("res://scripts/classes/armas/tiro_rapido.gd")
+var tiro_duplo = preload("res://scripts/classes/armas/tiro_duplo.gd")
 
 func _ready():
+	self.add_to_group(game.GRUPO_NAVE)
 	set_process(true)
 	arma = tiro_simples.new(self)
 	pass
@@ -18,6 +22,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_action"):
 		arma.disparar()
 		pass
+		
 		
 	arma.atualizar(delta)
 	
@@ -45,41 +50,11 @@ func ControlarDirecao(delta):
 		
 	pass
 	
-# CLASSE TIRO SIMPLES
-class tiro_simples:
-	var intervalo = 0.1
-	var ultimo_disparo = 0
-	var disparo_anterior
-	var nave
-	var pre_tiro = preload("res://scenes/shoot.tscn")
+func set_arma(valor):
 	
-	func _init(nave): # CONSTRUTOR DA CLASSE tiro_simples
-		self.nave = nave
-		pass
+	if valor == 1:
+		arma = tiro_rapido.new(self)
+	elif valor == 2:
+		arma = tiro_duplo.new(self)
 		
-	func disparar():
-		if ultimo_disparo <= 0:
-			# verifica qual o disparo anterior para intercalar
-			if disparo_anterior == nave.get_node("position_cannon_left"):
-				criar_tiro(nave.get_node("position_cannon_right"))
-			else:
-				criar_tiro(nave.get_node("position_cannon_left"))
-			ultimo_disparo = intervalo
-			pass
-		pass
-	
-	func criar_tiro(node):
-		# disparo_anterior recebe o node do disparo
-		disparo_anterior = node
-		# INSTANCIA O TIRO A PARTIR DO PRE_TIRO
-		var tiro = pre_tiro.instance()
-		# DEFINE A POSIÇÃO DELE NA POSIÇÃO DA NAVE
-		tiro.set_global_pos(node.get_global_pos())
-		# VICULA ELE NO MAIN
-		nave.get_owner().add_child(tiro)
-		pass
-	
-	func atualizar(delta):
-		if ultimo_disparo > 0:
-			ultimo_disparo -= delta
-		pass
+	pass

@@ -1,6 +1,7 @@
 extends Node
 
 const GRUPO_INIMIGO = "inimigos"
+const GRUPO_NAVE = "nave"
 
 func _ready():
 	pass
