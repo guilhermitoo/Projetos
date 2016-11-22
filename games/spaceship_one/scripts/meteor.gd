@@ -6,7 +6,7 @@ var vel_fim = 150
 var rotation = 0
 var rot_ini = -3
 var rot_fim = 3
-var vida = 7
+var vida = 5
 
 func _ready():
 	# adiciona o meteoro criado ao grupo inimigos

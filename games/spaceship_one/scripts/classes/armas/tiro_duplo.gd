@@ -4,7 +4,7 @@ var intervalo = 0.2
 var ultimo_disparo = 0
 var disparo_anterior
 var nave
-var pre_tiro = preload("res://scenes/shoot.tscn")
+var pre_tiro = preload("res://scenes/tiro_verde.tscn")
 
 func _init(nave): # CONSTRUTOR DA CLASSE tiro_simples
 	self.nave = nave
@@ -12,11 +12,16 @@ func _init(nave): # CONSTRUTOR DA CLASSE tiro_simples
 	
 func disparar():
 	if ultimo_disparo <= 0:
+		
+		criar_tiro(nave.get_node("position_cannon_right"))
+		criar_tiro(nave.get_node("position_cannon_left"))
+		
 		# verifica qual o disparo anterior para intercalar
-		if disparo_anterior == nave.get_node("position_cannon_left"):
-			criar_tiro(nave.get_node("position_cannon_right"))
-		else:
-			criar_tiro(nave.get_node("position_cannon_left"))
+		#if disparo_anterior == nave.get_node("position_cannon_left"):
+		#	criar_tiro(nave.get_node("position_cannon_right"))
+		#else:
+		#	criar_tiro(nave.get_node("position_cannon_left"))
+		
 		ultimo_disparo = intervalo
 		pass
 	pass

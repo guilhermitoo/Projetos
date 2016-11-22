@@ -4,6 +4,7 @@ extends Area2D
 # var a=2
 # var b="textvar"
 var vel = 600
+var dano = 1
 
 func _ready():
 	set_process(true)
@@ -25,7 +26,7 @@ func _on_shoot_area_enter( area ):
 		# SE tem o metodo aplica dano
 		if area.has_method("aplica_dano"):
 			# ENTAO reduz 1 de vida
-			area.aplica_dano(1)
+			area.aplica_dano(dano)
 		else:
 			# SENAO já libera o objeto
 			area.queue_free()

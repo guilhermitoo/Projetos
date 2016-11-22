@@ -41,6 +41,7 @@ points = Vector2Array( 14.1456, -15.6537, 15.4632, 30.1989, 10.9833, 37.0504, -1
 
 [node name="spaceship" type="Area2D"]
 
+transform/scale = Vector2( 0.75, 0.75 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
