@@ -7,6 +7,13 @@ var tiro_simples = preload("res://scripts/classes/armas/tiro_simples.gd")
 var tiro_rapido = preload("res://scripts/classes/armas/tiro_rapido.gd")
 var tiro_duplo = preload("res://scripts/classes/armas/tiro_duplo.gd")
 
+var armas = [
+	tiro_simples.new(self),
+	tiro_rapido.new(self),
+	tiro_duplo.new(self)
+]
+
+
 func _ready():
 	self.add_to_group(game.GRUPO_NAVE)
 	set_process(true)
@@ -52,9 +59,6 @@ func ControlarDirecao(delta):
 	
 func set_arma(valor):
 	
-	if valor == 1:
-		arma = tiro_rapido.new(self)
-	elif valor == 2:
-		arma = tiro_duplo.new(self)
-		
+	arma = armas[valor]
+	
 	pass

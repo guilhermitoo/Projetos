@@ -1,24 +1,25 @@
 [gd_scene load_steps=6 format=1]
 
-[ext_resource path="res://scripts/shoot.gd" type="Script" id=1]
-[ext_resource path="res://sprites/Lasers/laserBlue05.png" type="Texture" id=2]
-[ext_resource path="res://sounds/shoot.wav" type="Sample" id=3]
+[ext_resource path="res://scripts/tiro_vermelho.gd" type="Script" id=1]
+[ext_resource path="res://sprites/Lasers/laserRed05.png" type="Texture" id=2]
+[ext_resource path="res://sounds/shoot2.wav" type="Sample" id=3]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=3]
 
 custom_solver_bias = 0.0
-radius = 10.7106
-height = 16.1239
+radius = 10.0
+height = 20.0
 
 [sub_resource type="SampleLibrary" id=2]
 
-samples/shoot = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/shoot2 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
 
-[node name="shoot" type="Area2D"]
+[node name="tiro_vermelho" type="Area2D"]
 
+transform/pos = Vector2( -1.39859, -2.62237 )
 input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 0.4286, 0, 0, 1.02961, -0.0796609, -13.6971 )
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 0.490854, 0, 0, 0.952267, 1.671, -13.6852 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -26,16 +27,16 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
 
-[node name="shoot" type="Sprite" parent="."]
+[node name="tiro_vermelho" type="Sprite" parent="."]
 
-transform/pos = Vector2( 0, -13.8111 )
+transform/pos = Vector2( 1.74824, -13.2867 )
 texture = ExtResource( 2 )
 
 [node name="colision" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( -0.0796609, -13.6971 )
-transform/scale = Vector2( 0.4286, 1.02961 )
-shape = SubResource( 1 )
+transform/pos = Vector2( 1.671, -13.6852 )
+transform/scale = Vector2( 0.490854, 0.952267 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
