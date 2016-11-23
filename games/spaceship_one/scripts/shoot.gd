@@ -33,4 +33,4 @@ func _on_shoot_area_enter( area ):
 			
 		# Destrói o tiro
 		queue_free()
-	pass # replace with function body
+	pass 

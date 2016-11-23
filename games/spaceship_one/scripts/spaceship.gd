@@ -62,3 +62,11 @@ func set_arma(valor):
 	arma = armas[valor]
 	
 	pass
+
+func _on_spaceship_area_enter( area ):
+	if area.is_in_group(game.GRUPO_INIMIGO):
+		# SE tem o metodo aplica dano
+		if area.has_method("aplica_dano"):
+			# ENTAO reduz 1 de vida
+			area.aplica_dano(200)
+			game.nave_vida -= 1

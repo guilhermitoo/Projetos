@@ -43,6 +43,7 @@ func aplica_dano(valor):
 	vida -= valor
 	get_node("anim").play("hit")
 	if vida <= 0:
+		game.score += game.pontuacao_por_meteoro
 		set_z(10)
 		remove_from_group(game.GRUPO_INIMIGO)
 		get_node("anim").play("destroy")
@@ -53,5 +54,5 @@ func aplica_dano(valor):
 	pass
 	
 func gerar_bonus():
-	# FUNCAO VAI GERAR UM BONUS A PARTIR DO METEORO	
+	# FUNCAO VAI GERAR UM BONUS A PARTIR DO METEORO
 	pass

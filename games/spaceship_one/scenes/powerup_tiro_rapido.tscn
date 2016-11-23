@@ -9,6 +9,7 @@ points = Vector2Array( 10.7132, -2.13705, -2.60513, 10.4678, -9.50211, 8.32735, 
 
 [sub_resource type="GDScript" id=2]
 
+resource/name = "powerup_tiro_rapido"
 script/source = "extends Area2D\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_powerup_tiro_rapido_area_enter( area ):\n\tif area.is_in_group(game.GRUPO_NAVE):\n\t\tarea.set_arma(1);\n\t\tqueue_free()\n\tpass # replace with function body\n"
 
 [node name="powerup_tiro_rapido" type="Area2D"]

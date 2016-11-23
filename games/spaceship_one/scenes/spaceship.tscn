@@ -108,4 +108,6 @@ polygon = Vector2Array( -2.98328, -36.7353, -10.8889, -19.343, -15.1052, -16.971
 shape_range = Vector2( 0, 6 )
 trigger = false
 
+[connection signal="area_enter" from="." to="." method="_on_spaceship_area_enter"]
+
 
