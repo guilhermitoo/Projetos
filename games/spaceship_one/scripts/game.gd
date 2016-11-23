@@ -3,7 +3,7 @@ extends Node
 const GRUPO_INIMIGO = "inimigos"
 const GRUPO_NAVE = "nave"
 
-var score = 0 setget setScore, getScore
+var score = 0 setget setScore
 
 signal score_changed
 

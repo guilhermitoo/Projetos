@@ -9,7 +9,7 @@ points = Vector2Array( 9.08327, -0.623167, -0.940689, 10.3004, -9.67953, 9.01526
 
 [sub_resource type="GDScript" id=2]
 
-script/source = "extends Area2D\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\nfunc _on_powerup_tiro_duplo_area_enter( area ):\n\tif area.is_in_group(game.GRUPO_NAVE):\n\t\tarea.set_arma(2);\n\t\tqueue_free()\n\tpass # replace with function body\n"
+script/source = "extends Area2D\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\nvar vel = 0\n\nfunc _ready():\n\tset_process(true)\n\tpass\n\t\nfunc _process(delta):\n\t# DESCE\n\tset_global_pos(get_global_pos() + Vector2(0,1) * vel * delta)\n\t\n\tpass\n\t\nfunc _on_powerup_tiro_duplo_area_enter( area ):\n\tif area.is_in_group(game.GRUPO_NAVE):\n\t\tarea.set_arma(2);\n\t\tqueue_free()\n\tpass # replace with function body\n\nfunc _init(velocidade):\n\tvel = velocidade\n\tpass"
 
 [node name="powerup_tiro_duplo" type="Area2D"]
 

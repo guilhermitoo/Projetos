@@ -17,7 +17,7 @@ var armas = [
 func _ready():
 	self.add_to_group(game.GRUPO_NAVE)
 	set_process(true)
-	arma = tiro_simples.new(self)
+	arma = armas[0]
 	pass
 	
 func _process(delta):
