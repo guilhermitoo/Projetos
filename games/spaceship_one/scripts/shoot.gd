@@ -14,9 +14,11 @@ func _ready():
 func _process(delta):
 	set_pos(get_pos() + Vector2(0,-1) * vel * delta)
 	
-	if get_pos().y < - 30:
-		free()
-	
+#	if get_pos().y < - 30:
+#		free()
+	if game.estaForaTela(self):
+		print("shoot_free")
+		queue_free()
 	pass
 
 

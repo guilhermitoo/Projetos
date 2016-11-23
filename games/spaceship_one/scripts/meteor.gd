@@ -27,6 +27,7 @@ func _ready():
 	vel = rand_range(vel_ini,vel_fim)
 	scale = rand_range(scale_ini,scale_fim)
 	
+	set_scale(Vector2(scale,scale))
 	pass
 
 func _process(delta):
@@ -35,7 +36,10 @@ func _process(delta):
 	
 	rotate(rotation * delta)
 	
-	set_scale(Vector2(scale,scale))
+	if game.estaForaTela(self):
+		print("meteor_free")
+		queue_free()
+	
 	pass
 	
 func aplica_dano(valor):

@@ -11,6 +11,9 @@ func _process(delta):
 	# DESCE
 	set_global_pos(get_global_pos() + Vector2(0,1) * vel * delta)
 	
+	if game.estaForaTela(self):
+		print("powerup_free")
+		queue_free()
 	pass
 	
 func _on_powerup_tiro_duplo_area_enter( area ):
