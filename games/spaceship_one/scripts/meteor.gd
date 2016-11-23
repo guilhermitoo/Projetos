@@ -11,8 +11,7 @@ var scale_fim = 1.5
 var scale
 var vida = 5
 
-var pu_rapido = preload("res://scenes/powerup_tiro_rapido.tscn")
-var pu_duplo = preload("res://scenes/powerup_tiro_duplo.tscn")
+var pre_pu_duplo = preload("res://scripts/classes/bonus/class_pu_tiro_duplo.gd")
 
 func _ready():
 	# adiciona o meteoro criado ao grupo inimigos
@@ -49,10 +48,11 @@ func aplica_dano(valor):
 		get_node("anim").play("destroy")
 		set_process(false)
 		game.getCamera().shake()
-		gerar_bonus()
+		gerar_pu()
 		get_node("sample").play("explosion")
 	pass
 	
-func gerar_bonus():
-	# FUNCAO VAI GERAR UM BONUS A PARTIR DO METEORO
+func gerar_pu():
+	var pu = pre_pu_duplo.new(self)
+	pu.resultar_powerup(vel)
 	pass

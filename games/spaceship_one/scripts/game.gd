@@ -6,6 +6,7 @@ const GRUPO_NAVE = "nave"
 var score = 0 setget setScore
 var pontuacao_por_meteoro = 1
 var nave_vida = 5 setget setVidas
+var chance_bonus = 20
 
 signal score_changed
 signal lifes_changed
@@ -15,7 +16,11 @@ func _ready():
 	pass
 
 func getCamera():
-	return get_tree().get_root().get_node("main").get_node("camera")	
+	return getMain().get_node("camera")	
+	pass
+	
+func getMain():
+	return get_tree().get_root().get_node("main")
 	pass
 	
 func setScore(valor):

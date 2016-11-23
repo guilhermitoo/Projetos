@@ -2,7 +2,6 @@
 
 var intervalo = 0.2
 var ultimo_disparo = 0
-var disparo_anterior
 var nave
 var pre_tiro = preload("res://scenes/tiro_verde.tscn")
 
@@ -27,8 +26,6 @@ func disparar():
 	pass
 
 func criar_tiro(node):
-	# disparo_anterior recebe o node do disparo
-	disparo_anterior = node
 	# INSTANCIA O TIRO A PARTIR DO PRE_TIRO
 	var tiro = pre_tiro.instance()
 	# DEFINE A POSIÇÃO DELE NA POSIÇÃO DA NAVE

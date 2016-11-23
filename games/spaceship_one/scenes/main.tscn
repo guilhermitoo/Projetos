@@ -9,13 +9,12 @@
 [ext_resource path="res://fonts/score.fnt" type="BitmapFont" id=7]
 [ext_resource path="res://sprites/UI/playerLife2_blue.png" type="Texture" id=8]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Camera2D\n\nvar vel = 150\nvar shake = 0\nvar vibration = 0 # quanto maior esse valor, maior o efeito de vibração, em questão de movimento\n\nfunc _ready():\n\tset_process(true)\n\tpass\n\nfunc _process(delta):\n\tset_offset(get_offset() + Vector2(0,-1) * vel * delta)\n\t\n\tif shake > 0:\n\t\t# faz a vibração\n\t\tset_pos(Vector2(cos(rad2deg(shake)),sin(rad2deg(shake))) * 2)\n\t\t# reduz delta de shake para terminar a vibração\n\t\tshake -= delta\n\telse:\n\t\tset_pos(Vector2(0,0))\n\t\n\t\n\tpass\n\t\nfunc shake():\n\t# ao chamar a função shake ele vai passar 1 para shake \n\t# e então no _process vai entrar no if shake>0 e executar o código de vibração\n\tshake = 0.5\n\tpass"
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
-resource/name = "lbl_score"
 script/source = "extends Label\n\nfunc _ready():\n\tgame.connect(\"score_changed\",self,\"_on_score_changed\")\n\tpass\n\t\nfunc _on_score_changed():\n\tset_text(str(game.score))\n\tpass"
 
 [sub_resource type="GDScript" id=3]
@@ -55,7 +54,7 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
-script/script = SubResource( 2 )
+script/script = SubResource( 1 )
 
 [node name="spaceship" parent="camera" instance=ExtResource( 4 )]
 
@@ -148,7 +147,7 @@ texture = ExtResource( 5 )
 
 [node name="estrela14" type="Sprite" parent="ParallaxBackground/estrelas"]
 
-transform/pos = Vector2( 853.113, 506.472 )
+transform/pos = Vector2( 966.001, 510.173 )
 transform/scale = Vector2( 1, 1.0519 )
 texture = ExtResource( 5 )
 
@@ -200,6 +199,12 @@ texture = ExtResource( 5 )
 [node name="estrelinha16" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 660.565, 329.06 )
+transform/scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="estrelinha27" type="Sprite" parent="ParallaxBackground/estrelinhas"]
+
+transform/pos = Vector2( 900.365, 470.171 )
 transform/scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 
@@ -368,7 +373,7 @@ align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script/script = SubResource( 1 )
+script/script = SubResource( 2 )
 
 [node name="vidas" type="Node2D" parent="HUD"]
 

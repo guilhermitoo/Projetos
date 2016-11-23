@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/powerup.gd" type="Script" id=1]
+[ext_resource path="res://sprites/Power-ups/pill_blue.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 6.74059
+height = 11.2011
+
+[node name="powerup" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( -0.707107, -0.707107, 0.707107, -0.707107, -0.28479, -5.96046e-07 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+
+[node name="powerup" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -0.28479, -5.96046e-07 )
+transform/rot = -225.0
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+
