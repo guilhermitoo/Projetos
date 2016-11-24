@@ -5,7 +5,7 @@ var ultimo_disparo = 0
 var nave
 var pre_tiro = preload("res://scenes/tiro_verde.tscn")
 
-func _init(nave): # CONSTRUTOR DA CLASSE tiro_simples
+func _init(nave): # CONSTRUTOR DA CLASSE
 	self.nave = nave
 	pass
 	
