@@ -52,11 +52,13 @@ func aplica_dano(valor):
 		get_node("anim").play("destroy")
 		set_process(false)
 		game.getCamera().shake()
+		# GERA UM POWER UP AO DESTRUIR O METEORO
 		gerar_pu()
 		get_node("sample").play("explosion")
 	pass
 	
 func gerar_pu():
+	# INSTANCIA UM NOVO POWERUP DE TIRO DUPLO
 	var pu = pre_pu_duplo.new(self)
 	pu.resultar_powerup(vel)
 	pass

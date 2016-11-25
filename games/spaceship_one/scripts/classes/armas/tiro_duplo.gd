@@ -1,12 +1,9 @@
+extends "res://scripts/classes/armas/class_arma.gd"
 # CLASSE TIRO DUPLO
 
-var intervalo = 0.2
-var ultimo_disparo = 0
-var nave
-var pre_tiro = preload("res://scenes/tiro_verde.tscn")
-
-func _init(nave): # CONSTRUTOR DA CLASSE
-	self.nave = nave
+func _init(x).(x): # CONSTRUTOR DA CLASSE
+	._init(x)
+	pre_tiro = preload("res://scenes/tiro_verde.tscn")
 	pass
 	
 func disparar():
@@ -23,18 +20,4 @@ func disparar():
 		
 		ultimo_disparo = intervalo
 		pass
-	pass
-
-func criar_tiro(node):
-	# INSTANCIA O TIRO A PARTIR DO PRE_TIRO
-	var tiro = pre_tiro.instance()
-	# DEFINE A POSIÇÃO DELE NA POSIÇÃO DA NAVE
-	tiro.set_global_pos(node.get_global_pos())
-	# VICULA ELE NO MAIN
-	nave.get_owner().add_child(tiro)
-	pass
-
-func atualizar(delta):
-	if ultimo_disparo > 0:
-		ultimo_disparo -= delta
 	pass

@@ -5,6 +5,7 @@ var ultimo_disparo = 0
 var disparo_anterior
 var nave
 var pre_tiro = preload("res://scenes/shoot.tscn")
+var municao = 20
 
 func _init(nave): # CONSTRUTOR DA CLASSE tiro_simples
 	self.nave = nave

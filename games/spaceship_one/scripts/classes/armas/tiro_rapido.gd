@@ -5,6 +5,7 @@ var ultimo_disparo = 0
 var disparo_anterior
 var nave
 var pre_tiro = preload("res://scenes/tiro_vermelho.tscn")
+var municao = 20
 
 func _init(nave): # CONSTRUTOR DA CLASSE tiro_simples
 	self.nave = nave
@@ -29,6 +30,9 @@ func criar_tiro(node):
 	tiro.set_global_pos(node.get_global_pos())
 	# VICULA ELE NO MAIN
 	nave.get_owner().add_child(tiro)
+	
+	municao -= 1
+	
 	pass
 
 func atualizar(delta):

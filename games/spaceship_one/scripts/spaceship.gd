@@ -6,7 +6,6 @@ var arma
 var tiro_simples = preload("res://scripts/classes/armas/tiro_simples.gd")
 var tiro_rapido = preload("res://scripts/classes/armas/tiro_rapido.gd")
 var tiro_duplo = preload("res://scripts/classes/armas/tiro_duplo.gd")
-var municao = 0
 
 var armas = [
 	tiro_simples.new(self),
@@ -17,6 +16,7 @@ var armas = [
 
 func _ready():
 	self.add_to_group(game.GRUPO_NAVE)
+	set_arma(0)
 	set_process(true)
 	pass
 	
@@ -24,23 +24,18 @@ func _process(delta):
 	
 	# função criada apenas para separar o código de controle de direção da nave
 	ControlarDirecao(delta)
-
+	
+	arma.atualizar(delta)
+	
 	# SE PRESSIONAR O BOTÃO DE DISPARO
 	if Input.is_action_pressed("ui_action"):
 		arma.disparar()
-		
 		# Reduz 1 de munição por tiro qnd for bonus
-		if arma != armas[0]:
-			municao -= 1
+		if arma.municao < 0:
+			set_arma(0)
+			
 		pass
 		
-	# define a arma padrão
-	if municao <= 0:
-		set_arma(0)
-		
-		
-	arma.atualizar(delta)
-	
 	pass
 	
 	
@@ -66,11 +61,9 @@ func ControlarDirecao(delta):
 	pass
 	
 func set_arma(valor):
-	
 	arma = armas[valor]
-	# se arma é diferente de 0 então atribui municao 20
-	if valor > 0:
-	  municao = 20
+	if valor != 0:
+		arma.municao = 20
 	pass
 
 func _on_spaceship_area_enter( area ):
