@@ -1,15 +1,24 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=23 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/meteor_spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/spaceship.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/Effects/star1.png" type="Texture" id=4]
-[ext_resource path="res://fonts/score.fnt" type="BitmapFont" id=5]
-[ext_resource path="res://sprites/UI/playerLife2_blue.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Effects/star2.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Effects/star3.png" type="Texture" id=6]
+[ext_resource path="res://scripts/HUD.gd" type="Script" id=7]
+[ext_resource path="res://fonts/score.fnt" type="BitmapFont" id=8]
+[ext_resource path="res://sprites/UI/playerLife2_blue.png" type="Texture" id=9]
+[ext_resource path="res://sprites/UI/cursor.png" type="Texture" id=10]
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Camera2D\n\nvar vel = 150\nvar shake = 0\nvar vibration = 0 # quanto maior esse valor, maior o efeito de vibração, em questão de movimento\n\nfunc _ready():\n\tset_process(true)\n\tpass\n\nfunc _process(delta):\n\tset_offset(get_offset() + Vector2(0,-1) * vel * delta)\n\t\n\tif shake > 0:\n\t\t# faz a vibração\n\t\tset_pos(Vector2(cos(rad2deg(shake)),sin(rad2deg(shake))) * 2)\n\t\t# reduz delta de shake para terminar a vibração\n\t\tshake -= delta\n\telse:\n\t\tset_pos(Vector2(0,0))\n\t\n\t\n\tpass\n\t\nfunc shake():\n\t# ao chamar a função shake ele vai passar 1 para shake \n\t# e então no _process vai entrar no if shake>0 e executar o código de vibração\n\tshake = 0.5\n\tpass"
+resource/name = "camera"
+script/source = "extends Camera2D\n\nvar vel = 150\nvar shake = 0\nvar vibration = 0 # quanto maior esse valor, maior o efeito de vibração, em questão de movimento\n\nfunc _ready():\n\tset_process(true)\n\tpass\n\nfunc _process(delta):\n\tset_offset(get_offset() + Vector2(0,-1) * vel * delta)\n\t\n\tif shake > 0:\n\t\t# faz a vibração\n\t\tset_pos(Vector2(cos(rad2deg(shake)),sin(rad2deg(shake))) * 2)\n\t\t# reduz delta de shake para terminar a vibração\n\t\tshake -= delta\n\telse:\n\t\tset_pos(Vector2(0,0))\n\t\t\n\tpass\n\t\nfunc shake():\n\t# ao chamar a função shake ele vai passar 1 para shake \n\t# e então no _process vai entrar no if shake>0 e executar o código de vibração\n\tshake = 0.5\n\tpass"
+
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ { "frames":[ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"star", "speed":3.0 } ]
 
 [sub_resource type="GDScript" id=2]
 
@@ -20,8 +29,43 @@ script/source = "extends Label\n\nfunc _ready():\n\tgame.connect(\"score_changed
 resource/name = "desenhar_vidas"
 script/source = "extends Node2D\n\n# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO\n# SER MANIPULADA PELO INSPECTOR\nexport(Texture) var textura\n\nfunc _ready():\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tpass\n\t\nfunc _draw():\n\tfor n in range(0, game.nave_vida):\n\t\tdraw_texture(textura,Vector2(n * textura.get_width() , 0) )\n\tpass"
 
+[sub_resource type="CanvasItemShader" id=9]
+
+_code = { "fragment":"", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+
+[sub_resource type="CanvasItemMaterial" id=10]
+
+shader/shader = SubResource( 9 )
+shader/shading_mode = 0
+
+[sub_resource type="Theme" id=11]
+
+
+[sub_resource type="Theme" id=6]
+
+default_font = ExtResource( 8 )
+
+[sub_resource type="ShortCut" id=5]
+
+shortcut = InputEvent(NONE)
+
+[sub_resource type="GDScript" id=8]
+
+resource/name = "pause_play"
+script/source = "extends Button\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_pause_play_button_down():\n\tgame.pausar()\n\tpass # replace with function body\n"
+
+[sub_resource type="Theme" id=7]
+
+default_font = ExtResource( 8 )
+
+[sub_resource type="GDScript" id=12]
+
+resource/name = "exit"
+script/source = "extends Button\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_exit_button_down():\n\tgame.sair()\n\tpass # replace with function body\n"
+
 [node name="main" type="CanvasLayer"]
 
+process/pause_mode = 1
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -56,6 +100,7 @@ transform/pos = Vector2( 524.832, 533.654 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -77,275 +122,485 @@ motion/mirroring = Vector2( 0, 500 )
 [node name="estrela" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 136.924, 112.913 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela1" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 397.861, 116.614 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela2" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 166.534, 262.813 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela3" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 288.675, 222.1 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela5" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 284.973, 373.85 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela6" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 481.139, 355.344 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela7" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 666.201, 181.386 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela8" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 557.014, 72.1994 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela9" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 786.491, 57.3944 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela10" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 906.781, 149.925 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela11" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 808.699, 183.237 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela12" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 901.23, 357.195 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela13" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 705.064, 357.195 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela14" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 966.001, 510.173 )
-transform/scale = Vector2( 1, 1.0519 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela15" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 431.172, 462.68 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela16" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 123.97, 488.589 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela17" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 227.604, 523.75 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="estrela4" type="Sprite" parent="ParallaxBackground/estrelas"]
 
 transform/pos = Vector2( 481.139, 242.456 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+
+[node name="estrelinhas_meio" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 1, 0.5 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 500 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 377.931, 160.458 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite11" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 226.432, 155.571 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite12" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 127.063, 93.6686 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite13" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 715.136, 371.415 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+playing = true
+
+[node name="AnimatedSprite1" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 585.63, 183.264 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 566.082, 22.8066 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+playing = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 728.168, 122.991 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+playing = true
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 767.265, 261.457 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 592.96, 342.093 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite6" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 393.406, 395.036 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite14" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 695.588, 458.567 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite15" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 701.29, 480.559 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 1
+playing = true
+
+[node name="AnimatedSprite16" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 806.361, 429.245 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+playing = true
+
+[node name="AnimatedSprite21" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 909.803, 551.421 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite17" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 927.722, 317.658 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+playing = true
+
+[node name="AnimatedSprite18" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 932.609, 248.425 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+playing = true
+
+[node name="AnimatedSprite19" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 952.972, 55.3867 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite20" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 952.972, 55.3867 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite7" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 315.214, 521.284 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+playing = true
+
+[node name="AnimatedSprite8" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 186.522, 410.512 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+playing = true
+
+[node name="AnimatedSprite9" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 32.58, 535.131 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 2
+playing = true
+
+[node name="AnimatedSprite10" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
+
+transform/pos = Vector2( 43.983, 271.231 )
+transform/scale = Vector2( 0.35, 0.35 )
+frames = SubResource( 4 )
+animation = "star"
+frame = 1
+playing = true
 
 [node name="estrelinhas" type="ParallaxLayer" parent="ParallaxBackground"]
 
 editor/display_folded = true
-motion/scale = Vector2( 1, 0.33 )
+motion/scale = Vector2( 1, 0.3 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 0, 500 )
-
-[node name="estrelinha" type="Sprite" parent="ParallaxBackground/estrelinhas"]
-
-transform/pos = Vector2( 566.896, 144.168 )
-transform/scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 4 )
 
 [node name="estrelinha11" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 448.793, 166.159 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha12" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 619.025, 406.439 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha16" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 660.565, 329.06 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha27" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 900.365, 470.171 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha17" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 562.824, 250.053 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha18" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 81.4505, 365.713 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha19" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 680.113, 61.0878 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha20" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 865.154, 180.755 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha21" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 729.974, 168.567 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha22" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 818.617, 201.808 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha23" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 862.938, 336.988 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha24" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 758.783, 522.03 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha25" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 467.37, 512.057 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha26" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 109.475, 494.329 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha13" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 496.849, 371.415 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha14" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 496.034, 380.374 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha15" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 492.776, 391.777 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha1" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 155.571, 430.059 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha2" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 368.157, 298.924 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha3" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 570.969, 266.344 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha4" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 125.381, 213.71 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha5" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 258.955, 28.7728 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha6" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 424.277, 45.8414 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha7" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 220.454, 169.213 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha8" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 50.049, 81.4289 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha9" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 201.785, 95.3314 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="estrelinha10" type="Sprite" parent="ParallaxBackground/estrelinhas"]
 
 transform/pos = Vector2( 348.754, 96.9203 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+process/pause_mode = 2
 layer = 10
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+script/script = ExtResource( 7 )
 
 [node name="lbl_score" type="Label" parent="HUD"]
 
@@ -353,11 +608,11 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 814.0
-margin/top = 19.0
-margin/right = 1001.0
-margin/bottom = 69.0
-custom_fonts/font = ExtResource( 5 )
+margin/left = 829.0
+margin/top = 18.0
+margin/right = 1016.0
+margin/bottom = 68.0
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 percent_visible = 1.0
@@ -367,8 +622,89 @@ script/script = SubResource( 2 )
 
 [node name="vidas" type="Node2D" parent="HUD"]
 
-transform/pos = Vector2( 36.9099, 32.8088 )
+transform/pos = Vector2( 35.4026, 34.3162 )
 script/script = SubResource( 3 )
-textura = ExtResource( 6 )
+textura = ExtResource( 9 )
+
+[node name="pause_menu" type="Panel" parent="HUD"]
+
+process/pause_mode = 2
+material/material = SubResource( 10 )
+material/use_parent = true
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = SubResource( 11 )
+margin/left = 350.0
+margin/top = 100.0
+margin/right = 374.0
+margin/bottom = 230.0
+
+[node name="titulo_pause" type="Label" parent="HUD/pause_menu"]
+
+rect/scale = Vector2( 0.7, 0.7 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 13.0
+margin/top = 10.0
+margin/right = 359.0
+margin/bottom = 93.0
+custom_fonts/font = ExtResource( 8 )
+text = "The game was \n\tpaused"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="pause_play" type="Button" parent="HUD/pause_menu"]
+
+process/pause_mode = 2
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = SubResource( 6 )
+margin/left = 50.0
+margin/top = 100.0
+margin/right = 250.0
+margin/bottom = 150.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = SubResource( 5 )
+text = "RESUME"
+flat = false
+script/script = SubResource( 8 )
+
+[node name="exit" type="Button" parent="HUD/pause_menu"]
+
+process/pause_mode = 2
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = SubResource( 7 )
+margin/left = 50.0
+margin/top = 170.0
+margin/right = 250.0
+margin/bottom = 220.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = SubResource( 5 )
+text = "EXIT"
+flat = false
+script/script = SubResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="HUD/pause_menu"]
+
+transform/pos = Vector2( 280, 21 )
+texture = ExtResource( 10 )
+
+[connection signal="button_down" from="HUD/pause_menu/pause_play" to="HUD/pause_menu/pause_play" method="_on_pause_play_button_down"]
+
+[connection signal="button_down" from="HUD/pause_menu/exit" to="HUD/pause_menu/exit" method="_on_exit_button_down"]
 
 

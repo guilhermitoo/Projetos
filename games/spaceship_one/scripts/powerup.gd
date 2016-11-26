@@ -16,7 +16,7 @@ func _process(delta):
 		queue_free()
 	pass
 	
-func _on_powerup_tiro_duplo_area_enter( area ):
+func _on_powerup_tiro_area_enter( area ):
 	# area é a NAVE
 	# Os métodos invocados estão em SPACESHIP.GD
 	if area.is_in_group(game.GRUPO_NAVE):

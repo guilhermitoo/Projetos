@@ -12,6 +12,7 @@ var scale
 var vida = 5
 
 var pre_pu_duplo = preload("res://scripts/classes/bonus/class_pu_tiro_duplo.gd")
+var pre_pu_rapido = preload("res://scripts/classes/bonus/class_pu_tiro_rapido.gd")
 
 func _ready():
 	# adiciona o meteoro criado ao grupo inimigos
@@ -58,7 +59,15 @@ func aplica_dano(valor):
 	pass
 	
 func gerar_pu():
-	# INSTANCIA UM NOVO POWERUP DE TIRO DUPLO
-	var pu = pre_pu_duplo.new(self)
-	pu.resultar_powerup(vel)
+	# INSTANCIA UM NOVO POWERUP
+	var pud = pre_pu_duplo.new(self)
+	var pur = pre_pu_rapido.new(self)
+	
+	randomize()
+	if (rand_range(1,10) > 5 ):
+		pud.resultar_powerup(vel)
+	else:
+		pur.resultar_powerup(vel)
+		
+	
 	pass

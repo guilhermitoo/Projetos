@@ -1,14 +1,9 @@
-# TIRO RAPIDO
+extends "res://scripts/classes/armas/class_arma.gd"
 
-var intervalo = 0.10
-var ultimo_disparo = 0
-var disparo_anterior
-var nave
-var pre_tiro = preload("res://scenes/tiro_vermelho.tscn")
-var municao = 20
-
-func _init(nave): # CONSTRUTOR DA CLASSE tiro_simples
-	self.nave = nave
+func _init(x).(x): # CONSTRUTOR DA CLASSE
+	._init(x)
+	pre_tiro = preload("res://scenes/tiro_vermelho.tscn")
+	intervalo = 0.1
 	pass
 	
 func disparar():
@@ -19,23 +14,4 @@ func disparar():
 		
 		ultimo_disparo = intervalo
 		pass
-	pass
-
-func criar_tiro(node):
-	# disparo_anterior recebe o node do disparo
-	disparo_anterior = node
-	# INSTANCIA O TIRO A PARTIR DO PRE_TIRO
-	var tiro = pre_tiro.instance()
-	# DEFINE A POSIÇÃO DELE NA POSIÇÃO DA NAVE
-	tiro.set_global_pos(node.get_global_pos())
-	# VICULA ELE NO MAIN
-	nave.get_owner().add_child(tiro)
-	
-	municao -= 1
-	
-	pass
-
-func atualizar(delta):
-	if ultimo_disparo > 0:
-		ultimo_disparo -= delta
 	pass

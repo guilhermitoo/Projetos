@@ -31,6 +31,6 @@ polygon = Vector2Array( 8.44072, -9.36201, 0.344437, -10.3901, -10.8361, 0.79046
 shape_range = Vector2( 0, 0 )
 trigger = false
 
-[connection signal="area_enter" from="." to="." method="_on_powerup_tiro_duplo_area_enter"]
+[connection signal="area_enter" from="." to="." method="_on_powerup_tiro_area_enter"]
 
 

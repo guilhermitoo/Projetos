@@ -46,3 +46,13 @@ func estaForaTela(node):
 	retorno = retorno or ( local_no.y < -margem_acrescida_tela )
 	return retorno
 	pass
+	
+func pausar():
+	get_tree().set_pause( ! get_tree().is_paused())  
+	var x = getMain().get_node("HUD").get_node("pause_menu")
+	x.set_hidden(!x.is_hidden())
+	pass
+	
+func sair():
+	get_tree().quit()
+	pass
