@@ -18,6 +18,7 @@ func _ready():
 	self.add_to_group(game.GRUPO_NAVE)
 	set_arma(0)
 	set_process(true)
+	game.connect("lifes_changed",self,"_on_lifes_changed")
 	pass
 	
 func _process(delta):
@@ -73,3 +74,26 @@ func _on_spaceship_area_enter( area ):
 			# ENTAO reduz 1 de vida
 			area.aplica_dano(200)
 			game.nave_vida -= 1
+	
+func _on_lifes_changed():
+	# Executa este código quando a vida muda
+	
+	# faz um cálculo para saber quantos % a vida atual corresponde a vida total
+	var x = ((game.nave_vida * 100) / game.nave_hp)
+	# faz a verificacao para mudar os frames da animação de destruição
+	var y = 0
+	if x < 20:
+		y = 3
+	elif x < 50:
+		y = 2
+	elif x < 80:
+		y = 1
+	else:
+		y = 0
+	get_node("damage").set_frame(y)
+	pass 
+	
+func aplica_dano(valor):
+	game.nave_vida -= valor
+	#get_node("anim").play("hit")
+	pass

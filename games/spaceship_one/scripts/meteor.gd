@@ -70,5 +70,4 @@ func gerar_pu():
 	else:
 		pur.resultar_powerup(vel)
 		
-	
 	pass

@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://scripts/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Parts/gun09.png" type="Texture" id=2]
 [ext_resource path="res://sprites/playerShip2_blue.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Damage/playerShip2_damage1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Damage/playerShip2_damage2.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Damage/playerShip2_damage3.png" type="Texture" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -38,6 +41,10 @@ points = Vector2Array( -10.8889, -19.343, 9.92922, -19.87, 14.1456, -18.0254, 14
 
 custom_solver_bias = 0.0
 points = Vector2Array( 14.1456, -15.6537, 15.4632, 30.1989, 10.9833, 37.0504, -12.9971, 36.2599, -17.4769, 29.9354 )
+
+[sub_resource type="SpriteFrames" id=8]
+
+animations = [ { "frames":[ null, ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"default", "speed":5.0 } ]
 
 [node name="spaceship" type="Area2D"]
 
@@ -89,6 +96,11 @@ flip_v = true
 
 texture = ExtResource( 3 )
 
+[node name="damage" type="AnimatedSprite" parent="."]
+
+frames = SubResource( 8 )
+animation = "default"
+
 [node name="position_cannon_left" type="Position2D" parent="."]
 
 transform/pos = Vector2( -31, -26 )
@@ -99,7 +111,7 @@ transform/pos = Vector2( 31, -26 )
 
 [node name="position_cannon_center" type="Position2D" parent="."]
 
-transform/pos = Vector2( 0, -37.3746 )
+transform/pos = Vector2( -0.389313, -38.9319 )
 
 [node name="poligon" type="CollisionPolygon2D" parent="."]
 

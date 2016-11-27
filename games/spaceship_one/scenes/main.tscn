@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/meteor_spawner.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://fonts/score.fnt" type="BitmapFont" id=8]
 [ext_resource path="res://sprites/UI/playerLife2_blue.png" type="Texture" id=9]
 [ext_resource path="res://sprites/UI/cursor.png" type="Texture" id=10]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=11]
 
 [sub_resource type="GDScript" id=1]
 
@@ -22,10 +23,12 @@ animations = [ { "frames":[ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 )
 
 [sub_resource type="GDScript" id=3]
 
+resource/name = "lbl_score"
 script/source = "extends Label\n\nfunc _ready():\n\tgame.connect(\"score_changed\",self,\"_on_score_changed\")\n\tpass\n\t\nfunc _on_score_changed():\n\tset_text(str(game.score))\n\tpass"
 
 [sub_resource type="GDScript" id=4]
 
+resource/name = "vidas"
 script/source = "extends Node2D\n\n# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO\n# SER MANIPULADA PELO INSPECTOR\nexport(Texture) var textura\n\nfunc _ready():\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc _draw():\n\tfor n in range(0, game.nave_vida):\n\t\tdraw_texture(textura,Vector2(n * textura.get_width() , 0) )\n\tpass"
 
 [sub_resource type="CanvasItemShader" id=5]
@@ -237,6 +240,7 @@ transform/pos = Vector2( 377.931, 160.458 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite11" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -245,7 +249,7 @@ transform/pos = Vector2( 226.432, 155.571 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite12" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -254,7 +258,7 @@ transform/pos = Vector2( 127.063, 93.6686 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite13" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -263,7 +267,6 @@ transform/pos = Vector2( 715.136, 371.415 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite1" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -272,7 +275,7 @@ transform/pos = Vector2( 585.63, 183.264 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -281,7 +284,6 @@ transform/pos = Vector2( 566.082, 22.8066 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -290,7 +292,6 @@ transform/pos = Vector2( 728.168, 122.991 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -299,6 +300,7 @@ transform/pos = Vector2( 767.265, 261.457 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -307,6 +309,7 @@ transform/pos = Vector2( 592.96, 342.093 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite6" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -315,7 +318,7 @@ transform/pos = Vector2( 393.406, 395.036 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite14" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -324,7 +327,7 @@ transform/pos = Vector2( 695.588, 458.567 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite15" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -333,7 +336,7 @@ transform/pos = Vector2( 701.29, 480.559 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite16" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -342,7 +345,6 @@ transform/pos = Vector2( 806.361, 429.245 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite21" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -351,6 +353,7 @@ transform/pos = Vector2( 909.803, 551.421 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite17" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -359,7 +362,6 @@ transform/pos = Vector2( 927.722, 317.658 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite18" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -368,7 +370,6 @@ transform/pos = Vector2( 932.609, 248.425 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite19" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -377,6 +378,7 @@ transform/pos = Vector2( 952.972, 55.3867 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite20" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -385,6 +387,7 @@ transform/pos = Vector2( 952.972, 55.3867 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite7" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -393,7 +396,6 @@ transform/pos = Vector2( 315.214, 521.284 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite8" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -402,7 +404,6 @@ transform/pos = Vector2( 186.522, 410.512 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite9" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -411,6 +412,7 @@ transform/pos = Vector2( 32.58, 535.131 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite10" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -419,7 +421,7 @@ transform/pos = Vector2( 43.983, 271.231 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="estrelinhas" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -749,6 +751,10 @@ shortcut = SubResource( 9 )
 text = "EXIT"
 flat = false
 script/script = SubResource( 12 )
+
+[node name="enemy" parent="." instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 660.276, 61.5164 )
 
 [connection signal="button_down" from="HUD/pause_menu/pause_play" to="HUD/pause_menu/pause_play" method="_on_pause_play_button_down"]
 

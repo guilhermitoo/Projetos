@@ -5,7 +5,13 @@ const GRUPO_NAVE = "nave"
 
 var score = 0 setget setScore
 var pontuacao_por_meteoro = 10
-var nave_vida = 6 setget setVidas
+
+
+# PROPRIEDADE PARA CONTAR A VIDA
+var nave_vida = 0 setget setVidas
+# HP INICIAL DA NAVE
+var nave_hp = 10
+
 var chance_bonus = 15 # %
 # libera os objetos que passarem da margem da tela + margem_acrescida_tela
 var margem_acrescida_tela = 50
@@ -31,6 +37,7 @@ signal score_changed
 signal lifes_changed
 
 func _ready():
+	nave_vida = nave_hp
 	randomize()
 	pass
 
