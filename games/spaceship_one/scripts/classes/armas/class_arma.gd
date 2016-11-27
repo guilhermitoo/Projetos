@@ -19,6 +19,8 @@ func criar_tiro(node):
 	tiro.set_global_pos(node.get_global_pos())
 	# VICULA ELE NO MAIN
 	nave.get_owner().add_child(tiro)
+	# atribui a nave como criador dele
+	tiro.setCreator(nave)
 	
 	municao -= 1
 	

@@ -38,12 +38,13 @@ func _process(delta):
 	
 	pass
 	
-func aplica_dano(valor):
+func aplica_dano(valor,nave):
 	vida -= valor
 	get_node("anim").play("hit")
 	if vida <= 0:
 		# acresce PONTUACAO DO JOGO
-		game.score += game.pontuacao_por_meteoro
+		if nave.is_in_group(game.GRUPO_NAVE):
+			game.score += game.pontuacao_por_meteoro
 		set_z(10)
 		# remove do grupo INIMIGO
 		remove_from_group(game.GRUPO_INIMIGO)

@@ -1,4 +1,3 @@
-
 extends Node
 
 # member variables here, example:

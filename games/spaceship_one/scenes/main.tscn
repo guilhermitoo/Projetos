@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/meteor_spawner.tscn" type="PackedScene" id=2]
@@ -30,6 +30,10 @@ script/source = "extends Label\n\nfunc _ready():\n\tgame.connect(\"score_changed
 
 resource/name = "vidas"
 script/source = "extends Node2D\n\n# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO\n# SER MANIPULADA PELO INSPECTOR\nexport(Texture) var textura\n\nfunc _ready():\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc _draw():\n\tfor n in range(0, game.nave_vida):\n\t\tdraw_texture(textura,Vector2(n * textura.get_width() , 0) )\n\tpass"
+
+[sub_resource type="GDScript" id=13]
+
+script/source = "extends Node\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc update():\n\tget_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_vida))"
 
 [sub_resource type="CanvasItemShader" id=5]
 
@@ -608,10 +612,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 829.0
-margin/top = 18.0
-margin/right = 1016.0
-margin/bottom = 68.0
+margin/left = 827.0
+margin/top = 531.0
+margin/right = 1014.0
+margin/bottom = 571.0
 custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
@@ -622,13 +626,42 @@ script/script = SubResource( 3 )
 
 [node name="vidas" type="Node2D" parent="HUD"]
 
-transform/pos = Vector2( 35.4026, 34.3162 )
+visibility/visible = false
+transform/pos = Vector2( 38.4244, 34.3162 )
+transform/scale = Vector2( 1.09443, 1 )
 script/script = SubResource( 4 )
 textura = ExtResource( 9 )
+
+[node name="vida2" type="Node" parent="HUD"]
+
+editor/display_folded = true
+script/script = SubResource( 13 )
+
+[node name="sprite_vidas" type="Sprite" parent="HUD/vida2"]
+
+transform/pos = Vector2( 35.0245, 551.642 )
+texture = ExtResource( 9 )
+
+[node name="lbl_vidas" type="Label" parent="HUD/vida2"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 60.0
+margin/top = 531.0
+margin/right = 145.0
+margin/bottom = 571.0
+custom_fonts/font = ExtResource( 8 )
+text = "x 10"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="pause_menu" type="Panel" parent="HUD"]
 
 process/pause_mode = 2
+editor/display_folded = true
 visibility/visible = false
 material/material = SubResource( 6 )
 material/use_parent = true
@@ -706,6 +739,7 @@ texture = ExtResource( 10 )
 
 [node name="game_over" type="Panel" parent="HUD"]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -754,7 +788,7 @@ script/script = SubResource( 12 )
 
 [node name="enemy" parent="." instance=ExtResource( 11 )]
 
-transform/pos = Vector2( 660.276, 61.5164 )
+transform/pos = Vector2( 760.604, 49.9667 )
 
 [connection signal="button_down" from="HUD/pause_menu/pause_play" to="HUD/pause_menu/pause_play" method="_on_pause_play_button_down"]
 

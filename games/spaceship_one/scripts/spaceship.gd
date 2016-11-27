@@ -71,9 +71,9 @@ func _on_spaceship_area_enter( area ):
 	if area.is_in_group(game.GRUPO_INIMIGO):
 		# SE tem o metodo aplica dano
 		if area.has_method("aplica_dano"):
-			# ENTAO reduz 1 de vida
-			area.aplica_dano(200)
-			game.nave_vida -= 1
+			# ENTAO destroy o objeto, pois colidiu com a nave
+			area.aplica_dano(200,area)
+			self.aplica_dano(1,null)
 	
 func _on_lifes_changed():
 	# Executa este código quando a vida muda
@@ -93,7 +93,10 @@ func _on_lifes_changed():
 	get_node("damage").set_frame(y)
 	pass 
 	
-func aplica_dano(valor):
-	game.nave_vida -= valor
-	#get_node("anim").play("hit")
+func aplica_dano(valor,nave):
+	if nave != self:
+		game.nave_vida -= valor
+		get_node("anim").play("hit")
+		# executa a animação de balançar a câmera
+		game.getCamera().shake()
 	pass

@@ -6,6 +6,7 @@ extends Area2D
 var vel
 var dano
 var direction = -1
+var creator setget setCreator #recebe a nave que criou o tiro
 
 func _ready():
 	vel = game.shoot_vel
@@ -29,7 +30,7 @@ func _on_shoot_area_enter( area ):
 		# SE tem o metodo aplica dano
 		if area.has_method("aplica_dano"):
 			# ENTAO reduz 1 de vida
-			area.aplica_dano(dano)
+			area.aplica_dano(dano,creator)
 		else:
 			# SENAO já libera o objeto
 			area.queue_free()
@@ -37,3 +38,7 @@ func _on_shoot_area_enter( area ):
 		# Destrói o tiro
 		queue_free()
 	pass 
+
+func setCreator(valor):
+	creator = valor
+	pass
