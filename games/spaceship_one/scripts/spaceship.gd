@@ -1,7 +1,7 @@
 
 extends Node2D
 
-var vel = 350
+var vel = 280
 var arma
 var tiro_simples = preload("res://scripts/classes/armas/tiro_simples.gd")
 var tiro_rapido = preload("res://scripts/classes/armas/tiro_rapido.gd")
@@ -50,9 +50,9 @@ func ControlarDirecao(delta):
 		left = -1 # esquerda subtrai X
 		
 	# IMPEDE QUE A NAVE SAIA DA TELA
-	if get_pos().x > (OS.get_window_size().x - 50):
+	if get_pos().x > (OS.get_window_size().x - game.margem_acrescida_tela):
 		right = 0
-	if get_pos().x < (50):
+	if get_pos().x < (game.margem_acrescida_tela):
 		left = 0
 	
 	# DIREÇÃO DIREITA E ESQUERDA
@@ -62,8 +62,8 @@ func ControlarDirecao(delta):
 	
 func set_arma(valor):
 	arma = armas[valor]
-	if valor != 0:
-		arma.municao = 20
+	if valor > 0:
+		arma.municao = game.shoot_municao_padrao
 	pass
 
 func _on_spaceship_area_enter( area ):

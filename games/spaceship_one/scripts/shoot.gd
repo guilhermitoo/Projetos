@@ -3,10 +3,12 @@ extends Area2D
 # member variables here, example:
 # var a=2
 # var b="textvar"
-var vel = 600
-var dano = 1
+var vel
+var dano
 
 func _ready():
+	vel = game.shoot_vel
+	dano = game.shoot_dano
 	set_process(true)
 	get_node("sample").play("shoot")
 	pass

@@ -12,8 +12,8 @@ func _process(delta):
 	if interval > 0:
 		interval -= delta
 	else:
-		interval = rand_range(0.8,2)
+		interval = rand_range(game.meteor_interval_ini,game.meteor_interval_fim)
 		var meteor = pre_meteor.instance()
-		meteor.set_pos( Vector2(rand_range(30,610), -40))
+		meteor.set_pos( Vector2(rand_range(30,OS.get_window_size().x), -40))
 		get_owner().add_child(meteor)
 	pass

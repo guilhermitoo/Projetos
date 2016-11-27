@@ -4,7 +4,8 @@ var intervalo = 0.2
 var ultimo_disparo = 0
 var nave
 var pre_tiro
-var municao = 20
+var municao = 0
+
 
 func _init(nave): # CONSTRUTOR DA CLASSE
 	self.nave = nave

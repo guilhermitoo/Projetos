@@ -1,15 +1,9 @@
 extends Area2D
 
 var vel
-var vel_ini = 50
-var vel_fim = 200
 var rotation
-var rot_ini = -3
-var rot_fim = 3
-var scale_ini = 0.5
-var scale_fim = 1.5
 var scale
-var vida = 5
+var vida
 
 var pre_pu_duplo = preload("res://scripts/classes/bonus/class_pu_tiro_duplo.gd")
 var pre_pu_rapido = preload("res://scripts/classes/bonus/class_pu_tiro_rapido.gd")
@@ -24,9 +18,10 @@ func _ready():
 	# GERA UM NÚMERO ALEATÓRIO ENTRE -20 E 20 
 	# PARA UTILIZAR NA FUNÇÃO DE ROTAÇÃO (ESQUERDA OU DIREITA ALEATORIO)
 	
-	rotation = rand_range(rot_ini,rot_fim)
-	vel = rand_range(vel_ini,vel_fim)
-	scale = rand_range(scale_ini,scale_fim)
+	rotation = rand_range(game.meteor_rot_ini,game.meteor_rot_fim)
+	vel = rand_range(game.meteor_vel_ini,game.meteor_vel_fim)
+	scale = rand_range(game.meteor_scale_ini,game.meteor_scale_fim)
+	vida = game.meteor_hp
 	
 	set_scale(Vector2(scale,scale))
 	pass
@@ -47,14 +42,20 @@ func aplica_dano(valor):
 	vida -= valor
 	get_node("anim").play("hit")
 	if vida <= 0:
+		# acresce PONTUACAO DO JOGO
 		game.score += game.pontuacao_por_meteoro
 		set_z(10)
+		# remove do grupo INIMIGO
 		remove_from_group(game.GRUPO_INIMIGO)
+		# executa a animação de destruição
 		get_node("anim").play("destroy")
+		# para o processamento
 		set_process(false)
+		# executa a animação de balançar a câmera
 		game.getCamera().shake()
 		# GERA UM POWER UP AO DESTRUIR O METEORO
 		gerar_pu()
+		# executa o som de destruição
 		get_node("sample").play("explosion")
 	pass
 	
