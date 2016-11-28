@@ -89,3 +89,9 @@ func fimDeJogo():
 	var x = getMain().get_node("HUD").get_node("game_over")
 	x.set_hidden(false)
 	pass
+	
+func alignGlobalCenter(node):
+	var osx = OS.get_window_size().x
+	
+	node.set_global_pos(Vector2(((osx*0.5)-(node.get_size().x*0.5)),node.get_global_pos().y))
+	pass

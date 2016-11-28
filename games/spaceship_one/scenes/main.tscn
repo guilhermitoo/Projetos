@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/meteor_spawner.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://fonts/score.fnt" type="BitmapFont" id=8]
 [ext_resource path="res://sprites/UI/playerLife2_blue.png" type="Texture" id=9]
 [ext_resource path="res://sprites/UI/cursor.png" type="Texture" id=10]
-[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=11]
 
 [sub_resource type="GDScript" id=1]
 
@@ -785,10 +784,6 @@ shortcut = SubResource( 10 )
 text = "EXIT"
 flat = false
 script/script = SubResource( 13 )
-
-[node name="enemy" parent="." instance=ExtResource( 11 )]
-
-transform/pos = Vector2( 760.604, 49.9667 )
 
 [connection signal="button_down" from="HUD/pause_menu/pause_play" to="HUD/pause_menu/pause_play" method="_on_pause_play_button_down"]
 
