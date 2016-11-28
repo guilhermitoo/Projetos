@@ -12,7 +12,7 @@ var nave_vida = 0 setget setVidas
 # HP INICIAL DA NAVE
 var nave_hp = 10
 
-var chance_bonus = 15 # %
+var chance_bonus = 100 # %
 # libera os objetos que passarem da margem da tela + margem_acrescida_tela
 var margem_acrescida_tela = 50
 var jogo_rodando = true

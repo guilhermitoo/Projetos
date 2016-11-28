@@ -26,17 +26,17 @@ func _process(delta):
 
 func _on_shoot_area_enter( area ):
 	# SE area de colisão está no grupo_inimigo
-	if area.is_in_group(game.GRUPO_INIMIGO) or area.is_in_group(game.GRUPO_NAVE):
-		# SE tem o metodo aplica dano
-		if area.has_method("aplica_dano"):
-			# ENTAO reduz 1 de vida
-			area.aplica_dano(dano,creator)
-		else:
-			# SENAO já libera o objeto
-			area.queue_free()
-			
-		# Destrói o tiro
-		queue_free()
+	if (creator.is_in_group(game.GRUPO_NAVE) and area.is_in_group(game.GRUPO_INIMIGO)) or (creator.is_in_group(game.GRUPO_INIMIGO) and area.is_in_group(game.GRUPO_NAVE)):
+			# SE tem o metodo aplica dano
+			if area.has_method("aplica_dano"):
+				# ENTAO reduz 1 de vida
+				area.aplica_dano(dano,creator)
+			else:
+				# SENAO já libera o objeto
+				area.queue_free()
+				
+			# Destrói o tiro
+			queue_free()
 	pass 
 
 func setCreator(valor):
