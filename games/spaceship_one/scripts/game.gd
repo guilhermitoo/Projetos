@@ -5,14 +5,15 @@ const GRUPO_NAVE = "nave"
 
 var score = 0 setget setScore
 var pontuacao_por_meteoro = 10
-
+var scale_background = 1 # escala que multiplica a velocidade do fundo
 
 # PROPRIEDADE PARA CONTAR A VIDA
 var nave_vida = 0 setget setVidas
+var nave_velocidade = 460
 # HP INICIAL DA NAVE
-var nave_hp = 10
+var nave_hp = 8
 
-var chance_bonus = 100 # %
+var chance_bonus = 70 # %
 # libera os objetos que passarem da margem da tela + margem_acrescida_tela
 var margem_acrescida_tela = 50
 var jogo_rodando = true
@@ -26,10 +27,10 @@ var meteor_rot_ini = -3
 var meteor_rot_fim = 3
 var meteor_scale_ini = 0.7
 var meteor_scale_fim = 1.8
-var meteor_hp = 5 # HITPOINTS # VIDA
+var meteor_hp = 4 # HITPOINTS # VIDA
 
 # SHOOT PROPERTIES
-var shoot_vel = 700
+var shoot_vel = 800
 var shoot_dano = 1
 var shoot_municao_padrao = 60
 
@@ -53,6 +54,15 @@ func setScore(valor):
 	if valor > 0:
 		score = valor
 		emit_signal("score_changed")
+		var delta = pontuacao_por_meteoro*get_process_delta_time()
+		meteor_vel_ini += delta
+		meteor_vel_fim += delta
+		if meteor_interval_ini > 0:
+			meteor_interval_ini -= delta
+		if meteor_interval_fim > 0.2:
+			meteor_interval_fim -= delta
+			
+		scale_background += delta
 	pass
 	
 func setVidas(valor):

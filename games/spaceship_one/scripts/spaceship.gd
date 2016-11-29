@@ -1,7 +1,7 @@
 
 extends Node2D
 
-var vel = 280
+var vel = 0
 var arma
 var tiro_simples = preload("res://scripts/classes/armas/tiro_simples.gd")
 var tiro_rapido = preload("res://scripts/classes/armas/tiro_rapido.gd")
@@ -19,6 +19,7 @@ func _ready():
 	set_arma(0)
 	set_process(true)
 	game.connect("lifes_changed",self,"_on_lifes_changed")
+	vel = game.nave_velocidade
 	pass
 	
 func _process(delta):

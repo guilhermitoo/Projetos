@@ -3,7 +3,7 @@ extends "res://scripts/classes/armas/class_arma.gd"
 func _init(x).(x): # CONSTRUTOR DA CLASSE
 	._init(x)
 	pre_tiro = preload("res://scenes/tiro_vermelho.tscn")
-	intervalo = 0.1
+	intervalo = 0.08
 	pass
 	
 func disparar():

@@ -1,6 +1,6 @@
 # CLASSE TIRO DUPLO
 
-var intervalo = 0.2
+var intervalo = 0.17
 var ultimo_disparo = 0
 var nave
 var pre_tiro
