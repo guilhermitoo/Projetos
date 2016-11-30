@@ -5,7 +5,7 @@ const GRUPO_NAVE = "nave"
 
 var score = 0 setget setScore
 var pontuacao_por_meteoro = 10
-var scale_background = 1 # escala que multiplica a velocidade do fundo
+var scale_background = 1.5 # escala que multiplica a velocidade do fundo
 
 # PROPRIEDADE PARA CONTAR A VIDA
 var nave_vida = 0 setget setVidas
