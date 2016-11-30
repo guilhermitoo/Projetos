@@ -12,9 +12,6 @@ func _ready():
 	
 	# begin_gambiarra > para centralizar a tela
 	
-	screen_size = OS.get_screen_size()
-	window_size = OS.get_window_size()	
-	OS.set_window_position(screen_size*0.5 - window_size*0.5)
 	# define o painel pause como oculto
 	self.get_node("HUD/pause_menu").set_hidden(!get_tree().is_paused())
 	
