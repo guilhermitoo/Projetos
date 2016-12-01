@@ -38,7 +38,7 @@ signal score_changed
 signal lifes_changed
 
 func _ready():
-	nave_vida = nave_hp
+	setVidas(nave_hp)
 	randomize()
 	pass
 
@@ -65,7 +65,7 @@ func setScore(valor):
 			meteor_interval_fim -= delta
 			
 		# AUMENTA A VELOCIDADE DA CÂMERA COM RELAÇÃO AO SCORE
-		vel_background += delta*10
+		vel_background += delta*50
 	pass
 	
 func setVidas(valor):
