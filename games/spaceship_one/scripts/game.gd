@@ -13,7 +13,7 @@ var nave_velocidade = 460
 # HP INICIAL DA NAVE
 var nave_hp = 8
 
-var chance_bonus = 70 # %
+var chance_bonus = 15 # %
 # libera os objetos que passarem da margem da tela + margem_acrescida_tela
 var margem_acrescida_tela = 50
 var jogo_rodando = true
@@ -32,7 +32,7 @@ var meteor_hp = 3 # HITPOINTS # VIDA
 # SHOOT PROPERTIES
 var shoot_vel = 800
 var shoot_dano = 1
-var shoot_municao_padrao = 60
+var shoot_municao_padrao = 40
 
 signal score_changed
 signal lifes_changed
