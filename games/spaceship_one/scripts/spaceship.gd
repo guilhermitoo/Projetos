@@ -65,7 +65,7 @@ func ControlarDirecao(delta):
 func set_arma(valor):
 	arma = armas[valor]
 	if valor > 0:
-		arma.municao = game.shoot_municao_padrao
+		arma.setMunicao(game.shoot_municao_padrao)
 	pass
 
 func _on_spaceship_area_enter( area ):

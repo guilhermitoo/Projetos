@@ -4,13 +4,22 @@ var intervalo = 0.17
 var ultimo_disparo = 0
 var nave
 var pre_tiro
-var municao = 0
+var municao = 0 setget setMunicao, getMunicao
 
+signal gastou_municao
 
 func _init(nave): # CONSTRUTOR DA CLASSE
 	self.nave = nave
 	pass
 	
+func setMunicao(valor):
+	municao = valor
+	emit_signal("gastou_municao")
+	pass
+	
+func getMunicao():
+	return municao
+	pass
 
 func criar_tiro(node):
 	# INSTANCIA O TIRO A PARTIR DO PRE_TIRO
@@ -22,7 +31,7 @@ func criar_tiro(node):
 	# atribui a nave como criador dele
 	tiro.setCreator(nave)
 	
-	municao -= 1
+	setMunicao(getMunicao() - 1)
 	
 	pass
 
