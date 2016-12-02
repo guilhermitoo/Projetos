@@ -5,7 +5,7 @@ const GRUPO_NAVE = "nave"
 
 var score = 0 setget setScore
 var pontuacao_por_meteoro = 10
-var vel_background = 150 # escala que multiplica a velocidade do fundo
+var vel_background = 300 # escala que multiplica a velocidade do fundo
 
 # PROPRIEDADE PARA CONTAR A VIDA
 var nave_vida = 0 setget setVidas
@@ -19,15 +19,16 @@ var margem_acrescida_tela = 50
 var jogo_rodando = true
 
 # METEOR PROPERTIES
-var meteor_interval_ini = 0.2
-var meteor_interval_fim = 1.5
-var meteor_vel_ini = 150
-var meteor_vel_fim = 300
-var meteor_rot_ini = -3
-var meteor_rot_fim = 3
-var meteor_scale_ini = 0.7
-var meteor_scale_fim = 1.8
-var meteor_hp = 3 # HITPOINTS # VIDA
+var meteor_interval_ini
+var meteor_interval_fim
+var meteor_vel_ini
+var meteor_vel_fim
+var meteor_rot_ini
+var meteor_rot_fim 
+var meteor_scale_ini 
+var meteor_scale_fim 
+
+var meteor_hp = 2 # HITPOINTS # VIDA
 
 # SHOOT PROPERTIES
 var shoot_vel = 800
@@ -39,6 +40,7 @@ signal lifes_changed
 
 func _ready():
 	setVidas(nave_hp)
+	iniciarControles()
 	randomize()
 	pass
 
@@ -55,17 +57,7 @@ func setScore(valor):
 		score = valor
 		emit_signal("score_changed")
 		var delta = pontuacao_por_meteoro*get_process_delta_time()
-		# AUMENTA A VELOCIDADE DOS METEOROS, COM RELAÇÃO AO SCORE
-		meteor_vel_ini += delta
-		meteor_vel_fim += delta
-		# AUMENTA A FREQUÊNCIA DE SPAWN DE METEOROS, COM RELAÇÃO A SCORE
-		if meteor_interval_ini > 0:
-			meteor_interval_ini -= delta
-		if meteor_interval_fim > 0.2:
-			meteor_interval_fim -= delta
-			
-		# AUMENTA A VELOCIDADE DA CÂMERA COM RELAÇÃO AO SCORE
-		vel_background += delta*50
+		atualizarControles(delta)
 	pass
 	
 func setVidas(valor):
@@ -107,4 +99,29 @@ func alignGlobalCenter(node):
 	var osx = OS.get_window_size().x
 	
 	node.set_global_pos(Vector2(((osx*0.5)-(node.get_size().x*0.5)),node.get_global_pos().y))
+	pass
+	
+func atualizarControles(delta):
+# AUMENTA A VELOCIDADE DOS METEOROS, COM RELAÇÃO AO SCORE E A VELOCIDADE DA CAMERA
+	meteor_vel_ini = vel_background * 0.7
+	meteor_vel_fim = vel_background
+	# AUMENTA A FREQUÊNCIA DE SPAWN DE METEOROS, COM RELAÇÃO A SCORE
+	if meteor_interval_ini > 0:
+		meteor_interval_ini -= (delta * 0.5)
+	if meteor_interval_fim > 0.5:
+		meteor_interval_fim -= delta
+		
+	# AUMENTA A VELOCIDADE DA CÂMERA COM RELAÇÃO AO SCORE
+	vel_background += delta*50
+	pass
+	
+func iniciarControles():
+	meteor_vel_ini = vel_background * 0.7
+	meteor_vel_fim = vel_background
+	meteor_interval_ini = 0.2
+	meteor_interval_fim = 1.5
+	meteor_rot_ini = -3
+	meteor_rot_fim = 3
+	meteor_scale_ini = 0.7
+	meteor_scale_fim = 1.8
 	pass
