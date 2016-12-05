@@ -11,9 +11,9 @@ var vel_background = 300 # escala que multiplica a velocidade do fundo
 var nave_vida = 0 setget setVidas
 var nave_velocidade = 460
 # HP INICIAL DA NAVE
-var nave_hp = 8
+var nave_hp = 6
 
-var chance_bonus = 100 # %
+var chance_bonus = 10 # %
 # libera os objetos que passarem da margem da tela + margem_acrescida_tela
 var margem_acrescida_tela = 50
 var jogo_rodando = true
@@ -74,7 +74,7 @@ func setVidas(valor):
 	
 func estaForaTela(node):
 	var retorno = false
-	var tamanho_tela = OS.get_screen_size()
+	var tamanho_tela = OS.get_window_size()
 	var local_no = node.get_global_pos()
 	retorno = retorno or ( local_no.x > (tamanho_tela.x+margem_acrescida_tela) )
 	retorno = retorno or ( local_no.x < -margem_acrescida_tela ) 

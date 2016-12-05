@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/shoot.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Lasers/laserBlue05.png" type="Texture" id=2]
-[ext_resource path="res://sounds/shoot.wav" type="Sample" id=3]
+[ext_resource path="res://sounds/shoot.smp" type="Sample" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
