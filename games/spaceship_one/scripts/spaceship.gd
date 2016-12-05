@@ -33,7 +33,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_action"):
 		arma.disparar()
 		# Reduz 1 de munição por tiro qnd for bonus
-		if arma.municao < 0:
+		if game.municao < 0:
 			set_arma(0)
 			
 		pass
@@ -65,7 +65,7 @@ func ControlarDirecao(delta):
 func set_arma(valor):
 	arma = armas[valor]
 	if valor > 0:
-		arma.setMunicao(game.shoot_municao_padrao)
+		game.setMunicao(game.shoot_municao_padrao)
 	pass
 
 func _on_spaceship_area_enter( area ):

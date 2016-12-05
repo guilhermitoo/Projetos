@@ -19,4 +19,7 @@ func _ready():
 	game.alignGlobalCenter(self.get_node("HUD/pause_menu/pause_play"))
 	game.alignGlobalCenter(self.get_node("HUD/pause_menu/exit"))
 	# end_gambiarra
+	
+	get_node("sample").play("Orbital_Colossus_0")
+	
 	pass
