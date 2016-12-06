@@ -1,18 +1,38 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/powerup_tiro_duplo.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Power-ups/pill_yellow.png" type="Texture" id=2]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 9.08327, -0.623167, -0.940689, 10.3004, -9.67953, 9.01526, -10.8361, 0.790468, 0.344437, -10.3901, 8.44072, -9.36201 )
+radius = 8.97005
+height = 15.6336
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "iddle"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "shining"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("powerup_tiro_duplo:modulate")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 1, 1, 1, 1 ), Color( 0.065918, 0.304241, 0.9375, 1 ) ] }
 
 [node name="powerup_tiro_duplo" type="Area2D"]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 0.707107, 0.707107, -0.707107, 0.707107, -0.64392, 0.21464 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -22,14 +42,28 @@ script/script = ExtResource( 1 )
 
 [node name="powerup_tiro_duplo" type="Sprite" parent="."]
 
+transform/scale = Vector2( 1.35, 1.35 )
 texture = ExtResource( 2 )
 
-[node name="poligon" type="CollisionPolygon2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-build_mode = 0
-polygon = Vector2Array( 8.44072, -9.36201, 0.344437, -10.3901, -10.8361, 0.790468, -9.67953, 9.01526, -0.940689, 10.3004, 9.08327, -0.623167 )
-shape_range = Vector2( 0, 0 )
+transform/pos = Vector2( -0.64392, 0.21464 )
+transform/rot = -45.0
+shape = SubResource( 1 )
 trigger = false
+_update_shape_index = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/iddle = SubResource( 2 )
+anims/shining = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "shining"
 
 [connection signal="area_enter" from="." to="." method="_on_powerup_tiro_area_enter"]
 

@@ -13,7 +13,7 @@ var nave_velocidade = 460
 # HP INICIAL DA NAVE
 var nave_hp = 6
 
-var chance_bonus = 10 # %
+var chance_bonus = 100 # %
 # libera os objetos que passarem da margem da tela + margem_acrescida_tela
 var margem_acrescida_tela = 50
 var jogo_rodando = true
