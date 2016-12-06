@@ -2,21 +2,12 @@
 extends Node2D
 
 var vel = 0
-var arma
+var arma setget setArma
 var tiro_simples = preload("res://scripts/classes/armas/tiro_simples.gd")
-var tiro_rapido = preload("res://scripts/classes/armas/tiro_rapido.gd")
-var tiro_duplo = preload("res://scripts/classes/armas/tiro_duplo.gd")
-
-var armas = [
-	tiro_simples.new(self),
-	tiro_rapido.new(self),
-	tiro_duplo.new(self)
-]
-
 
 func _ready():
 	self.add_to_group(game.GRUPO_NAVE)
-	set_arma(0)
+	setArma(tiro_simples.new(self))
 	set_process(true)
 	game.connect("lifes_changed",self,"_on_lifes_changed")
 	vel = game.nave_velocidade
@@ -32,9 +23,6 @@ func _process(delta):
 	# SE PRESSIONAR O BOTÃO DE DISPARO
 	if Input.is_action_pressed("ui_action"):
 		arma.disparar()
-		# Reduz 1 de munição por tiro qnd for bonus
-		if game.municao < 0:
-			set_arma(0)
 			
 		pass
 		
@@ -62,12 +50,10 @@ func ControlarDirecao(delta):
 		
 	pass
 	
-func set_arma(valor):
-	arma = armas[valor]
-	if valor > 0:
-		game.setMunicao(game.shoot_municao_padrao)
+func setArma(valor):
+	arma = valor
 	pass
-
+	
 func _on_spaceship_area_enter( area ):
 	if area.is_in_group(game.GRUPO_INIMIGO):
 		# SE tem o metodo aplica dano

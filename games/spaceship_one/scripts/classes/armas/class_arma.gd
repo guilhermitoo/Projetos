@@ -21,8 +21,6 @@ func criar_tiro(node):
 	# atribui a nave como criador dele
 	tiro.setCreator(nave)
 	
-	game.setMunicao(game.municao -1)
-	
 	pass
 
 func atualizar(delta):

@@ -1,5 +1,3 @@
-# CLASSE POWER UP TIRO DUPLO
-
 var meteoro
 var pre_pu
 

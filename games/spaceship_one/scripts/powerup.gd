@@ -2,6 +2,7 @@ extends Area2D
 
 var vel = 100
 var arma = 0
+var bonus
 
 func _ready():
 	set_process(true)
@@ -20,6 +21,12 @@ func _on_powerup_tiro_area_enter( area ):
 	# area é a NAVE
 	# Os métodos invocados estão em SPACESHIP.GD
 	if area.is_in_group(game.GRUPO_NAVE):
-		area.set_arma(arma)
+		area.set_powerup(arma)
 		queue_free()
 	pass # replace with function body
+	
+func _on_powerup_bonus_area_enter( area ):
+	if area.is_in_group(game.GRUPO_NAVE):
+		#area.set_powerup(arma)
+		queue_free()
+	pass

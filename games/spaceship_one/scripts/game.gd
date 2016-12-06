@@ -34,23 +34,16 @@ var meteor_hp = 2 # HITPOINTS # VIDA
 var shoot_vel = 800
 var shoot_dano = 1
 var shoot_municao_padrao = 40
-var municao = 0 setget setMunicao
 
 signal score_changed
 signal lifes_changed
-signal mun_changed
 
 func _ready():
 	setVidas(nave_hp)
 	iniciarControles()
 	randomize()
 	pass
-
-func setMunicao(valor):
-	municao = valor
-	emit_signal("mun_changed")
-	pass
-
+	
 func getCamera():
 	return getMain().get_node("camera")	
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=1]
+[gd_scene load_steps=32 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/meteor_spawner.tscn" type="PackedScene" id=2]
@@ -7,11 +7,11 @@
 [ext_resource path="res://sprites/Effects/star2.png" type="Texture" id=5]
 [ext_resource path="res://sprites/Effects/star3.png" type="Texture" id=6]
 [ext_resource path="res://scripts/HUD.gd" type="Script" id=7]
-[ext_resource path="res://sprites/branco.png" type="Texture" id=8]
-[ext_resource path="res://sprites/UI2/glassPanel_tab.png" type="Texture" id=9]
-[ext_resource path="res://fonts/text.fnt" type="BitmapFont" id=10]
-[ext_resource path="res://fonts/score.fnt" type="BitmapFont" id=11]
-[ext_resource path="res://sprites/UI/playerLife2_blue.png" type="Texture" id=12]
+[ext_resource path="res://fonts/score.fnt" type="BitmapFont" id=8]
+[ext_resource path="res://sprites/UI/playerLife2_blue.png" type="Texture" id=9]
+[ext_resource path="res://sprites/branco.png" type="Texture" id=10]
+[ext_resource path="res://sprites/UI2/glassPanel_tab.png" type="Texture" id=11]
+[ext_resource path="res://fonts/text.fnt" type="BitmapFont" id=12]
 [ext_resource path="res://sounds/Orbital_Colossus_0.smp" type="Sample" id=13]
 
 [sub_resource type="GDScript" id=1]
@@ -27,21 +27,21 @@ script/source = "extends ParallaxBackground\n\n# class member variables go here,
 
 animations = [ { "frames":[ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"star", "speed":3.0 } ]
 
-[sub_resource type="CanvasItemShader" id=4]
+[sub_resource type="GDScript" id=4]
 
-_code = { "fragment":"", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+script/source = "extends Label\n\nfunc _ready():\n\tgame.connect(\"score_changed\",self,\"_on_score_changed\")\n\tpass\n\t\nfunc _on_score_changed():\n\tset_text(str(game.score))\n\tpass"
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="GDScript" id=5]
 
-shader/shader = SubResource( 4 )
-shader/shading_mode = 0
+script/source = "extends Node2D\n\n# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO\n# SER MANIPULADA PELO INSPECTOR\nexport(Texture) var textura\n\nfunc _ready():\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc _draw():\n\tfor n in range(0, game.nave_vida):\n\t\tdraw_texture(textura,Vector2(n * textura.get_width() , 0) )\n\tpass"
 
-[sub_resource type="Theme" id=6]
+[sub_resource type="GDScript" id=6]
 
+script/source = "extends Node\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# ATRIBUI A VARIAVEL DE VIDA INICIAL PARA A VARIAVEL VIDA\n\tget_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_hp))\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc update():\n\tget_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_vida))"
 
 [sub_resource type="CanvasItemShader" id=7]
 
-_code = { "fragment":"vec4 pixel_tela = vec4(texscreen(SCREEN_UV) , 1);\n\nfloat media = (pixel_tela.r + pixel_tela.g + pixel_tela.b) / 3;\n\nCOLOR = vec4(media,media,media,1);", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_code = { "fragment":"", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
 
 [sub_resource type="CanvasItemMaterial" id=8]
 
@@ -50,45 +50,41 @@ shader/shading_mode = 0
 
 [sub_resource type="Theme" id=9]
 
-default_font = ExtResource( 10 )
 
-[sub_resource type="ShortCut" id=10]
+[sub_resource type="CanvasItemShader" id=10]
 
-shortcut = InputEvent(NONE)
+_code = { "fragment":"vec4 pixel_tela = vec4(texscreen(SCREEN_UV) , 1);\n\nfloat media = (pixel_tela.r + pixel_tela.g + pixel_tela.b) / 3;\n\nCOLOR = vec4(media,media,media,1);", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
 
-[sub_resource type="GDScript" id=11]
+[sub_resource type="CanvasItemMaterial" id=11]
 
-script/source = "extends Button\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_pause_play_button_down():\n\tgame.pausar()\n\tpass # replace with function body\n"
+shader/shader = SubResource( 10 )
+shader/shading_mode = 0
 
 [sub_resource type="Theme" id=12]
 
-default_font = ExtResource( 10 )
+default_font = ExtResource( 12 )
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="ShortCut" id=13]
 
-script/source = "extends Button\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_exit_button_down():\n\tgame.sair()\n\tpass # replace with function body\n"
+shortcut = InputEvent(NONE)
 
 [sub_resource type="GDScript" id=14]
 
-script/source = "extends Label\n\nfunc _ready():\n\tgame.connect(\"score_changed\",self,\"_on_score_changed\")\n\tpass\n\t\nfunc _on_score_changed():\n\tset_text(str(game.score))\n\tpass"
+script/source = "extends Button\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_pause_play_button_down():\n\tgame.pausar()\n\tpass # replace with function body\n"
 
-[sub_resource type="GDScript" id=15]
+[sub_resource type="Theme" id=15]
 
-script/source = "extends Node2D\n\n# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO\n# SER MANIPULADA PELO INSPECTOR\nexport(Texture) var textura\n\nfunc _ready():\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc _draw():\n\tfor n in range(0, game.nave_vida):\n\t\tdraw_texture(textura,Vector2(n * textura.get_width() , 0) )\n\tpass"
+default_font = ExtResource( 12 )
 
 [sub_resource type="GDScript" id=16]
 
-script/source = "extends Node\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# ATRIBUI A VARIAVEL DE VIDA INICIAL PARA A VARIAVEL VIDA\n\tget_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_hp))\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc update():\n\tget_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_vida))"
+script/source = "extends Button\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_exit_button_down():\n\tgame.sair()\n\tpass # replace with function body\n"
 
 [sub_resource type="GDScript" id=17]
 
 script/source = "extends Label\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\tgame.connect(\"score_changed\",self,\"_on_score_changed\")\n\tpass\n\t\nfunc _on_score_changed():\n\tset_text(\"Score: \" + str(game.score))\n\tpass"
 
-[sub_resource type="GDScript" id=18]
-
-script/source = "extends Label\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\tgame.connect(\"mun_changed\",self,\"_on_mun_changed\")\n\tpass\n\t\nfunc _on_mun_changed():\n\tif game.municao < 0:\n\t\tset_text(\"Munição: Infinita\")\n\telse:\n\t\tset_text(\"Municao: \" + str(game.municao))\n\tpass"
-
-[sub_resource type="SampleLibrary" id=19]
+[sub_resource type="SampleLibrary" id=18]
 
 samples/Orbital_Colossus_0 = { "db":8.0, "pitch":1.0, "sample":ExtResource( 13 ) }
 
@@ -129,6 +125,7 @@ transform/pos = Vector2( 522.314, 569.339 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -821,11 +818,63 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 7 )
 
+[node name="lbl_score" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 736.0
+margin/top = 574.0
+margin/right = 1012.0
+margin/bottom = 614.0
+custom_fonts/font = ExtResource( 8 )
+text = "0"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = SubResource( 4 )
+
+[node name="vidas" type="Node2D" parent="HUD"]
+
+visibility/visible = false
+transform/pos = Vector2( 38.4244, 34.3162 )
+transform/scale = Vector2( 1.09443, 1 )
+script/script = SubResource( 5 )
+textura = ExtResource( 9 )
+
+[node name="vida2" type="Node" parent="HUD"]
+
+editor/display_folded = true
+script/script = SubResource( 6 )
+
+[node name="sprite_vidas" type="Sprite" parent="HUD/vida2"]
+
+transform/pos = Vector2( 39.617, 594.933 )
+texture = ExtResource( 9 )
+
+[node name="lbl_vidas" type="Label" parent="HUD/vida2"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 80.0
+margin/top = 571.0
+margin/right = 308.0
+margin/bottom = 611.0
+custom_fonts/font = ExtResource( 8 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="pause_menu" type="Panel" parent="HUD"]
 
 process/pause_mode = 2
+editor/display_folded = true
 visibility/self_opacity = 0.0
-material/material = SubResource( 5 )
+material/material = SubResource( 8 )
 material/use_parent = true
 anchor/right = 1
 anchor/bottom = 1
@@ -833,7 +882,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = SubResource( 6 )
+theme/theme = SubResource( 9 )
 margin/left = 358.0
 margin/top = 83.0
 margin/right = 273.0
@@ -841,16 +890,16 @@ margin/bottom = 247.0
 
 [node name="preto_branco" type="TextureFrame" parent="HUD/pause_menu"]
 
-material/material = SubResource( 8 )
+material/material = SubResource( 11 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -353.0
-margin/top = -86.0
-margin/right = 671.0
-margin/bottom = 545.0
-texture = ExtResource( 8 )
+margin/left = -447.0
+margin/top = -134.0
+margin/right = 727.0
+margin/bottom = 581.0
+texture = ExtResource( 10 )
 expand = true
 stretch_mode = 0
 
@@ -858,7 +907,7 @@ stretch_mode = 0
 
 transform/pos = Vector2( 200.884, 187.963 )
 transform/scale = Vector2( 2.8163, 2.00969 )
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 
 [node name="lbl_titulo_pause" type="Label" parent="HUD/pause_menu"]
 
@@ -870,7 +919,7 @@ margin/left = 96.0
 margin/top = 123.0
 margin/right = 332.0
 margin/bottom = 202.0
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 12 )
 text = "The game was \n\tpaused"
 percent_visible = 1.0
 lines_skipped = 0
@@ -883,17 +932,17 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = SubResource( 9 )
+theme/theme = SubResource( 12 )
 margin/left = 104.0
 margin/top = 187.0
 margin/right = 245.0
 margin/bottom = 232.0
 toggle_mode = false
 enabled_focus_mode = 2
-shortcut = SubResource( 10 )
+shortcut = SubResource( 13 )
 text = "RESUME"
 flat = true
-script/script = SubResource( 11 )
+script/script = SubResource( 14 )
 
 [node name="exit" type="Button" parent="HUD/pause_menu"]
 
@@ -902,67 +951,17 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = SubResource( 12 )
+theme/theme = SubResource( 15 )
 margin/left = 103.0
 margin/top = 235.0
 margin/right = 243.0
 margin/bottom = 280.0
 toggle_mode = false
 enabled_focus_mode = 2
-shortcut = SubResource( 10 )
+shortcut = SubResource( 13 )
 text = "EXIT"
 flat = true
-script/script = SubResource( 13 )
-
-[node name="lbl_score" type="Label" parent="HUD"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 736.0
-margin/top = 574.0
-margin/right = 1012.0
-margin/bottom = 614.0
-custom_fonts/font = ExtResource( 11 )
-text = "0"
-align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script/script = SubResource( 14 )
-
-[node name="vidas" type="Node2D" parent="HUD"]
-
-visibility/visible = false
-transform/pos = Vector2( 38.4244, 34.3162 )
-transform/scale = Vector2( 1.09443, 1 )
-script/script = SubResource( 15 )
-textura = ExtResource( 12 )
-
-[node name="vida2" type="Node" parent="HUD"]
-
 script/script = SubResource( 16 )
-
-[node name="sprite_vidas" type="Sprite" parent="HUD/vida2"]
-
-transform/pos = Vector2( 39.617, 594.933 )
-texture = ExtResource( 12 )
-
-[node name="lbl_vidas" type="Label" parent="HUD/vida2"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 80.0
-margin/top = 571.0
-margin/right = 308.0
-margin/bottom = 611.0
-custom_fonts/font = ExtResource( 11 )
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="game_over" type="Panel" parent="HUD"]
 
@@ -987,7 +986,7 @@ margin/left = 2.0
 margin/top = 233.0
 margin/right = 1027.0
 margin/bottom = 273.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 8 )
 text = "GAME OVER!"
 align = 1
 percent_visible = 1.0
@@ -1004,7 +1003,7 @@ margin/left = 2.0
 margin/top = 355.0
 margin/right = 1027.0
 margin/bottom = 395.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 8 )
 text = "Score: "
 align = 1
 percent_visible = 1.0
@@ -1019,34 +1018,17 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = SubResource( 12 )
+theme/theme = SubResource( 15 )
 margin/left = 383.0
 margin/top = 285.0
 margin/right = 647.0
 margin/bottom = 335.0
 toggle_mode = false
 enabled_focus_mode = 2
-shortcut = SubResource( 10 )
+shortcut = SubResource( 13 )
 text = "EXIT"
 flat = false
-script/script = SubResource( 13 )
-
-[node name="lbl_municao" type="Label" parent="HUD"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 18.0
-margin/top = 18.0
-margin/right = 260.0
-margin/bottom = 56.0
-custom_fonts/font = ExtResource( 10 )
-text = "Munição: Infinita"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script/script = SubResource( 18 )
+script/script = SubResource( 16 )
 
 [node name="sample" type="SamplePlayer2D" parent="."]
 
@@ -1057,7 +1039,7 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 19 )
+config/samples = SubResource( 18 )
 config/pitch_random = 0.0
 
 [connection signal="button_down" from="HUD/pause_menu/pause_play" to="HUD/pause_menu/pause_play" method="_on_pause_play_button_down"]
