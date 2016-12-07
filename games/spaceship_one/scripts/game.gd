@@ -10,6 +10,7 @@ var vel_background = 300 # escala que multiplica a velocidade do fundo
 # PROPRIEDADE PARA CONTAR A VIDA
 var nave_vida = 0 setget setVidas
 var nave_velocidade = 460
+var nave_enemy_vel = 200
 # HP INICIAL DA NAVE
 var nave_hp = 6
 

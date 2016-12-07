@@ -65,6 +65,8 @@ func gerar_pu():
 	# INSTANCIA UM NOVO POWERUP
 	var basic_shield = pre_pu_basic_shield.new(self)
 	
-	basic_shield.resultar_powerup(vel*0.5)
+	# verifica se existe algum bonus na tela, evitando vários bonus na tela
+	if ! game.getMain().has_node("powerup_basic_shield"):
+		basic_shield.resultar_powerup(vel*0.5)
 	
 	pass
