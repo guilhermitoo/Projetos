@@ -4,6 +4,7 @@ extends Node2D
 var vel = 0
 var arma setget setArma
 var tiro_simples = preload("res://scripts/classes/armas/tiro_simples.gd")
+var shield = 0 setget setShield
 
 func _ready():
 	self.add_to_group(game.GRUPO_NAVE)
@@ -54,6 +55,10 @@ func setArma(valor):
 	arma = valor
 	pass
 	
+func setShield(valor):
+	shield = valor
+	pass
+	
 func _on_spaceship_area_enter( area ):
 	if area.is_in_group(game.GRUPO_INIMIGO):
 		# SE tem o metodo aplica dano
@@ -82,8 +87,9 @@ func _on_lifes_changed():
 	
 func aplica_dano(valor,nave):
 	if nave != self:
-		game.nave_vida -= valor
-		get_node("anim").play("hit")
+		if shield == 0:
+			game.nave_vida -= valor
+			get_node("anim").play("hit")
 		# executa a animação de balançar a câmera
 		game.getCamera().shake()
 	pass

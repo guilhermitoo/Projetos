@@ -60,6 +60,7 @@ transform/pos = Vector2( 0, -38.3656 )
 
 [node name="poligon" type="CollisionPolygon2D" parent="."]
 
+visibility/visible = false
 build_mode = 0
 polygon = Vector2Array( -0.456779, -37.6044, -4.47775, -37.6044, -12.3449, -21.1709, -49.058, 21.4863, -48.8832, 28.1297, -21.2609, 28.1297, -14.0931, 36.6961, 12.4802, 37.0457, 21.5711, 27.9548, 48.1445, 28.3045, 47.9696, 20.787, 10.2075, -22.9191, 3.73901, -37.7792 )
 shape_range = Vector2( 0, 4 )

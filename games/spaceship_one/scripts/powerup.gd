@@ -25,8 +25,3 @@ func _on_powerup_tiro_area_enter( area ):
 		queue_free()
 	pass # replace with function body
 	
-func _on_powerup_bonus_area_enter( area ):
-	if area.is_in_group(game.GRUPO_NAVE):
-		#area.set_powerup(arma)
-		queue_free()
-	pass
