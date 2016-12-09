@@ -2,6 +2,7 @@ extends Node
 
 const GRUPO_INIMIGO = "inimigos"
 const GRUPO_NAVE = "nave"
+const GRUPO_SHIELD = "shield"
 
 var score = 0 setget setScore
 var pontuacao_por_meteoro = 10
