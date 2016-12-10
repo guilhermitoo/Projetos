@@ -56,7 +56,7 @@ func aplica_dano(valor,nave):
 		# executa a animação de balançar a câmera
 		game.getCamera().shake()
 		# GERA UM POWER UP AO DESTRUIR O METEORO
-		gerar_pu()
+		#gerar_pu()
 		# executa o som de destruição
 		get_node("sample").play("explosion")
 	pass

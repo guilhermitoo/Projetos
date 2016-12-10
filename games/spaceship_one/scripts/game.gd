@@ -37,6 +37,10 @@ var shoot_vel = 800
 var shoot_dano = 1
 var shoot_municao_padrao = 40
 
+# POWER UP PROPERTIES
+var pu_interval_ini = 20
+var pu_interval_fim = 80
+
 signal score_changed
 signal lifes_changed
 

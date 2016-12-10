@@ -7,6 +7,7 @@ var vel
 var dano
 var direction = -1
 var creator setget setCreator #recebe a nave que criou o tiro
+var wr
 
 func _ready():
 	vel = game.shoot_vel
@@ -16,6 +17,7 @@ func _ready():
 	pass
 
 func _process(delta):
+	wr = weakref(creator)
 	set_pos(get_pos() + Vector2(0,direction) * vel * delta)
 	
 	if game.estaForaTela(self):
@@ -25,21 +27,31 @@ func _process(delta):
 
 
 func _on_shoot_area_enter( area ):
-	# SE area de colisão está no grupo_inimigo
-	if creator && (creator.is_in_group(game.GRUPO_NAVE) and area.is_in_group(game.GRUPO_INIMIGO)) or (creator.is_in_group(game.GRUPO_INIMIGO) and area.is_in_group(game.GRUPO_NAVE)):
-			# SE tem o metodo aplica dano
-			if area.has_method("aplica_dano"):
-				# ENTAO reduz 1 de vida
-				area.aplica_dano(dano,creator)
-			else:
-				# SENAO já libera o objeto
-				area.queue_free()
-			# Destrói o tiro
-			queue_free()
-	elif area.is_in_group(game.GRUPO_SHIELD):
-		# se for um tipo escudo então destroi o tiro
-		queue_free()
+	
+	if wr.get_ref():
 		
+		var CriadorEhNave    = creator.is_in_group(game.GRUPO_NAVE)
+		var CriadorEhInimigo = creator.is_in_group(game.GRUPO_INIMIGO)
+		var AlvoEhNave       = area.is_in_group(game.GRUPO_NAVE)
+		var AlvoEhInimigo    = area.is_in_group(game.GRUPO_INIMIGO)
+		# se o alvo acertado é do grupo SHIELD, então tem escudo
+		var AlvoTemEscudo    = area.is_in_group(game.GRUPO_SHIELD)
+		
+		if ( CriadorEhNave && AlvoEhInimigo ) or ( AlvoEhNave && CriadorEhInimigo ):
+			if AlvoTemEscudo:
+				# se for um tipo escudo então destroi o tiro
+				queue_free()
+				# SE tem o metodo aplica dano
+			else:
+				if area.has_method("aplica_dano"):
+					# ENTAO reduz 1 de vida
+					area.aplica_dano(dano,creator)
+				else:
+					# SENAO já libera o objeto
+					area.queue_free()
+				# Destrói o tiro
+				queue_free()
+			
 	pass 
 
 func setCreator(valor):
