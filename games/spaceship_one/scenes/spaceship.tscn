@@ -115,6 +115,8 @@ flip_v = true
 
 [node name="spaceship" type="Sprite" parent="."]
 
+z/z = 10
+z/relative = false
 texture = ExtResource( 3 )
 
 [node name="damage" type="AnimatedSprite" parent="."]

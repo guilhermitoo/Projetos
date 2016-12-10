@@ -17,6 +17,7 @@ func _ready():
 	pass
 
 func _process(delta):
+	# fica verificando com uma referencia fraca se o objeto creator está atribuido
 	wr = weakref(creator)
 	set_pos(get_pos() + Vector2(0,direction) * vel * delta)
 	
@@ -27,7 +28,7 @@ func _process(delta):
 
 
 func _on_shoot_area_enter( area ):
-	
+	# se tem referência, ou seja, se está atribuido, então executa
 	if wr.get_ref():
 		
 		var CriadorEhNave    = creator.is_in_group(game.GRUPO_NAVE)

@@ -4,8 +4,11 @@ extends Node2D
 var vel = 0
 var arma setget setArma
 var tiro_simples = preload("res://scripts/classes/armas/tiro_simples.gd")
+var pre_ultimate = preload("res://scenes/ultimates/u_lasercannon.tscn");
+var interval = 0
 
 func _ready():
+	set_process_input(true)
 	self.add_to_group(game.GRUPO_NAVE)
 	setArma(tiro_simples.new(self))
 	set_process(true)
@@ -22,12 +25,29 @@ func _process(delta):
 	
 	# SE PRESSIONAR O BOTÃO DE DISPARO
 	if Input.is_action_pressed("ui_action"):
-		arma.disparar()
-			
-		pass
+		if ! self.has_node("u_lasercannon"):
+			arma.disparar()
+		
+	interval -= delta
 		
 	pass
 	
+func _input(event):
+	if event.is_action_pressed("ui_ultimate"):
+		cannon()
+	
+func cannon():
+	if interval <= 0:
+	# SE tem o laser ativo então libera
+		if self.has_node("u_lasercannon"):
+			self.get_node("u_lasercannon").queue_free()
+		# SENAO cria o meteoro
+		else:
+			var ultimate = pre_ultimate.instance()
+			self.add_child(ultimate)
+			ultimate.setCreator(self)
+	# variável interval apenas para evitar spam
+		interval = 1
 	
 func ControlarDirecao(delta):
 	var right = 0
