@@ -42,7 +42,7 @@ var shoot_municao_padrao = 40
 
 # POWER UP PROPERTIES
 var pu_interval_ini = 20
-var pu_interval_fim = 80
+var pu_interval_fim = 60
 
 signal score_changed
 signal lifes_changed

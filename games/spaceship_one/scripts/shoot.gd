@@ -29,30 +29,31 @@ func _process(delta):
 
 func _on_shoot_area_enter( area ):
 	# se tem referência, ou seja, se está atribuido, então executa
-	if wr.get_ref():
-		
-		var CriadorEhNave    = creator.is_in_group(game.GRUPO_NAVE)
-		var CriadorEhInimigo = creator.is_in_group(game.GRUPO_INIMIGO)
-		var AlvoEhNave       = area.is_in_group(game.GRUPO_NAVE)
-		var AlvoEhInimigo    = area.is_in_group(game.GRUPO_INIMIGO)
-		# se o alvo acertado é do grupo SHIELD, então tem escudo
-		var AlvoTemEscudo    = area.is_in_group(game.GRUPO_SHIELD)
-		
-		if ( CriadorEhNave && AlvoEhInimigo ) or ( AlvoEhNave && CriadorEhInimigo ):
-			if AlvoTemEscudo:
-				# se for um tipo escudo então destroi o tiro
-				queue_free()
-				# SE tem o metodo aplica dano
-			else:
-				if area.has_method("aplica_dano"):
-					# ENTAO reduz 1 de vida
-					area.aplica_dano(dano,creator)
-				else:
-					# SENAO já libera o objeto
-					area.queue_free()
-				# Destrói o tiro
-				queue_free()
+	if wr.has_method("get_ref"):
+		if wr.get_ref():
 			
+			var CriadorEhNave    = creator.is_in_group(game.GRUPO_NAVE)
+			var CriadorEhInimigo = creator.is_in_group(game.GRUPO_INIMIGO)
+			var AlvoEhNave       = area.is_in_group(game.GRUPO_NAVE)
+			var AlvoEhInimigo    = area.is_in_group(game.GRUPO_INIMIGO)
+			# se o alvo acertado é do grupo SHIELD, então tem escudo
+			var AlvoTemEscudo    = area.is_in_group(game.GRUPO_SHIELD)
+			
+			if ( CriadorEhNave && AlvoEhInimigo ) or ( AlvoEhNave && CriadorEhInimigo ):
+				if AlvoTemEscudo:
+					# se for um tipo escudo então destroi o tiro
+					queue_free()
+					# SE tem o metodo aplica dano
+				else:
+					if area.has_method("aplica_dano"):
+						# ENTAO reduz 1 de vida
+						area.aplica_dano(dano,creator)
+					else:
+						# SENAO já libera o objeto
+						area.queue_free()
+					# Destrói o tiro
+					queue_free()
+				
 	pass 
 
 func setCreator(valor):
