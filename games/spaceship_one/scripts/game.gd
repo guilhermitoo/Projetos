@@ -15,6 +15,9 @@ var nave_enemy_vel = 200
 # HP INICIAL DA NAVE
 var nave_hp = 6
 
+# PROPRIEDADE PARA CONTAR VIDA ESCUDO
+var escudo_vida = 0 setget setVidaEscudo
+
 var chance_bonus = 100 # %
 # libera os objetos que passarem da margem da tela + margem_acrescida_tela
 var margem_acrescida_tela = 50
@@ -43,11 +46,17 @@ var pu_interval_fim = 80
 
 signal score_changed
 signal lifes_changed
+signal shield_changed
 
 func _ready():
 	setVidas(nave_hp)
 	iniciarControles()
 	randomize()
+	pass
+	
+func setVidaEscudo(valor):
+	escudo_vida = valor
+	emit_signal("shield_changed")
 	pass
 	
 func getCamera():

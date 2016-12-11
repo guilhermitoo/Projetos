@@ -4,6 +4,7 @@ var dano = 10
 var creator setget setCreator
 
 func _ready():
+	get_node("sample").play("laser_cannon_1")
 	pass
 
 func setCreator(valor):

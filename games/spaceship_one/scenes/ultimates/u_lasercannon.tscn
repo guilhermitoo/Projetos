@@ -1,24 +1,23 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/u_lasercannon.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Lasers/laserBlue04.png" type="Texture" id=2]
+[ext_resource path="res://sounds/laser_cannon_1.smp" type="Sample" id=3]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 44.2392
 height = 1070.11
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 
-resource/name = "iddle"
 length = 1.0
 loop = false
 step = 0.1
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource/name = "shooting"
 length = 1.0
 loop = true
 step = 0.1
@@ -28,10 +27,14 @@ tracks/0/interp = 2
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.3, 0.6, 0.9 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ Vector2( 6, 30 ), Vector2( 7, 30 ), Vector2( 5, 30 ), Vector2( 7, 30 ) ] }
 
+[sub_resource type="SampleLibrary" id=4]
+
+samples/laser_cannon_1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+
 [node name="u_lasercannon" type="Area2D"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.988701, 0, 0, 1, -0.161775, -552.528 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -51,8 +54,8 @@ texture = ExtResource( 2 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/iddle = SubResource( 1 )
-anims/shooting = SubResource( 2 )
+anims/iddle = SubResource( 2 )
+anims/shooting = SubResource( 3 )
 playback/active = true
 playback/speed = 3.0
 blend_times = [  ]
@@ -63,9 +66,20 @@ autoplay = "shooting"
 visibility/visible = false
 transform/pos = Vector2( -0.161775, -552.528 )
 transform/scale = Vector2( 0.988701, 1 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="sample" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
 
 [connection signal="area_enter" from="." to="." method="_on_u_lasercannon_area_enter"]
 

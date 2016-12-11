@@ -311,7 +311,6 @@ transform/pos = Vector2( 377.931, 160.458 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite11" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -320,6 +319,7 @@ transform/pos = Vector2( 226.432, 155.571 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite12" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -328,6 +328,7 @@ transform/pos = Vector2( 127.063, 93.6686 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite13" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -336,7 +337,7 @@ transform/pos = Vector2( 715.136, 371.415 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite1" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -345,6 +346,7 @@ transform/pos = Vector2( 585.63, 183.264 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -353,7 +355,7 @@ transform/pos = Vector2( 566.082, 22.8066 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -362,7 +364,7 @@ transform/pos = Vector2( 728.168, 122.991 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -371,7 +373,6 @@ transform/pos = Vector2( 767.265, 261.457 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -380,7 +381,6 @@ transform/pos = Vector2( 592.96, 342.093 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite6" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -389,6 +389,7 @@ transform/pos = Vector2( 393.406, 395.036 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite14" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -397,6 +398,7 @@ transform/pos = Vector2( 695.588, 458.567 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite15" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -405,6 +407,7 @@ transform/pos = Vector2( 701.29, 480.559 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite16" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -413,7 +416,7 @@ transform/pos = Vector2( 806.361, 429.245 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite21" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -422,7 +425,6 @@ transform/pos = Vector2( 909.803, 551.421 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite17" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -431,7 +433,7 @@ transform/pos = Vector2( 927.722, 317.658 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite18" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -440,7 +442,7 @@ transform/pos = Vector2( 932.609, 248.425 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite19" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -449,7 +451,6 @@ transform/pos = Vector2( 952.972, 55.3867 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite20" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -458,7 +459,6 @@ transform/pos = Vector2( 952.972, 55.3867 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite7" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -467,7 +467,7 @@ transform/pos = Vector2( 315.214, 521.284 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite22" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -476,7 +476,7 @@ transform/pos = Vector2( 282.135, 670.508 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite23" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -485,7 +485,6 @@ transform/pos = Vector2( 391.663, 623.462 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite30" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -494,7 +493,6 @@ transform/pos = Vector2( 564.663, 628.462 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite31" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -503,6 +501,7 @@ transform/pos = Vector2( 546.663, 673.462 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite32" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -511,7 +510,7 @@ transform/pos = Vector2( 565.663, 662.462 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite33" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -520,7 +519,7 @@ transform/pos = Vector2( 625.663, 717.462 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite34" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -529,7 +528,7 @@ transform/pos = Vector2( 799.663, 719.462 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite35" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -538,7 +537,6 @@ transform/pos = Vector2( 613.663, 648.462 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite36" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -547,7 +545,6 @@ transform/pos = Vector2( 822.663, 675.462 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite24" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -556,6 +553,7 @@ transform/pos = Vector2( 102.773, 589.647 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite25" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -564,6 +562,7 @@ transform/pos = Vector2( 135.117, 685.944 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="AnimatedSprite26" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -572,7 +571,7 @@ transform/pos = Vector2( 338.002, 755.043 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite27" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -581,7 +580,6 @@ transform/pos = Vector2( 764.355, 534.516 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite28" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -590,7 +588,6 @@ transform/pos = Vector2( 469.583, 513.933 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite29" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -599,7 +596,6 @@ transform/pos = Vector2( 469.583, 513.933 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite8" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -608,7 +604,7 @@ transform/pos = Vector2( 186.522, 410.512 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimatedSprite9" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -617,7 +613,6 @@ transform/pos = Vector2( 32.58, 535.131 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
-frame = 1
 playing = true
 
 [node name="AnimatedSprite10" type="AnimatedSprite" parent="ParallaxBackground/estrelinhas_meio"]
@@ -626,6 +621,7 @@ transform/pos = Vector2( 43.983, 271.231 )
 transform/scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "star"
+frame = 2
 playing = true
 
 [node name="estrelinhas" type="ParallaxLayer" parent="ParallaxBackground"]
