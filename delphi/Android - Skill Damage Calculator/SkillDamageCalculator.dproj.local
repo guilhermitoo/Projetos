@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5"/>
-	</ActiveMobileDevice>  <Transactions>
-    <Transaction>2016/09/27 13:05:30.234,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\SkillDamageCalculator.dproj=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterApplication.dproj</Transaction>
-    <Transaction>2016/09/27 13:05:56.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.fmx=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.fmx</Transaction>
-    <Transaction>2016/09/27 13:05:56.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.pas=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.pas</Transaction>
+		<NoProfile iOSSimulator="iPhone5" Android="b44dce03"/>
+	</ActiveMobileDevice>
+	<Transactions>
+    <Transaction>2016/09/27 13:05:30.000.234,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterApplication.dproj=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\SkillDamageCalculator.dproj</Transaction>
+    <Transaction>2016/09/27 13:05:56.000.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.pas=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.pas</Transaction>
+    <Transaction>2016/09/27 13:05:56.000.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.fmx=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.fmx</Transaction>
+    <Transaction>2017/01/12 13:40:15.000.725,C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Skill Damage Calculator\Unit1.pas=C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Skill Damage Calculator\uKnight.pas</Transaction>
   </Transactions>
 </BorlandProject>

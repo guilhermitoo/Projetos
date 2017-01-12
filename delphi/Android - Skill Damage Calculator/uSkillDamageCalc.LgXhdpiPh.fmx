@@ -12,15 +12,22 @@ inherited frmSkillDamageCalc_LgXhdpiPh: TfrmSkillDamageCalc_LgXhdpiPh
     Position.Y = 647.000000000000000000
     Size.Width = 450.000000000000000000
   end
-  inherited img1: TImageControl
-    Position.X = 391.000000000000000000
-  end
-  inherited pnlDanoFisico: TPanel
-    inherited nmbrbxSkill: TNumberBox
-      Position.X = 16.000000000000000000
-    end
-    inherited lblSkill: TLabel
-      Position.X = 16.000000000000000000
+  inherited gplPrincipal: TGridPanelLayout
+    inherited grpPostura: TGroupBox
+      inherited grdlyt1: TGridLayout
+        inherited imgOffensive: TImage
+          MultiResBitmap.Height = 20
+          MultiResBitmap.Width = 20
+        end
+        inherited imgBalanced: TImage
+          MultiResBitmap.Height = 20
+          MultiResBitmap.Width = 20
+        end
+        inherited imgDefensive: TImage
+          MultiResBitmap.Height = 20
+          MultiResBitmap.Width = 20
+        end
+      end
     end
   end
 end
