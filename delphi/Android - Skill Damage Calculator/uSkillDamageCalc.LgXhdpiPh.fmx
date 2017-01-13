@@ -7,13 +7,48 @@ inherited frmSkillDamageCalc_LgXhdpiPh: TfrmSkillDamageCalc_LgXhdpiPh
     inherited HeaderLabel: TLabel
       Size.Width = 450.000000000000000000
     end
+    inherited img1: TImageControl
+      Position.X = 398.000000000000000000
+    end
   end
   inherited Footer: TToolBar
     Position.Y = 647.000000000000000000
     Size.Width = 450.000000000000000000
   end
   inherited gplPrincipal: TGridPanelLayout
+    Size.Width = 450.000000000000000000
+    Size.Height = 599.000000000000000000
+    inherited gplValores: TGridPanelLayout
+      Size.Width = 450.000000000000000000
+      Size.Height = 376.115234375000000000
+      inherited lbl1: TLabel
+        Size.Height = 73.041046142578120000
+      end
+      inherited lbl2: TLabel
+        Position.Y = 103.041046142578100000
+        Size.Height = 73.740844726562500000
+      end
+      inherited edtMagicLevel: TNumberBox
+        Position.Y = 123.911468505859400000
+      end
+      inherited lbl3: TLabel
+        Position.Y = 196.781890869140600000
+        Size.Height = 74.376342773437500000
+      end
+      inherited edtSkill: TNumberBox
+        Position.Y = 217.970062255859400000
+      end
+      inherited lbl4: TLabel
+        Position.Y = 291.158233642578100000
+        Size.Height = 74.957000732421880000
+      end
+      inherited edtWeaponDmg: TNumberBox
+        Position.Y = 312.636718750000000000
+      end
+    end
     inherited grpPostura: TGroupBox
+      Size.Width = 450.000000000000000000
+      Size.Height = 222.884780883789100000
       inherited grdlyt1: TGridLayout
         inherited imgOffensive: TImage
           MultiResBitmap.Height = 20

@@ -1,0 +1,9 @@
+inherited frmResults_LgXhdpiPh: TfrmResults_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited lv1: TListView
+    Size.Width = 450.000000000000000000
+    Size.Height = 695.000000000000000000
+  end
+end

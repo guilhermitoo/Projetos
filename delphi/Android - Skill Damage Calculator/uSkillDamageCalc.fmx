@@ -9,6 +9,8 @@ object frmSkillDamageCalc: TfrmSkillDamageCalc
   FormFactor.Height = 900
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
+  OnVirtualKeyboardShown = FormVirtualKeyboardShown
+  OnVirtualKeyboardHidden = FormVirtualKeyboardHidden
   DesignerMasterStyle = 3
   object Header: TToolBar
     Size.Width = 380.000000000000000000
@@ -1221,375 +1223,389 @@ object frmSkillDamageCalc: TfrmSkillDamageCalc
       Size.PlatformDefault = False
       TabOrder = 11
       Text = 'Calcular'
+      OnClick = btnCalcularClick
     end
   end
-  object gplPrincipal: TGridPanelLayout
-    Align = Center
-    Size.Width = 338.000000000000000000
-    Size.Height = 405.000000000000000000
+  object vsbPrincipal: TVertScrollBox
+    Align = Client
+    Size.Width = 380.000000000000000000
+    Size.Height = 471.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 6
-    ColumnCollection = <
-      item
-        Value = 100.000000000000000000
-      end>
-    ControlCollection = <
-      item
-        Column = 0
-        Control = gplValores
-        Row = 0
-      end
-      item
-        Column = 0
-        Control = grpPostura
-        Row = 1
-      end>
-    RowCollection = <
-      item
-        Value = 72.886297376093300000
-      end
-      item
-        Value = 27.113702623906710000
-      end
-      item
-        SizeStyle = Auto
-      end>
-    object gplValores: TGridPanelLayout
+    TabOrder = 10
+    Viewport.Width = 380.000000000000000000
+    Viewport.Height = 471.000000000000000000
+    object gplPrincipal: TGridPanelLayout
       Align = Client
-      Padding.Left = 10.000000000000000000
-      Padding.Top = 10.000000000000000000
-      Padding.Right = 10.000000000000000000
-      Padding.Bottom = 10.000000000000000000
-      Size.Width = 338.000000000000000000
-      Size.Height = 295.189514160156200000
+      Size.Width = 380.000000000000000000
+      Size.Height = 471.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       ColumnCollection = <
         item
-          SizeStyle = Auto
-          Value = 50.196078431372560000
-        end
-        item
-          SizeStyle = Auto
           Value = 100.000000000000000000
         end>
       ControlCollection = <
         item
-          Column = 1
-          Control = edtLevel
+          Column = 0
+          Control = grpPostura
           Row = 0
         end
         item
           Column = 0
-          Control = lbl1
-          Row = 0
-        end
-        item
-          Column = 0
-          Control = lbl2
+          Control = gplValores
           Row = 1
-        end
-        item
-          Column = 1
-          Control = edtMagicLevel
-          Row = 1
-        end
-        item
-          Column = 0
-          Control = lbl3
-          Row = 2
-        end
-        item
-          Column = 1
-          Control = edtSkill
-          Row = 2
-        end
-        item
-          Column = 0
-          Control = lbl4
-          Row = 3
-        end
-        item
-          Column = 1
-          Control = edtWeaponDmg
-          Row = 3
         end>
       RowCollection = <
         item
-          Value = 24.737377065213680000
+          Value = 37.209479546544450000
         end
         item
-          Value = 24.923434638772910000
-        end
-        item
-          Value = 25.092402756736860000
-        end
-        item
-          Value = 25.246785539276550000
+          Value = 62.790520453455540000
         end
         item
           SizeStyle = Auto
         end>
-      object edtLevel: TNumberBox
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Anchors = []
-        TabOrder = 0
-        Cursor = crIBeam
-        DecimalDigits = 0
-        Position.X = 173.000000000000000000
-        Position.Y = 20.511070251464840000
-        Size.Width = 97.000000000000000000
-        Size.Height = 32.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object lbl1: TLabel
-        Align = Left
-        AutoSize = True
-        Position.X = 10.000000000000000000
-        Position.Y = 10.000000000000000000
-        Size.Width = 47.000000000000000000
-        Size.Height = 53.022140502929690000
-        Size.PlatformDefault = False
-        TextSettings.WordWrap = False
-        Text = 'Level'
-      end
-      object lbl2: TLabel
-        Align = Left
-        AutoSize = True
-        Position.X = 10.000000000000000000
-        Position.Y = 83.022140502929690000
-        Size.Width = 101.000000000000000000
-        Size.Height = 53.571365356445310000
-        Size.PlatformDefault = False
-        TextSettings.WordWrap = False
-        Text = 'Magic Level'
-      end
-      object edtMagicLevel: TNumberBox
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Anchors = []
-        TabOrder = 3
-        Cursor = crIBeam
-        DecimalDigits = 0
-        Position.X = 173.000000000000000000
-        Position.Y = 93.807823181152350000
-        Size.Width = 97.000000000000000000
-        Size.Height = 32.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object lbl3: TLabel
-        Align = Left
-        AutoSize = True
-        Position.X = 10.000000000000000000
-        Position.Y = 156.593505859375000000
-        Size.Width = 39.000000000000000000
-        Size.Height = 54.070144653320310000
-        Size.PlatformDefault = False
-        TextSettings.WordWrap = False
-        Text = 'Skill'
-      end
-      object edtSkill: TNumberBox
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Anchors = []
-        TabOrder = 5
-        Cursor = crIBeam
-        DecimalDigits = 0
-        Position.X = 173.000000000000000000
-        Position.Y = 167.628570556640600000
-        Size.Width = 97.000000000000000000
-        Size.Height = 32.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object lbl4: TLabel
-        Align = Left
-        AutoSize = True
-        Position.X = 10.000000000000000000
-        Position.Y = 230.663650512695300000
-        Size.Width = 143.000000000000000000
-        Size.Height = 54.525863647460930000
-        Size.PlatformDefault = False
-        TextSettings.WordWrap = False
-        Text = 'Weapon Damage'
-      end
-      object edtWeaponDmg: TNumberBox
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Anchors = []
-        TabOrder = 7
-        Cursor = crIBeam
-        DecimalDigits = 0
-        Position.X = 173.000000000000000000
-        Position.Y = 241.926574707031300000
-        Size.Width = 97.000000000000000000
-        Size.Height = 32.000000000000000000
-        Size.PlatformDefault = False
-      end
-    end
-    object grpPostura: TGroupBox
-      Align = Client
-      Size.Width = 338.000000000000000000
-      Size.Height = 109.810485839843700000
-      Size.PlatformDefault = False
-      Text = 'Fighting Mode (Knights and Paladins)'
-      TabOrder = 1
-      object grdlyt1: TGridLayout
-        Align = Center
-        ItemHeight = 64.000000000000000000
-        ItemWidth = 64.000000000000000000
-        Orientation = Horizontal
-        Size.Width = 194.000000000000000000
-        Size.Height = 64.000000000000000000
+      object gplValores: TGridPanelLayout
+        Align = Client
+        Padding.Left = 10.000000000000000000
+        Padding.Top = 10.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Padding.Bottom = 10.000000000000000000
+        Size.Width = 380.000000000000000000
+        Size.Height = 295.743347167968800000
         Size.PlatformDefault = False
         TabOrder = 0
-        object imgOffensive: TImage
-          MultiResBitmap.Height = 20
-          MultiResBitmap.Width = 20
-          MultiResBitmap = <
-            item
-              Width = 20
-              Height = 20
-              PNG = {
-                89504E470D0A1A0A0000000D49484452000000140000001408060000008D891D
-                0D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                03EB49444154384F5D544B4F1B67143D3363FCC084A701099CF2DA90B2A13C5C
-                2488C806016B144B88E63FA448CDDABFA78E1A8A84046259040B68A4345D0605
-                9AF0880960C0BC6C8FA7E75C972C3AD268BEF9BEFB9D7BEEB90FE7E5CB9F03D7
-                75E13840B9EC231A8DA0582CC1F35CBE1E822040A95C0617F65FA95450535363
-                DF0080EE968A45AE80838303388B8B8BC19F6FDF224463C0216809A150880E1C
-                7B2391084AA5920194FD323CD7331081CA313DC9176D8A383A3A821BAFAB43BC
-                36FE9F771F2EBF02D023C6F97CDEC05C02452351DBF77D1F37373716859C0B4C
-                CECDAE70756506A25F47F0FA478FD0D29280CFC3582C6A7B458654E42585AF8B
-                E170188D8D8D94276A8055C91C23E52A4C192A946834869F5EBC403AFD1C8D0D
-                0DB8BFBF37C3783C8E800EB496BD9CCCCFCF636161C1C0055A5B5B8B30E56184
-                1495DEA58F74F19980DEDE5E3C4FA7D1DADAFA2D7C7D6F6F6F9148B4606E6E0E
-                5D5D5D062E273ABB54A4BCEB8D8D8D654E4FCF7486FCF9393E7EDC4367678781
-                7EF7F831725FBFDABE587474747C03DBDBDB43F6F56BDCDFDD11D435FDEFB8F6
-                26262632878787A804154448FFFAFA1A9F3F7F4232994492807D7D7D38393941
-                4B224129D2686B6BC3279E677FCDE2E2E282400135742C0FE774EC0D0F0F93E1
-                A9C85BE80A5B9ECECECED0DDDD8DA6A626F4F4F4A0BFBFDF12A1ACBFF9ED8D7D
-                95E9804414768415A03BAE16F212A07A206F656AB1BBBB8BA5A525BBD8C004E9
-                D53A9BCD5AB8BA17632224C52D09DCDC5CB32A62CA72C04D8FFCAA35F5E4C9F7
-                181AFA814CC356577A1F1EAB069686DE64B213030303A8AFAF677DAABB585A7C
-                BD54EAC74C2EF705A19A102A7E05CF9E4D82893296535353686E6E8624910C5A
-                4B0601CECECE5A44DBDBDB8892993A4D9ABA5116AF902F2F2F8DCDF2F2B22566
-                6666C6F493D0DA5B5AFADDD6DA9B9E9E36FB959515D3FC8A6BB5A1758ABCC462
-                B55698D24FB5F6C7C6861DCAD1DADA9AF5E8DEFE3E5657576D4F675B5B5B66AB
-                1A8CB063229170350785AB423511A5B2514FA552488D8E1A50A150C0E0E0A04D
-                9B18A7D0D0D090315B5F5FC7286D46464658BFAC0E3A11B069FCF4E944E6E8F8
-                D8AA7C6478D874DB20C3CDCD4D7CC9E5ACB5FE213BB14AB016C5ECDDBBBF2C49
-                B215D819A5B8235B11F0C6C7C73327BC28BAEDEDEDD8E7E59D9D1D386CF86B1A
-                7C60F9785EC898ECEE7E60D7E40D4CC52E0039D21CD48010B0F3CBAB57C1DFEF
-                DF5B5635AE04ACFEB6C1CA30D4569A89AA546552538887EC7D9F03C5B50E5114
-                92E5F8E818AE8CE4458FB494B89A32CA5E3C5EC75D963CFBB4784F9DE4944EAC
-                1609F630CE04AA9EF639609CC9C9C920CFFA291244C0A22E033DF2ECB336D55E
-                0F734FFF72F0FF47773CCFC3BF560A4E75232811050000000049454E44AE4260
-                82}
-              FileName = 
-                'C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Ski' +
-                'll Damage Calculator\images\BattleModeOffensiveOff.gif'
-            end>
-          Size.Width = 64.000000000000000000
-          Size.Height = 64.000000000000000000
+        ColumnCollection = <
+          item
+            SizeStyle = Auto
+            Value = 50.196078431372560000
+          end
+          item
+            SizeStyle = Auto
+            Value = 100.000000000000000000
+          end>
+        ControlCollection = <
+          item
+            Column = 0
+            Control = lbl1
+            Row = 0
+          end
+          item
+            Column = 0
+            Control = lbl2
+            Row = 1
+          end
+          item
+            Column = 0
+            Control = lbl3
+            Row = 2
+          end
+          item
+            Column = 0
+            Control = lbl4
+            Row = 3
+          end
+          item
+            Column = 1
+            Control = edtLevel
+            Row = 0
+          end
+          item
+            Column = 1
+            Control = edtMagicLevel
+            Row = 1
+          end
+          item
+            Column = 1
+            Control = edtSkill
+            Row = 2
+          end
+          item
+            Column = 1
+            Control = edtWeaponDmg
+            Row = 3
+          end>
+        RowCollection = <
+          item
+            Value = 24.737377065213680000
+          end
+          item
+            Value = 24.923434638772910000
+          end
+          item
+            Value = 25.092402756736860000
+          end
+          item
+            Value = 25.246785539276550000
+          end
+          item
+            SizeStyle = Auto
+          end>
+        object lbl1: TLabel
+          Align = Left
+          AutoSize = True
+          Position.X = 10.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 47.000000000000000000
+          Size.Height = 53.159149169921880000
           Size.PlatformDefault = False
-          OnClick = imgOffensiveClick
+          TextSettings.WordWrap = False
+          Text = 'Level'
         end
-        object imgBalanced: TImage
-          MultiResBitmap.Height = 20
-          MultiResBitmap.Width = 20
-          MultiResBitmap = <
-            item
-              Width = 20
-              Height = 20
-              PNG = {
-                89504E470D0A1A0A0000000D49484452000000140000001408060000008D891D
-                0D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                03D649444154384F5D54D94E1B49143DDDEDBDB18901613C160F4C784A240412
-                52C2162619C443E667025FC0DFF011F08084028904648644B68449C0882D98CD
-                BBDDEE25F75C879729A9D455D5B7EE72CEB9657CF8B01298A609C3005CD7432C
-                1685E3746159A64C0B4110A0EBBA9085EE7DDF47381CD66F008077BB8E232BE0
-                E2E202C6EAEA6AB07F70809018038638ED22140A49004367341A45B7DB5507AE
-                E7C2322D7542A70C2C91184B6C1C5C5D5DC1B4FBFA60276C8D9E48C491191941
-                7F7F3F060707914E0FE8C5743A8DE1E10C727FE4D027F69EE7A1D96C6A150C4E
-                670CCEA0C6CACA4A90CF1790B013F8E7FD7B2DF1A91C4B32E170A5648359C965
-                AE373737717F7FAF760C50AFD7D5EEF2F21272C35027762281643289D3D35314
-                8F8F715C2CE2F0F010F97C1E474747F82AEB52A9A4D9B3E4582CA64EDAEDB666
-                9990FB1181C764DA4C99C0336DFE5C5C5CC4FCC2026CDBD60BCCAAD56A69991C
-                B46B341A48A5FA754D8CABB51A3CB1339976381CD1A8BCC811C85956B09C9D9D
-                0531A60DC9E17FAE19341C09A3DEA8EB79341A5378C883646829C8BE4C3A6DB5
-                DAD8D9D9C1F5F53532990CFE7EF70ED96C569DA452290DD8EEB4C5DE572764DA
-                347B8AE8743A3059120F9EB02404B55A1DBBBBBBB8BBBBC3C0C000666666D439
-                2FD071E0078A21EF3A4E47138AC7131ACC64BABE1808B7EA806579A2B74AA582
-                BDBD3D65904CBE7AF51ACFD2CF74FF54665C88608096386E361BE2344E960339
-                B4D06E75344A329992F489474865B0BDBD8D6AB52AE526313539A5CE6A42C0CF
-                9FD71A9CCA88C99923DDC269B2DD08B4234C5322D9EC885E66C7D029B3DEDADA
-                52DDF5043E8C11218C594F4D4E6274741451299F7B85ECAFB76FD74AA23DCAA2
-                5AA9CA0F1B2F5EBE54BC280D0E1A3313760DBF6363634AC2F2F2B232BBBFBF2F
-                30F95A89B5F0E6CDDAEDED1D2C29DBF73D9C9F9FA3223F48028D890BC5FCEF7F
-                87F872F005CF9FFFA9998E8F8FE3E1E101EBEBEBDA55EC22E26ED68551B2EC76
-                5DC5878C158F8A383B3BD37272B91C4E4E4E503A3D91E6BFC4C6C686624598A8
-                04E2C9D786E266C9A18808945DC2ECEAF586964C39140A052D97E3585A91838C
-                4E4C4CA8934F9F3F637A7A5A9D7CFDF64DE0AAA88D353737B756BEB9514C38F8
-                657451BC1A956F6F7B9D247B912A868686F051845F100269B7B4B4848E24C046
-                B81708ACB9F9F9B572B9AC91A8474E8A5B0E9418EED9419E54604AB0EF3F7EA0
-                F2F8286FA3871B49E4A9BF29B1765B3A850F2B237110CB6834A28EC8A86DF7C9
-                298378703ABD07C415AC4816DB8E7853FC9C84890D61C8CB123C4A698E6623A5
-                FE36E48844222A8720E83D08BD7FBE06F8FFE01DCBB2F00B52F251A4E8366387
-                0000000049454E44AE426082}
-              FileName = 
-                'C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Ski' +
-                'll Damage Calculator\images\BattleModeBalancedOff.gif'
-            end>
-          Position.X = 64.000000000000000000
-          Size.Width = 64.000000000000000000
-          Size.Height = 64.000000000000000000
+        object lbl2: TLabel
+          Align = Left
+          AutoSize = True
+          Position.X = 10.000000000000000000
+          Position.Y = 83.159149169921880000
+          Size.Width = 101.000000000000000000
+          Size.Height = 53.709396362304690000
           Size.PlatformDefault = False
-          OnClick = imgBalancedClick
+          TextSettings.WordWrap = False
+          Text = 'Magic Level'
         end
-        object imgDefensive: TImage
-          MultiResBitmap.Height = 20
-          MultiResBitmap.Width = 20
-          MultiResBitmap = <
-            item
-              Width = 20
-              Height = 20
-              PNG = {
-                89504E470D0A1A0A0000000D49484452000000140000001408060000008D891D
-                0D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                036549444154384F5D545B4E1B4110AC9DB5BD6BAF2D1036203E509050F80E27
-                E016C9350227C86538093F48C49108360948BC8210E183608CE3C77A1FA9EA65
-                F9C848E359F7F4545757F78CF7F9F36EEE9C83E7014992220C03C4F11CBEEF38
-                7DE4798E7992801FF63FCB3254AB555B73003A3B8F637E01777777F0F6F6F6F2
-                EEB76FA8D019F0083A47A5526100CF66100498CFE70690A4097CE71B88401598
-                91148B3E31EEEFEFE1A2661351237A8D9EC271158086180F06030373040A83D0
-                EC699A623C1E5B160A2E300537BFD1CB8B39887E93E0398DED76072BABABD8D8
-                7887CDCD4D2C2D2DA1DD69636565056B6B6B585F5FC7E2E22266B39901169279
-                46CADBDDDDCBFBFDBE19A557D48CF0E9E3C737BD64D728BFE553AEFBFBFB188D
-                46B65FABD5F0EBF65619525452963E3236EA75743A1DDCDCDCE0FCFC1CA7A7A7
-                383B3B43AFD7B3A9EF5B1E14C34E67D99849A2A13265F19C2257AB35DB180E9F
-                993EABC7E8565D3A2674D2AA7DA5A8A9331A93C9D88A16505B9FAC951519FAA6
-                A16618867650A33CA403B2A9585114999F8268287555DAB9A22314CC4DA75333
-                38CF99410134CA35668F6562CC00FA6E341A662F01E2786641EAF5C2EE4437CB
-                780059C184E0EA47A5AC618C5F25F0B82710B371282355794252E3F15F82D6C1
-                12E634B2DCFCF4FD0AA6D3191E1E7E17410852B654015CA4A9EF17164132B45A
-                2DF6A76E576CD3A979A557A55AB13566C515A9D56ADA61DD88824F31E4232D35
-                064F4F787C7C448D80D6C324E0C27A68C8C3E1D09C9EFEFC419FADB2BCBC8C85
-                85050310234B99AB9A5E7BDD6ED7CEA8682F5C551CF93A394950892DFD548C83
-                83035C5F5F636B6B8B006D0B5480B5697B8FABEB2B7CFDDA355FB554402D83A0
-                683D7FFBC3F697C1E0896217A98A6D4A190438994CECDA9924145FFB878787E8
-                124C7E0290C69974660662EC6AB5AA3D4F7A1846A3BFC654B747BD767CFC1D97
-                9797BCD31B362F2E2EF0E3C74FB24AAC50257369FAD69B32F0C7C457CA6F1B4C
-                47D5FF7E7282A3A3239BBD7E8F0002E1DD7D7D1395B6D8EADAA6A6212BA96A6A
-                D2D5A2DB3753D01335A7D8BD5E1F27BCC77A0B4B7F652530A52A3914A51EB20F
-                F5B02A92B1224389ABE615E3286AD2CA96A71C31351648C222084877B7ACBC74
-                9CB1B9533E30DECECE4E3E787EE681E2D22BBA1C342C0D7B2C8AA2147B9905F8
-                7FE88CEFFBF8077D1F1E6E7B6AF23B0000000049454E44AE426082}
-              FileName = 
-                'C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Ski' +
-                'll Damage Calculator\images\BattleModeDefensiveOff.gif'
-            end>
-          Position.X = 128.000000000000000000
-          Size.Width = 64.000000000000000000
+        object lbl3: TLabel
+          Align = Left
+          AutoSize = True
+          Position.X = 10.000000000000000000
+          Position.Y = 156.868545532226600000
+          Size.Width = 151.000000000000000000
+          Size.Height = 54.209121704101560000
+          Size.PlatformDefault = False
+          TextSettings.WordWrap = False
+          Text = 'Distance or Melee'
+        end
+        object lbl4: TLabel
+          Align = Left
+          AutoSize = True
+          Position.X = 10.000000000000000000
+          Position.Y = 231.077667236328100000
+          Size.Width = 143.000000000000000000
+          Size.Height = 54.665679931640630000
+          Size.PlatformDefault = False
+          TextSettings.WordWrap = False
+          Text = 'Weapon Damage'
+        end
+        object edtLevel: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Anchors = []
+          TabOrder = 0
+          KeyboardType = NumberPad
+          ReturnKeyType = Next
+          Text = '0'
+          Position.X = 181.000000000000000000
+          Position.Y = 20.579574584960940000
+          Size.Width = 97.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtMagicLevel: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Anchors = []
+          TabOrder = 3
+          KeyboardType = NumberPad
+          ReturnKeyType = Next
+          Text = '0'
+          Position.X = 181.000000000000000000
+          Position.Y = 94.013847351074220000
+          Size.Width = 97.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtSkill: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Anchors = []
+          TabOrder = 5
+          KeyboardType = NumberPad
+          ReturnKeyType = Next
+          Text = '0'
+          Position.X = 181.000000000000000000
+          Position.Y = 167.973114013671900000
+          Size.Width = 97.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object edtWeaponDmg: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Anchors = []
+          TabOrder = 7
+          KeyboardType = NumberPad
+          ReturnKeyType = Next
+          Text = '0'
+          Position.X = 181.000000000000000000
+          Position.Y = 242.410507202148400000
+          Size.Width = 97.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object grpPostura: TGroupBox
+        Align = Client
+        Size.Width = 380.000000000000000000
+        Size.Height = 175.256652832031300000
+        Size.PlatformDefault = False
+        Text = 'Fighting Mode (Knights and Paladins)'
+        TabOrder = 1
+        object grdlyt1: TGridLayout
+          Align = Center
+          ItemHeight = 64.000000000000000000
+          ItemWidth = 64.000000000000000000
+          Orientation = Horizontal
+          Size.Width = 194.000000000000000000
           Size.Height = 64.000000000000000000
           Size.PlatformDefault = False
-          OnClick = imgDefensiveClick
+          TabOrder = 0
+          object imgOffensive: TImage
+            MultiResBitmap.Height = 20
+            MultiResBitmap.Width = 20
+            MultiResBitmap = <
+              item
+                Width = 20
+                Height = 20
+                PNG = {
+                  89504E470D0A1A0A0000000D49484452000000140000001408060000008D891D
+                  0D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  03EB49444154384F5D544B4F1B67143D3363FCC084A701099CF2DA90B2A13C5C
+                  2488C806016B144B88E63FA448CDDABFA78E1A8A84046259040B68A4345D0605
+                  9AF0880960C0BC6C8FA7E75C972C3AD268BEF9BEFB9D7BEEB90FE7E5CB9F03D7
+                  75E13840B9EC231A8DA0582CC1F35CBE1E822040A95C0617F65FA95450535363
+                  DF0080EE968A45AE80838303388B8B8BC19F6FDF224463C0216809A150880E1C
+                  7B2391084AA5920194FD323CD7331081CA313DC9176D8A383A3A821BAFAB43BC
+                  36FE9F771F2EBF02D023C6F97CDEC05C02452351DBF77D1F37373716859C0B4C
+                  CECDAE70756506A25F47F0FA478FD0D29280CFC3582C6A7B458654E42585AF8B
+                  E170188D8D8D94276A8055C91C23E52A4C192A946834869F5EBC403AFD1C8D0D
+                  0DB8BFBF37C3783C8E800EB496BD9CCCCFCF636161C1C0055A5B5B8B30E56184
+                  1495DEA58F74F19980DEDE5E3C4FA7D1DADAFA2D7C7D6F6F6F9148B4606E6E0E
+                  5D5D5D062E273ABB54A4BCEB8D8D8D654E4FCF7486FCF9393E7EDC4367678781
+                  7EF7F831725FBFDABE587474747C03DBDBDB43F6F56BDCDFDD11D435FDEFB8F6
+                  26262632878787A804154448FFFAFA1A9F3F7F4232994492807D7D7D38393941
+                  4B224129D2686B6BC3279E677FCDE2E2E282400135742C0FE774EC0D0F0F93E1
+                  A9C85BE80A5B9ECECECED0DDDD8DA6A626F4F4F4A0BFBFDF12A1ACBFF9ED8D7D
+                  95E9804414768415A03BAE16F212A07A206F656AB1BBBB8BA5A525BBD8C004E9
+                  D53A9BCD5AB8BA17632224C52D09DCDC5CB32A62CA72C04D8FFCAA35F5E4C9F7
+                  181AFA814CC356577A1F1EAB069686DE64B213030303A8AFAF677DAABB585A7C
+                  BD54EAC74C2EF705A19A102A7E05CF9E4D82893296535353686E6E8624910C5A
+                  4B0601CECECE5A44DBDBDB8892993A4D9ABA5116AF902F2F2F8DCDF2F2B22566
+                  6666C6F493D0DA5B5AFADDD6DA9B9E9E36FB959515D3FC8A6BB5A1758ABCC462
+                  B55698D24FB5F6C7C6861DCAD1DADA9AF5E8DEFE3E5657576D4F675B5B5B66AB
+                  1A8CB063229170350785AB423511A5B2514FA552488D8E1A50A150C0E0E0A04D
+                  9B18A7D0D0D090315B5F5FC7286D46464658BFAC0E3A11B069FCF4E944E6E8F8
+                  D8AA7C6478D874DB20C3CDCD4D7CC9E5ACB5FE213BB14AB016C5ECDDBBBF2C49
+                  B215D819A5B8235B11F0C6C7C73327BC28BAEDEDEDD8E7E59D9D1D386CF86B1A
+                  7C60F9785EC898ECEE7E60D7E40D4CC52E0039D21CD48010B0F3CBAB57C1DFEF
+                  DF5B5635AE04ACFEB6C1CA30D4569A89AA546552538887EC7D9F03C5B50E5114
+                  92E5F8E818AE8CE4458FB494B89A32CA5E3C5EC75D963CFBB4784F9DE4944EAC
+                  1609F630CE04AA9EF639609CC9C9C920CFFA291244C0A22E033DF2ECB336D55E
+                  0F734FFF72F0FF47773CCFC3BF560A4E75232811050000000049454E44AE4260
+                  82}
+                FileName = 
+                  'C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Ski' +
+                  'll Damage Calculator\images\BattleModeOffensiveOff.gif'
+              end>
+            Size.Width = 64.000000000000000000
+            Size.Height = 64.000000000000000000
+            Size.PlatformDefault = False
+            OnClick = imgOffensiveClick
+          end
+          object imgBalanced: TImage
+            MultiResBitmap.Height = 20
+            MultiResBitmap.Width = 20
+            MultiResBitmap = <
+              item
+                Width = 20
+                Height = 20
+                PNG = {
+                  89504E470D0A1A0A0000000D49484452000000140000001408060000008D891D
+                  0D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  03D649444154384F5D54D94E1B49143DDDEDBDB18901613C160F4C784A240412
+                  52C2162619C443E667025FC0DFF011F08084028904648644B68449C0882D98CD
+                  BBDDEE25F75C879729A9D455D5B7EE72CEB9657CF8B01298A609C3005CD7432C
+                  1685E3746159A64C0B4110A0EBBA9085EE7DDF47381CD66F008077BB8E232BE0
+                  E2E202C6EAEA6AB07F70809018038638ED22140A49004367341A45B7DB5507AE
+                  E7C2322D7542A70C2C91184B6C1C5C5D5DC1B4FBFA60276C8D9E48C491191941
+                  7F7F3F060707914E0FE8C5743A8DE1E10C727FE4D027F69EE7A1D96C6A150C4E
+                  670CCEA0C6CACA4A90CF1790B013F8E7FD7B2DF1A91C4B32E170A5648359C965
+                  AE373737717F7FAF760C50AFD7D5EEF2F21272C35027762281643289D3D35314
+                  8F8F715C2CE2F0F010F97C1E474747F82AEB52A9A4D9B3E4582CA64EDAEDB666
+                  9990FB1181C764DA4C99C0336DFE5C5C5CC4FCC2026CDBD60BCCAAD56A69991C
+                  B46B341A48A5FA754D8CABB51A3CB1339976381CD1A8BCC811C85956B09C9D9D
+                  0531A60DC9E17FAE19341C09A3DEA8EB79341A5378C883646829C8BE4C3A6DB5
+                  DAD8D9D9C1F5F53532990CFE7EF70ED96C569DA452290DD8EEB4C5DE572764DA
+                  347B8AE8743A3059120F9EB02404B55A1DBBBBBBB8BBBBC3C0C000666666D439
+                  2FD071E0078A21EF3A4E47138AC7131ACC64BABE1808B7EA806579A2B74AA582
+                  BDBD3D65904CBE7AF51ACFD2CF74FF54665C88608096386E361BE2344E960339
+                  B4D06E75344A329992F489474865B0BDBD8D6AB52AE526313539A5CE6A42C0CF
+                  9FD71A9CCA88C99923DDC269B2DD08B4234C5322D9EC885E66C7D029B3DEDADA
+                  52DDF5043E8C11218C594F4D4E6274741451299F7B85ECAFB76FD74AA23DCAA2
+                  5AA9CA0F1B2F5EBE54BC280D0E1A3313760DBF6363634AC2F2F2B232BBBFBF2F
+                  30F95A89B5F0E6CDDAEDED1D2C29DBF73D9C9F9FA3223F48028D890BC5FCEF7F
+                  87F872F005CF9FFFA9998E8F8FE3E1E101EBEBEBDA55EC22E26ED68551B2EC76
+                  5DC5878C158F8A383B3BD37272B91C4E4E4E503A3D91E6BFC4C6C686624598A8
+                  04E2C9D786E266C9A18808945DC2ECEAF586964C39140A052D97E3585A91838C
+                  4E4C4CA8934F9F3F637A7A5A9D7CFDF64DE0AAA88D353737B756BEB9514C38F8
+                  657451BC1A956F6F7B9D247B912A868686F051845F100269B7B4B4848E24C046
+                  B81708ACB9F9F9B572B9AC91A8474E8A5B0E9418EED9419E54604AB0EF3F7EA0
+                  F2F8286FA3871B49E4A9BF29B1765B3A850F2B237110CB6834A28EC8A86DF7C9
+                  298378703ABD07C415AC4816DB8E7853FC9C84890D61C8CB123C4A698E6623A5
+                  FE36E48844222A8720E83D08BD7FBE06F8FFE01DCBB2F00B52F251A4E8366387
+                  0000000049454E44AE426082}
+                FileName = 
+                  'C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Ski' +
+                  'll Damage Calculator\images\BattleModeBalancedOff.gif'
+              end>
+            Position.X = 64.000000000000000000
+            Size.Width = 64.000000000000000000
+            Size.Height = 64.000000000000000000
+            Size.PlatformDefault = False
+            OnClick = imgBalancedClick
+          end
+          object imgDefensive: TImage
+            MultiResBitmap.Height = 20
+            MultiResBitmap.Width = 20
+            MultiResBitmap = <
+              item
+                Width = 20
+                Height = 20
+                PNG = {
+                  89504E470D0A1A0A0000000D49484452000000140000001408060000008D891D
+                  0D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  036549444154384F5D545B4E1B4110AC9DB5BD6BAF2D1036203E509050F80E27
+                  E016C9350227C86538093F48C49108360948BC8210E183608CE3C77A1FA9EA65
+                  F9C848E359F7F4545757F78CF7F9F36EEE9C83E7014992220C03C4F11CBEEF38
+                  7DE4798E7992801FF63FCB3254AB555B73003A3B8F637E01777777F0F6F6F6F2
+                  EEB76FA8D019F0083A47A5526100CF66100498CFE70690A4097CE71B88401598
+                  91148B3E31EEEFEFE1A2661351237A8D9EC271158086180F06030373040A83D0
+                  EC699A623C1E5B160A2E300537BFD1CB8B39887E93E0398DED76072BABABD8D8
+                  7887CDCD4D2C2D2DA1DD69636565056B6B6B585F5FC7E2E22266B39901169279
+                  46CADBDDDDCBFBFDBE19A557D48CF0E9E3C737BD64D728BFE553AEFBFBFB188D
+                  46B65FABD5F0EBF65619525452963E3236EA75743A1DDCDCDCE0FCFC1CA7A7A7
+                  383B3B43AFD7B3A9EF5B1E14C34E67D99849A2A13265F19C2257AB35DB180E9F
+                  993EABC7E8565D3A2674D2AA7DA5A8A9331A93C9D88A16505B9FAC951519FAA6
+                  A16618867650A33CA403B2A9585114999F8268287555DAB9A22314CC4DA75333
+                  38CF99410134CA35668F6562CC00FA6E341A662F01E2786641EAF5C2EE4437CB
+                  780059C184E0EA47A5AC618C5F25F0B82710B371282355794252E3F15F82D6C1
+                  12E634B2DCFCF4FD0AA6D3191E1E7E17410852B654015CA4A9EF17164132B45A
+                  2DF6A76E576CD3A979A557A55AB13566C515A9D56ADA61DD88824F31E4232D35
+                  064F4F787C7C448D80D6C324E0C27A68C8C3E1D09C9EFEFC419FADB2BCBC8C85
+                  85050310234B99AB9A5E7BDD6ED7CEA8682F5C551CF93A394950892DFD548C83
+                  83035C5F5F636B6B8B006D0B5480B5697B8FABEB2B7CFDDA355FB554402D83A0
+                  683D7FFBC3F697C1E0896217A98A6D4A190438994CECDA9924145FFB878787E8
+                  124C7E0290C69974660662EC6AB5AA3D4F7A1846A3BFC654B747BD767CFC1D97
+                  9797BCD31B362F2E2EF0E3C74FB24AAC50257369FAD69B32F0C7C457CA6F1B4C
+                  47D5FF7E7282A3A3239BBD7E8F0002E1DD7D7D1395B6D8EADAA6A6212BA96A6A
+                  D2D5A2DB3753D01335A7D8BD5E1F27BCC77A0B4B7F652530A52A3914A51EB20F
+                  F5B02A92B1224389ABE615E3286AD2CA96A71C31351648C222084877B7ACBC74
+                  9CB1B9533E30DECECE4E3E787EE681E2D22BBA1C342C0D7B2C8AA2147B9905F8
+                  7FE88CEFFBF8077D1F1E6E7B6AF23B0000000049454E44AE426082}
+                FileName = 
+                  'C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Ski' +
+                  'll Damage Calculator\images\BattleModeDefensiveOff.gif'
+              end>
+            Position.X = 128.000000000000000000
+            Size.Width = 64.000000000000000000
+            Size.Height = 64.000000000000000000
+            Size.PlatformDefault = False
+            OnClick = imgDefensiveClick
+          end
         end
       end
     end
@@ -1905,7 +1921,7 @@ object frmSkillDamageCalc: TfrmSkillDamageCalc
           end>
       end>
     Left = 104
-    Top = 464
+    Top = 176
   end
   object ilBalanced: TImageList
     Source = <
@@ -2218,7 +2234,7 @@ object frmSkillDamageCalc: TfrmSkillDamageCalc
           end>
       end>
     Left = 176
-    Top = 464
+    Top = 176
   end
   object ilDefensive: TImageList
     Source = <
@@ -2531,6 +2547,6 @@ object frmSkillDamageCalc: TfrmSkillDamageCalc
           end>
       end>
     Left = 248
-    Top = 464
+    Top = 176
   end
 end

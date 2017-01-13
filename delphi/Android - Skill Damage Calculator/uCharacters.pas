@@ -3,7 +3,7 @@ unit uCharacters;
 interface
 
 type
-  TCombatMode = (cmOffensive,cmBalanced,cmDefensive);
+  TCombatMode = (cmOffensive=100,cmBalanced=75,cmDefensive=50);
 
   TCharacter = class
   private
@@ -12,11 +12,13 @@ type
     FManaPoints: Integer;
     FHitPoints: Integer;
     FCombatMode: TCombatMode;
+    FCapacity: Integer;
     procedure SetHitPoints(const Value: Integer);
     procedure SetLevel(const Value: Integer);
     procedure SetMagicLevel(const Value: Integer);
     procedure SetManaPoints(const Value: Integer);
     procedure SetCombatMode(const Value: TCombatMode);
+    procedure SetCapacity(const Value: Integer);
   protected
     iHpLevel : Integer;
     iMpLevel : Integer;
@@ -26,11 +28,18 @@ type
     property Level : Integer read FLevel write SetLevel;
     property MagicLevel : Integer read FMagicLevel write SetMagicLevel;
     property CombatMode : TCombatMode read FCombatMode write SetCombatMode;
+    property Capacity : Integer read FCapacity write SetCapacity;
   end;
 
 implementation
 
 { TCharacter }
+
+
+procedure TCharacter.SetCapacity(const Value: Integer);
+begin
+  FCapacity := Value;
+end;
 
 procedure TCharacter.SetCombatMode(const Value: TCombatMode);
 begin

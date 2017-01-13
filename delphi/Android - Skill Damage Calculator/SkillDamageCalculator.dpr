@@ -8,7 +8,8 @@ uses
   uCharacters in 'uCharacters.pas',
   uDruid in 'uDruid.pas',
   uPaladin in 'uPaladin.pas',
-  uKnight in 'uKnight.pas';
+  uKnight in 'uKnight.pas',
+  ufrmResults in 'ufrmResults.pas' {frmResults};
 
 {$R *.res}
 
