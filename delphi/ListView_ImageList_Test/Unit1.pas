@@ -12,7 +12,8 @@ uses
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.DBScope, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FMX.StdCtrls, FMX.ListView, FMX.Controls.Presentation, System.ImageList,
-  FMX.ImgList, FMX.Edit;
+  FMX.ImgList, FMX.Edit, FireDAC.UI.Intf, FireDAC.FMXUI.Wait, FireDAC.Comp.UI,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Phys, FMX.Objects;
 
 type
   TForm1 = class(TForm)
@@ -20,11 +21,7 @@ type
     pnl1: TPanel;
     pnl2: TPanel;
     lv1: TListView;
-    btn1: TButton;
-    fdtbl1: TFDTable;
-    fdtbl1ID: TStringField;
-    fdtbl1NOME: TStringField;
-    intgrfldfdtbl1IMAGEINDEX: TIntegerField;
+    btnRefresh: TButton;
     BindSourceDB1: TBindSourceDB;
     BindingsList1: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
@@ -34,12 +31,27 @@ type
     lbl1: TLabel;
     Label1: TLabel;
     Label2: TLabel;
-    btnGravar: TButton;
-    lnkcntrltfld1: TLinkControlToField;
+    btnPost: TButton;
     lnkcntrltfld2: TLinkControlToField;
     lnkcntrltfld3: TLinkControlToField;
-    procedure btn1Click(Sender: TObject);
-    procedure btnGravarClick(Sender: TObject);
+    fdgxwtcrsr1: TFDGUIxWaitCursor;
+    FDMemTable1: TFDMemTable;
+    intgrfldFDMemTable1ID: TIntegerField;
+    FDMemTable1NOME: TStringField;
+    btnAppend: TButton;
+    btnOpen: TButton;
+    btnCancel: TButton;
+    Label3: TLabel;
+    edtIMGNAME: TEdit;
+    btnIdx: TButton;
+    blbfldFDMemTable1IMAGE: TBlobField;
+    img1: TImage;
+    procedure btnRefreshClick(Sender: TObject);
+    procedure btnPostClick(Sender: TObject);
+    procedure btnAppendClick(Sender: TObject);
+    procedure btnOpenClick(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
+    procedure btnIdxClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,14 +65,45 @@ implementation
 
 {$R *.fmx}
 
-procedure TForm1.btn1Click(Sender: TObject);
+procedure TForm1.btnRefreshClick(Sender: TObject);
 begin
-  fdtbl1.Refresh;
+  FDMemTable1.Refresh;
 end;
 
-procedure TForm1.btnGravarClick(Sender: TObject);
+procedure TForm1.btnAppendClick(Sender: TObject);
 begin
-  fdtbl1.Post;
+  FDMemTable1.Append;
+end;
+
+procedure TForm1.btnCancelClick(Sender: TObject);
+begin
+  FDMemTable1.Cancel;
+end;
+
+procedure TForm1.btnIdxClick(Sender: TObject);
+var
+  ms : TMemoryStream;
+begin
+  img1.Bitmap := ilOffensive.Source.Items[ilOffensive.Source.IndexOf(edtIMGNAME.Text)].MultiResBitmap.Bitmaps[1];
+
+  ms := TMemoryStream.Create;
+  try
+    ilOffensive.Source.Items[ilOffensive.Source.IndexOf(edtIMGNAME.Text)].MultiResBitmap.Bitmaps[1].SaveToStream(ms);
+
+    TBlobField(FDMemTable1.FieldByName('IMAGE')).LoadFromStream(ms);
+  finally
+    ms.Free;
+  end;
+end;
+
+procedure TForm1.btnOpenClick(Sender: TObject);
+begin
+  FDMemTable1.Open;
+end;
+
+procedure TForm1.btnPostClick(Sender: TObject);
+begin
+  FDMemTable1.Post;
 end;
 
 end.
