@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5" Android="b44dce03"/>
+		<NoProfile iOSSimulator="iPhone5" Android="teste"/>
 	</ActiveMobileDevice>
 	<Transactions>
-    <Transaction>2016/09/27 13:05:30.000.234,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\SkillDamageCalculator.dproj=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterApplication.dproj</Transaction>
-    <Transaction>2016/09/27 13:05:56.000.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.fmx=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.fmx</Transaction>
-    <Transaction>2016/09/27 13:05:56.000.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.pas=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.pas</Transaction>
-    <Transaction>2017/01/13 09:21:19.000.832,C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Skill Damage Calculator\ufrmResults.fmx=C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Skill Damage Calculator\Unit1.fmx</Transaction>
+    <Transaction>2016/09/27 13:05:30.000.234,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterApplication.dproj=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\SkillDamageCalculator.dproj</Transaction>
+    <Transaction>2016/09/27 13:05:56.000.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.pas=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.pas</Transaction>
+    <Transaction>2016/09/27 13:05:56.000.695,C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\HeaderFooterTemplate.fmx=C:\Users\supor\Documents\Projetos\trunk\delphi\Android - Skill Damage Calculator\uSkillDamageCalc.fmx</Transaction>
+    <Transaction>2017/01/13 09:21:19.000.832,C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Skill Damage Calculator\Unit1.fmx=C:\Users\supor\OneDrive\Documentos\projetos\delphi\Android - Skill Damage Calculator\ufrmResults.fmx</Transaction>
   </Transactions>
 </BorlandProject>

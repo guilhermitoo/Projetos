@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.NumberBox,
-  FMX.ListBox, FMX.Layouts, System.ImageList, FMX.ImgList, uCharacters,
+  FMX.ListBox, FMX.Layouts, System.ImageList, FMX.ImgList, uCharacters, Data.DB,
   FMX.ListView, FMX.ListView.Types, FMX.ListView.Appearances, FMX.ScrollBox, System.Math;
 
 type
@@ -73,12 +73,33 @@ uses ufrmResults, uPaladin;
 procedure TfrmSkillDamageCalc.btnCalcularClick(Sender: TObject);
 var
   Paladin : TPaladin;
-  item : TListViewItem;
-  s : TSizeF;
+
+  procedure Cad(Sk : TSkill);
+  var
+    ms : TMemoryStream;
+  begin
+    frmResults.fdmtSkills.Append;
+
+    frmResults.fdmtSkills.FieldByName('Skill').AsString := Sk.Name;
+    frmResults.fdmtSkills.FieldByName('Damage').AsString := TCharacter.GetMinMax(Sk);
+
+    ms := TMemoryStream.Create;
+    try
+      frmResults.ilSkills.Source.Items[frmResults.ilSkills.Source.IndexOf(sk.Name)].MultiResBitmap.Bitmaps[1].SaveToStream(ms);
+      TBlobField(frmResults.fdmtSkills.FieldByName('Image')).LoadFromStream(ms);
+    finally
+      ms.Free;
+    end;
+
+    frmResults.fdmtSkills.Post;
+  end;
 begin
-  s.Create(38,38);
   if ( frmResults = nil ) then
     frmResults := TfrmResults.Create(Application);
+
+  frmResults.fdmtSkills.Open;
+  frmResults.ClearAllData;
+
   Paladin := TPaladin.Create;
   try
     Paladin.DistanceFighting := StrToInt(edtSkill.Text);
@@ -88,19 +109,17 @@ begin
     Paladin.WeaponDamage := StrToInt(edtWeaponDmg.Text);
     Paladin.Calculate;
 
-
-
-    item := frmResults.lv1.Items.Add;
-    item.Bitmap := frmResults.il1.Bitmap(s,1);
-
-//    item.Text := 'Vida: ' + Paladin.HitPoints.ToString + #13#10 +
-//                  'Mana: ' + Paladin.ManaPoints.ToString;
-
-    frmResults.Show;
-
+    Cad(Paladin.DivineCaldera);
+    Cad(Paladin.DivineHealing);
+    Cad(Paladin.DivineMissile);
+    Cad(Paladin.EtherealSpear);
+    Cad(Paladin.AttackDamage);
+    Cad(Paladin.Salvation);
   finally
     Paladin.Free;
   end;
+
+  frmResults.Show;
 end;
 
 procedure TfrmSkillDamageCalc.CalcContentBoundsProc(Sender: TObject;

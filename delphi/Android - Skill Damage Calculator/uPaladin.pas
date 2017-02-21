@@ -9,43 +9,31 @@ type
   private
     FWeaponDamage: Integer;
     FDistanceFighting: Integer;
-    FDivineMissile: Integer;
-    FDivineHealing: Integer;
-    FEtherealSpear: Integer;
-    FDivineCaldera: Integer;
-    FAttackDamage: Integer;
-    FDivineMissileMax: Integer;
-    FDivineHealingMax: Integer;
-    FEtherealSpearMax: Integer;
-    FDivineCalderaMax: INteger;
-    FAttackDamageMax: Integer;
+    FDivineMissile: TSkill;
+    FDivineHealing: TSkill;
+    FEtherealSpear: TSkill;
+    FDivineCaldera: TSkill;
+    FAttackDamage: TSkill;
+    FSalvation: TSkill;
     procedure SetDistanceFighting(const Value: Integer);
     procedure SetWeaponDamage(const Value: Integer);
-    procedure SetAttackDamage(const Value: Integer);
-    procedure SetDivineCaldera(const Value: Integer);
-    procedure SetDivineHealing(const Value: Integer);
-    procedure SetDivineMissile(const Value: Integer);
-    procedure SetEtherealSpear(const Value: Integer);
-    procedure SetAttackDamageMax(const Value: Integer);
-    procedure SetDivineHealingMax(const Value: Integer);
-    procedure SetDivineMissileMax(const Value: Integer);
-    procedure SetDivineCalderaMax(const Value: INteger);
-    procedure SetEtherealSpearMax(const Value: Integer);
+    procedure SetAttackDamage(const Value: TSkill);
+    procedure SetDivineCaldera(const Value: TSkill);
+    procedure SetDivineHealing(const Value: TSkill);
+    procedure SetDivineMissile(const Value: TSkill);
+    procedure SetEtherealSpear(const Value: TSkill);
+    procedure SetSalvation(const Value: TSkill);
   protected
   public
     property DistanceFighting : Integer read FDistanceFighting write SetDistanceFighting;
     property WeaponDamage : Integer read FWeaponDamage write SetWeaponDamage;
 
-    property EtherealSpear : Integer read FEtherealSpear write SetEtherealSpear;
-    property DivineMissile : Integer read FDivineMissile write SetDivineMissile;
-    property DivineCaldera : Integer read FDivineCaldera write SetDivineCaldera;
-    property DivineHealing : Integer read FDivineHealing write SetDivineHealing;
-    property AttackDamage : Integer read FAttackDamage write SetAttackDamage;
-    property EtherealSpearMax : Integer read FEtherealSpearMax write SetEtherealSpearMax;
-    property DivineMissileMax : Integer read FDivineMissileMax write SetDivineMissileMax;
-    property DivineCalderaMax : INteger read FDivineCalderaMax write SetDivineCalderaMax;
-    property DivineHealingMax : Integer read FDivineHealingMax write SetDivineHealingMax;
-    property AttackDamageMax : Integer read FAttackDamageMax write SetAttackDamageMax;
+    property EtherealSpear : TSkill read FEtherealSpear write SetEtherealSpear;
+    property DivineMissile : TSkill read FDivineMissile write SetDivineMissile;
+    property DivineCaldera : TSkill read FDivineCaldera write SetDivineCaldera;
+    property DivineHealing : TSkill read FDivineHealing write SetDivineHealing;
+    property AttackDamage: TSkill read FAttackDamage write SetAttackDamage;
+    property Salvation: TSkill read FSalvation write SetSalvation;
 
     procedure Calculate;
 
@@ -60,6 +48,7 @@ implementation
 procedure TPaladin.Calculate;
 var
   dFatorDano : Double;
+  sk : TSkill;
 begin
   case CombatMode of
     cmOffensive: dFatorDano := 1;
@@ -71,38 +60,60 @@ begin
   //HP e MP
   HitPoints := Round(((Level - 8) * 10) + 185);
   ManaPoints := Round(((Level - 8) * 15) + 35);
-
-  EtherealSpear := Round(((DistanceFighting + 25) / 3 ) + ( Level / 5 ));
-  EtherealSpearMax := Round((DistanceFighting + 25) + ( Level / 5 ));
-  DivineMissile := Round((Level*0.2)+(MagicLevel*1.79)+11);
-  DivineMissileMax := Round((Level*0.2)+(MagicLevel*3)+18);
-  DivineCaldera := Round(( Level / 5 ) + ( MagicLevel * 4 ));
-  DivineCalderaMax := Round(( Level / 5 ) + ( MagicLevel * 6 ));
-  DivineHealing := Round(( Level / 5 ) + ( MagicLevel * 18.5 ));
-  DivineHealingMax := Round(( Level / 5 ) + ( MagicLevel * 25 ));
-  AttackDamage := Round( Level / 5 );
-  AttackDamageMax := Round( 0.09 * dFatorDano * DistanceFighting * WeaponDamage ) + AttackDamage;
   Capacity := Round((Level * 20)+310);
+
+  with sk do
+  begin
+    Name := 'Ethereal Spear';
+    Skill := 'exori con';
+    Min := Round(((DistanceFighting + 25) / 3 ) + ( Level / 5 ));
+    Max := Round((DistanceFighting + 25) + ( Level / 5 ));
+    EtherealSpear := sk;
+
+    Name := 'Divine Missile';
+    Skill := 'exori san';
+    Min := Round((Level*0.2)+(MagicLevel*1.79)+11);
+    Max := Round((Level*0.2)+(MagicLevel*3)+18);
+    DivineMissile := sk;
+
+    Name := 'Divine Caldera';
+    Skill := 'exevo mas san';
+    Min := Round(( Level / 5 ) + ( MagicLevel * 4 ));
+    Max := Round(( Level / 5 ) + ( MagicLevel * 6 ));
+    DivineCaldera := sk;
+
+    Name := 'Divine Healing';
+    Skill := 'exura san';
+    Min := Round(( Level / 5 ) + ( MagicLevel * 18.5 ));
+    Max := Round(( Level / 5 ) + ( MagicLevel * 25 ));
+    DivineHealing := sk;
+
+    Name := 'Attack Damage';
+    Skill := '';
+    Min := Round( Level / 5 );
+    Max := Round( 0.09 * dFatorDano * DistanceFighting * WeaponDamage ) + AttackDamage.Min;
+    AttackDamage := sk;
+
+    Name := 'Salvation';
+    Skill := 'exura gran san';
+    Min := Round( Level * 0.2 ) + ( MagicLevel*19 );
+    Max := Round( Level * 0.2 ) + ( MagicLevel*19 ) + 100;
+    Salvation := sk;
+  end;
 end;
 
 constructor TPaladin.Create;
 begin
-
 end;
 
 destructor TPaladin.Destroy;
 begin
-
+  inherited;
 end;
 
-procedure TPaladin.SetAttackDamage(const Value: Integer);
+procedure TPaladin.SetAttackDamage(const Value: TSkill);
 begin
   FAttackDamage := Value;
-end;
-
-procedure TPaladin.SetAttackDamageMax(const Value: Integer);
-begin
-  FAttackDamageMax := Value;
 end;
 
 procedure TPaladin.SetDistanceFighting(const Value: Integer);
@@ -110,44 +121,29 @@ begin
   FDistanceFighting := Value;
 end;
 
-procedure TPaladin.SetDivineCaldera(const Value: Integer);
+procedure TPaladin.SetDivineCaldera(const Value: TSkill);
 begin
   FDivineCaldera := Value;
 end;
 
-procedure TPaladin.SetDivineHealing(const Value: Integer);
+procedure TPaladin.SetDivineHealing(const Value: TSkill);
 begin
   FDivineHealing := Value;
 end;
 
-procedure TPaladin.SetDivineHealingMax(const Value: Integer);
-begin
-  FDivineHealingMax := Value;
-end;
-
-procedure TPaladin.SetDivineMissile(const Value: Integer);
+procedure TPaladin.SetDivineMissile(const Value: TSkill);
 begin
   FDivineMissile := Value;
 end;
 
-procedure TPaladin.SetDivineMissileMax(const Value: Integer);
-begin
-  FDivineMissileMax := Value;
-end;
-
-procedure TPaladin.SetDivineCalderaMax(const Value: INteger);
-begin
-  FDivineCalderaMax := Value;
-end;
-
-procedure TPaladin.SetEtherealSpear(const Value: Integer);
+procedure TPaladin.SetEtherealSpear(const Value: TSkill);
 begin
   FEtherealSpear := Value;
 end;
 
-procedure TPaladin.SetEtherealSpearMax(const Value: Integer);
+procedure TPaladin.SetSalvation(const Value: TSkill);
 begin
-  FEtherealSpearMax := Value;
+  FSalvation := Value;
 end;
 
 procedure TPaladin.SetWeaponDamage(const Value: Integer);
