@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=1]
+[gd_scene load_steps=35 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/powerup_spawner.tscn" type="PackedScene" id=2]
@@ -14,35 +14,132 @@
 [ext_resource path="res://sprites/UI2/glassPanel_tab.png" type="Texture" id=12]
 [ext_resource path="res://fonts/text.fnt" type="BitmapFont" id=13]
 [ext_resource path="res://sounds/Orbital_Colossus_0.smp" type="Sample" id=14]
+[ext_resource path="res://scenes/inimigos/enemy.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/inimigo_tiro.tscn" type="PackedScene" id=16]
 
 [sub_resource type="GDScript" id=1]
 
 resource/name = "camera"
-script/source = "extends Camera2D\n\nvar vel = 0\nvar shake = 0\nvar vibration = 0 # quanto maior esse valor, maior o efeito de vibração, em questão de movimento\n\nfunc _ready():\n\tset_process(true)\n\tpass\n\nfunc _process(delta):\n\tvel = game.vel_background\n\t\n\tset_offset(get_offset() + Vector2(0,-1) * vel * delta)\n\t\n\tif shake > 0:\n\t\t# faz a vibração\n\t\tset_pos(Vector2(cos(rad2deg(shake)),sin(rad2deg(shake))) * 2)\n\t\t# reduz delta de shake para terminar a vibração\n\t\tshake -= delta\n\telse:\n\t\tset_pos(Vector2(0,0))\n\t\n\tpass\n\t\n\t\nfunc shake():\n\t# ao chamar a função shake ele vai passar 1 para shake \n\t# e então no _process vai entrar no if shake>0 e executar o código de vibração\n\tshake = 0.5\n\tpass"
+script/source = "extends Camera2D
+
+var vel = 0
+var shake = 0
+var vibration = 0 # quanto maior esse valor, maior o efeito de vibração, em questão de movimento
+
+func _ready():
+	set_process(true)
+	pass
+
+func _process(delta):
+	vel = game.vel_background
+	
+	set_offset(get_offset() + Vector2(0,-1) * vel * delta)
+	
+	if shake > 0:
+		# faz a vibração
+		set_pos(Vector2(cos(rad2deg(shake)),sin(rad2deg(shake))) * 2)
+		# reduz delta de shake para terminar a vibração
+		shake -= delta
+	else:
+		set_pos(Vector2(0,0))
+	
+	pass
+	
+	
+func shake():
+	# ao chamar a função shake ele vai passar 1 para shake 
+	# e então no _process vai entrar no if shake>0 e executar o código de vibração
+	shake = 0.5
+	pass"
 
 [sub_resource type="GDScript" id=2]
 
-script/source = "extends ParallaxBackground\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\tpass"
+script/source = "extends ParallaxBackground
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	pass"
 
 [sub_resource type="SpriteFrames" id=3]
 
-animations = [ { "frames":[ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ], "loop":true, "name":"star", "speed":3.0 } ]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "star",
+"speed": 3.0
+} ]
 
 [sub_resource type="GDScript" id=4]
 
-script/source = "extends Label\n\nfunc _ready():\n\tgame.connect(\"score_changed\",self,\"_on_score_changed\")\n\tpass\n\t\nfunc _on_score_changed():\n\tset_text(str(game.score))\n\tpass"
+script/source = "extends Label
+
+func _ready():
+	game.connect(\"score_changed\",self,\"_on_score_changed\")
+	pass
+	
+func _on_score_changed():
+	set_text(str(game.score))
+	pass"
 
 [sub_resource type="GDScript" id=5]
 
-script/source = "extends Node2D\n\n# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO\n# SER MANIPULADA PELO INSPECTOR\nexport(Texture) var textura\n\nfunc _ready():\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc _draw():\n\tfor n in range(0, game.nave_vida):\n\t\tdraw_texture(textura,Vector2(n * textura.get_width() , 0) )\n\tpass"
+script/source = "extends Node2D
+
+# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO
+# SER MANIPULADA PELO INSPECTOR
+export(Texture) var textura
+
+func _ready():
+	game.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")
+	pass
+
+func _on_lifes_changed():
+	update()
+	if game.nave_vida <= 0:
+		game.fimDeJogo()
+	pass
+	
+func _draw():
+	for n in range(0, game.nave_vida):
+		draw_texture(textura,Vector2(n * textura.get_width() , 0) )
+	pass"
 
 [sub_resource type="GDScript" id=6]
 
-script/source = "extends Node\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# ATRIBUI A VARIAVEL DE VIDA INICIAL PARA A VARIAVEL VIDA\n\tget_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_hp))\n\tgame.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")\n\tpass\n\nfunc _on_lifes_changed():\n\tupdate()\n\tif game.nave_vida <= 0:\n\t\tgame.fimDeJogo()\n\tpass\n\t\nfunc update():\n\tget_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_vida))"
+script/source = "extends Node
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# ATRIBUI A VARIAVEL DE VIDA INICIAL PARA A VARIAVEL VIDA
+	get_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_hp))
+	game.connect(\"lifes_changed\" , self , \"_on_lifes_changed\")
+	pass
+
+func _on_lifes_changed():
+	update()
+	if game.nave_vida <= 0:
+		game.fimDeJogo()
+	pass
+	
+func update():
+	get_node(\"lbl_vidas\").set_text(\"x \" + str(game.nave_vida))"
 
 [sub_resource type="CanvasItemShader" id=7]
 
-_code = { "fragment":"", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_code = {
+"fragment": "",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
 
 [sub_resource type="CanvasItemMaterial" id=8]
 
@@ -54,7 +151,18 @@ shader/shading_mode = 0
 
 [sub_resource type="CanvasItemShader" id=10]
 
-_code = { "fragment":"vec4 pixel_tela = vec4(texscreen(SCREEN_UV) , 1);\n\nfloat media = (pixel_tela.r + pixel_tela.g + pixel_tela.b) / 3;\n\nCOLOR = vec4(media,media,media,1);", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_code = {
+"fragment": "vec4 pixel_tela = vec4(texscreen(SCREEN_UV) , 1);
+
+float media = (pixel_tela.r + pixel_tela.g + pixel_tela.b) / 3;
+
+COLOR = vec4(media,media,media,1);",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
 
 [sub_resource type="CanvasItemMaterial" id=11]
 
@@ -71,7 +179,22 @@ shortcut = InputEvent(NONE)
 
 [sub_resource type="GDScript" id=14]
 
-script/source = "extends Button\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_pause_play_button_down():\n\tgame.pausar()\n\tpass # replace with function body\n"
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+
+
+func _on_pause_play_button_down():
+	game.pausar()
+	pass # replace with function body
+"
 
 [sub_resource type="Theme" id=15]
 
@@ -79,15 +202,47 @@ default_font = ExtResource( 13 )
 
 [sub_resource type="GDScript" id=16]
 
-script/source = "extends Button\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_exit_button_down():\n\tgame.sair()\n\tpass # replace with function body\n"
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+
+
+func _on_exit_button_down():
+	game.sair()
+	pass # replace with function body
+"
 
 [sub_resource type="GDScript" id=17]
 
-script/source = "extends Label\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\tgame.connect(\"score_changed\",self,\"_on_score_changed\")\n\tpass\n\t\nfunc _on_score_changed():\n\tset_text(\"Score: \" + str(game.score))\n\tpass"
+script/source = "extends Label
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	game.connect(\"score_changed\",self,\"_on_score_changed\")
+	pass
+	
+func _on_score_changed():
+	set_text(\"Score: \" + str(game.score))
+	pass"
 
 [sub_resource type="SampleLibrary" id=18]
 
-samples/Orbital_Colossus_0 = { "db":8.0, "pitch":1.0, "sample":ExtResource( 14 ) }
+samples/Orbital_Colossus_0 = {
+"db": 8.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 14 )
+}
 
 [node name="main" type="CanvasLayer"]
 
@@ -922,7 +1077,8 @@ margin/top = 123.0
 margin/right = 332.0
 margin/bottom = 202.0
 custom_fonts/font = ExtResource( 13 )
-text = "The game was \n\tpaused"
+text = "The game was 
+	paused"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -1043,6 +1199,12 @@ params/attenuation/distance_exp = 1.0
 config/polyphony = 1
 config/samples = SubResource( 18 )
 config/pitch_random = 0.0
+
+[node name="enemy" parent="." instance=ExtResource( 15 )]
+
+[node name="inimigo_tiro" parent="enemy" instance=ExtResource( 16 )]
+
+transform/pos = Vector2( 543.085, 27.6237 )
 
 [connection signal="button_down" from="HUD/pause_menu/pause_play" to="HUD/pause_menu/pause_play" method="_on_pause_play_button_down"]
 

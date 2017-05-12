@@ -82,6 +82,10 @@ func _on_spaceship_area_enter( area ):
 			# ENTAO destroy o objeto, pois colidiu com a nave
 			area.aplica_dano(200,area)
 			self.aplica_dano(1,null)
+	elif area.is_in_group(game.GRUPO_TIRO_INIMIGO):
+		if area.has_method("destroi"):
+			area.destroi()
+			self.aplica_dano(1,null)
 	
 func _on_lifes_changed():
 	# Executa este código quando a vida muda

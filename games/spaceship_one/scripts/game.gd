@@ -1,6 +1,7 @@
 extends Node
 
 const GRUPO_INIMIGO = "inimigos"
+const GRUPO_TIRO_INIMIGO = "GTI"
 const GRUPO_NAVE = "nave"
 const GRUPO_SHIELD = "shield"
 
