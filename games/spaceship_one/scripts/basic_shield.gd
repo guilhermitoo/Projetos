@@ -14,7 +14,7 @@ func _process(delta):
 	pass
 	
 func _on_basic_shield_area_enter( area ):
-	if area.is_in_group(game.GRUPO_INIMIGO):
+	if area.is_in_group(game.GRUPO_INIMIGO) or area.is_in_group(game.GRUPO_TIRO_INIMIGO):
 		game.setVidaEscudo(game.escudo_vida-1)
 		get_node("sample").play("hit1")
 		get_node("anim").play("shield_hit")
@@ -22,4 +22,7 @@ func _on_basic_shield_area_enter( area ):
 		if area.has_method("aplica_dano"):
 			# ENTAO destroy o objeto, pois colidiu com o escudo
 			area.aplica_dano(200,area)
+		elif area.has_method("destroi"):
+			area.destroi()
+
 	pass # replace with function body

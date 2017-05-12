@@ -25,21 +25,57 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:visibility/opacity")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.5, 1.0 ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.5, 1.0 ]
+}
 tracks/1/type = "value"
 tracks/1/path = NodePath("light:energy")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+tracks/1/keys = {
+"times": FloatArray( 0, 0.1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
 
 [sub_resource type="SampleLibrary" id=4]
 
-samples/hit1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/hit1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
 
 [sub_resource type="GDScript" id=5]
 
 resource/name = "vidas_shield"
-script/source = "extends Node2D\n\n# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO\n# SER MANIPULADA PELO INSPECTOR\nexport(Texture) var textura\n\nfunc _ready():\n\tupdate()\n\tgame.connect(\"shield_changed\" , self , \"_on_shield_changed\")\n\tpass\n\t\nfunc _on_shield_changed():\n\tupdate()\n\tpass\n\t\nfunc _draw():\n\tfor n in range(0, game.escudo_vida ):\n\t\tdraw_texture(textura,Vector2(n * textura.get_width() , 0) )\n\t\t\n\tvar posx = textura.get_width() * ( (game.escudo_vida * self.get_scale().x )* 0.5 ) * -1\n\tself.set_pos(Vector2(posx,self.get_pos().y))\n\tpass"
+script/source = "extends Node2D
+
+# ADICIONA A PROPRIEDADE TEXTURA NO NODE2D, PODENDO
+# SER MANIPULADA PELO INSPECTOR
+export(Texture) var textura
+
+func _ready():
+	update()
+	game.connect(\"shield_changed\" , self , \"_on_shield_changed\")
+	pass
+	
+func _on_shield_changed():
+	update()
+	pass
+	
+func _draw():
+	for n in range(0, game.escudo_vida ):
+		draw_texture(textura,Vector2(n * textura.get_width() , 0) )
+		
+	var posx = textura.get_width() * ( (game.escudo_vida * self.get_scale().x )* 0.5 ) * -1
+	self.set_pos(Vector2(posx,self.get_pos().y))
+	pass"
 
 [node name="basic_shield" type="Area2D"]
 
