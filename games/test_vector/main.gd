@@ -23,14 +23,14 @@ func _process(delta):
 			var origin = Vector2(1,0)
 			var a = get_node("Area2D").get_global_pos()
 			# b = mouse
-			var b = game.getCamera().get_global_mouse_pos()
+			var b = get_node("Area2D").get_global_mouse_pos()
 
 			var tiro = pre_tiro.instance()
 
 			var ang = a.angle_to_point(b)
 			tiro.set_pos(get_node("Area2D").get_global_pos())
-			tiro.rotate(ang)
-			#tiro.look_at(b)
+			
+			tiro.look_at(b)
 			game.getMain().add_child(tiro)
 			tiro.mousepos = get_node("Area2D").get_local_mouse_pos()
 			delay = 0.1;

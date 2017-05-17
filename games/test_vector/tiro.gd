@@ -4,6 +4,7 @@ extends Area2D
 # var a = 2
 # var b = "textvar"
 var mousepos = Vector2(0,0)
+var speed = 2000
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -14,5 +15,5 @@ func _ready():
 
 func _process(delta):
 	if mousepos != Vector2(0,0):
-		var a = mousepos*delta
+		var a = (mousepos.normalized())*delta*speed
 		translate(a)
