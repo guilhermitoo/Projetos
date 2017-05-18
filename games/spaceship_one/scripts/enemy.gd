@@ -16,6 +16,7 @@ var armas = [
 func _ready():
 	# CARREGA TEXTURA ALEATÓRIA
 	# get_node("enemy").set_texture(resources.random_ini_text())
+
 	self.add_to_group(game.GRUPO_INIMIGO)
 	set_arma(0)
 	set_process(true)

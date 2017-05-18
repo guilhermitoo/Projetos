@@ -24,22 +24,44 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("meteor:transform/scale")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 1.7, 1.7 ) ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.7, 1.7 ) ]
+}
 tracks/1/type = "value"
 tracks/1/path = NodePath("meteor:visibility/opacity")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/1/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"queue_free" } ] }
+tracks/2/keys = {
+"times": FloatArray( 0.5 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 tracks/3/type = "value"
 tracks/3/path = NodePath("particles:config/emitting")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/3/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=4]
 
@@ -50,7 +72,12 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("meteor:modulate")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 0.761719, 0.282669, 0.282669, 1 ), Color( 0.992188, 0.984436, 0.984436, 1 ) ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.761719, 0.282669, 0.282669, 1 ), Color( 0.992188, 0.984436, 0.984436, 1 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 
@@ -61,12 +88,22 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("meteor:modulate")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Color( 0.992188, 0.984436, 0.984436, 1 ) ] }
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Color( 0.992188, 0.984436, 0.984436, 1 ) ]
+}
 tracks/1/type = "value"
 tracks/1/path = NodePath("particles:config/emitting")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="ColorRamp" id=6]
 
@@ -75,7 +112,12 @@ colors = ColorArray( 1, 1, 1, 1, 1, 0.992325, 0.508772, 1, 0.824219, 0.493203, 0
 
 [sub_resource type="SampleLibrary" id=7]
 
-samples/explosion = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/explosion = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
 
 [node name="meteor" type="Area2D"]
 
@@ -125,6 +167,7 @@ config/amount = 1000
 config/lifetime = 0.9
 config/emit_timeout = 0.9
 config/emitting = false
+config/process_mode = 1
 config/explosiveness = 0.25
 params/direction = 90.0
 params/spread = 180.0
@@ -159,5 +202,14 @@ params/attenuation/distance_exp = 1.0
 config/polyphony = 1
 config/samples = SubResource( 7 )
 config/pitch_random = 0.0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 7.0
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
 
 
