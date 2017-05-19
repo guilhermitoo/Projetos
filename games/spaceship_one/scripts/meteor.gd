@@ -3,7 +3,7 @@ extends Area2D
 var vel
 var rotation
 var scale
-var vida
+export var vida = 0
 
 var pre_pu_duplo = preload("res://scripts/classes/bonus/class_pu_tiro_duplo.gd")
 var pre_pu_rapido = preload("res://scripts/classes/bonus/class_pu_tiro_rapido.gd")
@@ -41,7 +41,7 @@ func _process(delta):
 	
 func aplica_dano(valor,nave):
 	vida -= valor
-	get_node("anim").play("hit")
+	#get_node("anim").play("hit")
 	if vida <= 0:
 		# acresce PONTUACAO DO JOGO
 		if nave.is_in_group(game.GRUPO_NAVE):
@@ -50,7 +50,7 @@ func aplica_dano(valor,nave):
 		# remove do grupo INIMIGO
 		remove_from_group(game.GRUPO_INIMIGO)
 		# executa a animação de destruição
-		get_node("anim").play("destroy")
+		#get_node("anim").play("destroy")
 		# para o processamento
 		set_process(false)
 		# executa a animação de balançar a câmera
@@ -58,7 +58,7 @@ func aplica_dano(valor,nave):
 		# GERA UM POWER UP AO DESTRUIR O METEORO
 		#gerar_pu()
 		# executa o som de destruição
-		get_node("sample").play("explosion")
+		#get_node("sample").play("explosion")
 	pass
 	
 func gerar_pu():

@@ -44,7 +44,12 @@ points = Vector2Array( 14.1456, -15.6537, 15.4632, 30.1989, 10.9833, 37.0504, -1
 
 [sub_resource type="SpriteFrames" id=8]
 
-animations = [ { "frames":[ null, ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"default", "speed":5.0 } ]
+animations = [ {
+"frames": [ null, ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="Animation" id=9]
 
@@ -56,7 +61,12 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("spaceship:modulate")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 0.917969, 0.0251007, 0.0251007, 1 ), Color( 1, 1, 1, 1 ) ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.917969, 0.0251007, 0.0251007, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=10]
 
@@ -119,8 +129,10 @@ z/z = 10
 z/relative = false
 texture = ExtResource( 3 )
 
-[node name="damage" type="AnimatedSprite" parent="."]
+[node name="damage" type="AnimatedSprite" parent="spaceship"]
 
+transform/pos = Vector2( -0.78446, 0 )
+transform/scale = Vector2( 1.03239, 1 )
 frames = SubResource( 8 )
 animation = "default"
 
@@ -140,7 +152,6 @@ transform/pos = Vector2( 0, -39 )
 
 [node name="poligon" type="CollisionPolygon2D" parent="."]
 
-visibility/visible = false
 build_mode = 0
 polygon = Vector2Array( -2.98328, -36.7353, -10.8889, -19.343, -15.1052, -16.9713, -15.1052, -14.5996, -45.9371, 1.21164, -49.0994, 0.421074, -56.2144, 4.90092, -39.0856, 33.0976, -17.4769, 29.9354, -12.9971, 36.2599, 10.9833, 37.0504, 15.4632, 30.1989, 36.8083, 33.6247, 56.8359, 5.42796, 47.0856, -0.105968, 45.5045, 1.73868, 14.1456, -15.6537, 14.1456, -18.0254, 9.92922, -19.87, 2.55065, -37.2624 )
 shape_range = Vector2( 0, 6 )

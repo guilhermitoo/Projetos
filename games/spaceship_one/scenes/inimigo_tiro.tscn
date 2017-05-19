@@ -32,4 +32,13 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
+
 

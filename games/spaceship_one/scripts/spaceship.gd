@@ -102,7 +102,7 @@ func _on_lifes_changed():
 		y = 1
 	else:
 		y = 0
-	get_node("damage").set_frame(y)
+	get_node("spaceship/damage").set_frame(y)
 	pass 
 	
 func aplica_dano(valor,nave):

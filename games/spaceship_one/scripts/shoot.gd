@@ -29,7 +29,7 @@ func _process(delta):
 
 func _on_shoot_area_enter( area ):
 	# se tem referência, ou seja, se está atribuido, então executa
-	if wr.has_method("get_ref"):
+	if wr && wr.has_method("get_ref"):
 		if wr.get_ref():
 			
 			var CriadorEhNave    = creator.is_in_group(game.GRUPO_NAVE)
