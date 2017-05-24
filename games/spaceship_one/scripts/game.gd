@@ -136,8 +136,8 @@ func iniciarControles():
 	meteor_vel_fim = vel_background
 	meteor_interval_ini = 0.2
 	meteor_interval_fim = 1.5
-	meteor_rot_ini = -3
-	meteor_rot_fim = 3
+	meteor_rot_ini = -50
+	meteor_rot_fim = 50
 	meteor_scale_ini = 0.7
 	meteor_scale_fim = 1.8
 	pass

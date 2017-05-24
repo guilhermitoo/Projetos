@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://scripts/fabrica_meteoros.gd" type="Script" id=1]
 [ext_resource path="res://scripts/meteor.gd" type="Script" id=2]
 [ext_resource path="res://sprites/Meteors/meteorGrey_big2.png" type="Texture" id=3]
-[ext_resource path="res://sprites/Meteors/meteorGrey_big3.png" type="Texture" id=4]
-[ext_resource path="res://sprites/Meteors/meteorGrey_med1.png" type="Texture" id=5]
-[ext_resource path="res://sprites/Meteors/meteorBrown_big4.png" type="Texture" id=6]
+[ext_resource path="res://scenes/meteoro_partes/particles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/meteoro_partes/anim.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/meteoro_partes/sample.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sprites/Meteors/meteorGrey_big3.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Meteors/meteorGrey_med1.png" type="Texture" id=8]
+[ext_resource path="res://sprites/Meteors/meteorBrown_big4.png" type="Texture" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -69,6 +72,12 @@ polygon = Vector2Array( -26.5832, 46.8392, -54.5832, 26.8392, -60.1235, -5.03036
 shape_range = Vector2( 0, 1 )
 trigger = false
 
+[node name="particles" parent="meteoro" instance=ExtResource( 4 )]
+
+[node name="anim" parent="meteoro" instance=ExtResource( 5 )]
+
+[node name="sample" parent="meteoro" instance=ExtResource( 6 )]
+
 [node name="meteoro1" type="Area2D" parent="."]
 
 editor/display_folded = true
@@ -89,7 +98,7 @@ vida = 0
 
 [node name="sprite" type="Sprite" parent="meteoro1"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 7 )
 
 [node name="colisao" type="CollisionPolygon2D" parent="meteoro1"]
 
@@ -97,6 +106,14 @@ build_mode = 0
 polygon = Vector2Array( -27.9149, 34.8777, -42.5451, 14.8831, -43.5204, -19.254, -10.8463, -41.1994, 28.6553, -28.5198, 43.4596, -0.568762, 22.2302, 41.2266, -7.92026, 36.8284 )
 shape_range = Vector2( 0, 1 )
 trigger = false
+
+[node name="particles" parent="meteoro1" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -1.05331, -0.187439 )
+
+[node name="anim" parent="meteoro1" instance=ExtResource( 5 )]
+
+[node name="sample" parent="meteoro1" instance=ExtResource( 6 )]
 
 [node name="meteoro2" type="Area2D" parent="."]
 
@@ -115,7 +132,7 @@ vida = 2
 
 [node name="sprite" type="Sprite" parent="meteoro2"]
 
-texture = ExtResource( 5 )
+texture = ExtResource( 8 )
 
 [node name="colisao" type="CollisionPolygon2D" parent="meteoro2"]
 
@@ -124,9 +141,14 @@ polygon = Vector2Array( -21.0874, -4.62383, -15.723, 15.3708, -1.58049, 20.2475,
 shape_range = Vector2( 0, 0 )
 trigger = false
 
+[node name="particles" parent="meteoro2" instance=ExtResource( 4 )]
+
+[node name="anim" parent="meteoro2" instance=ExtResource( 5 )]
+
+[node name="sample" parent="meteoro2" instance=ExtResource( 6 )]
+
 [node name="meteoro3" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 322.84, -5.85208 )
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
@@ -141,7 +163,7 @@ vida = 10
 
 [node name="sprite" type="Sprite" parent="meteoro3"]
 
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 
 [node name="colisao" type="CollisionPolygon2D" parent="meteoro3"]
 
@@ -149,5 +171,11 @@ build_mode = 0
 polygon = Vector2Array( -34.6061, -34.8596, 17.575, -47.5391, 47.3231, -12.9143, 29.7668, 41.7052, -18.0252, 47.5573, -49.2363, 10.0064 )
 shape_range = Vector2( 0, 0 )
 trigger = false
+
+[node name="particles" parent="meteoro3" instance=ExtResource( 4 )]
+
+[node name="anim" parent="meteoro3" instance=ExtResource( 5 )]
+
+[node name="sample" parent="meteoro3" instance=ExtResource( 6 )]
 
 
