@@ -1,0 +1,38 @@
+--INGREDIENTES
+codigo
+descricao
+quantidade
+unidade
+
+--RECEITAS
+codigo
+descricao
+lista_ingredientes
+  quantidade, medida, ingrediente
+modo_preparo
+rendimento (lista de produtos que sao gerados ao concluir a receita)
+
+--PRODUTO
+codigo
+descricao
+marca
+valor
+materia_prima (checkbox)
+
+--UNIDADE
+codigo
+descricao
+sigla
+
+--MEDIDA
+codigo
+descricao
+fator_conversao
+
+--PEDIDO
+codigo
+data_hora
+lista_produtos
+  produto, quantidade, valor_unitario
+tipo_pedido (compra,venda)
+observacoes
