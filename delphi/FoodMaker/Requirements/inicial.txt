@@ -10,7 +10,7 @@ descricao
 lista_ingredientes
   quantidade, medida, ingrediente
 modo_preparo
-rendimento (lista de produtos que sao gerados ao concluir a receita)
+lista_produtos (lista de produtos que sao gerados ao concluir a receita)
 
 --PRODUTO
 codigo
@@ -28,6 +28,7 @@ sigla
 codigo
 descricao
 fator_conversao
+unidade (unidade referente a esta medida, ex: na medida ML, teremos litro como unidade e fator conversão 0,001)
 
 --PEDIDO
 codigo
