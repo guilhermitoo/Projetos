@@ -38,7 +38,7 @@ object frmPrincipal: TfrmPrincipal
       Align = alClient
       ButtonHeight = 84
       ButtonWidth = 71
-      Ctl3D = True
+      Color = clBtnFace
       Customizable = True
       DrawingStyle = dsGradient
       GradientEndColor = clCream
@@ -61,7 +61,12 @@ object frmPrincipal: TfrmPrincipal
       object btnVendas: TToolButton
         Left = 142
         Top = 0
-        Action = actVendas
+        Action = actPedidos
+      end
+      object btnIngredientes: TToolButton
+        Left = 213
+        Top = 0
+        Action = actIngredientes
       end
     end
   end
@@ -72,8 +77,6 @@ object frmPrincipal: TfrmPrincipal
     Height = 300
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 89
-    ExplicitHeight = 295
   end
   object pnlBottom: TPanel
     Left = 0
@@ -90,8 +93,6 @@ object frmPrincipal: TfrmPrincipal
     Height = 300
     Align = alRight
     TabOrder = 4
-    ExplicitTop = 89
-    ExplicitHeight = 295
   end
   object pnlLeft: TPanel
     Left = 0
@@ -100,8 +101,6 @@ object frmPrincipal: TfrmPrincipal
     Height = 300
     Align = alLeft
     TabOrder = 5
-    ExplicitTop = 89
-    ExplicitHeight = 295
   end
   object ilPrincipal: TImageList
     ColorDepth = cd32Bit
@@ -110,7 +109,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 600
     Top = 160
     Bitmap = {
-      494C010109000D00040040004000FFFFFFFF2100FFFFFFFFFFFFFFFF424D3600
+      494C010109000D00040040004000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000000010000C000000001002000000000000000
       0300000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -6450,7 +6449,8 @@ object frmPrincipal: TfrmPrincipal
       FFFFFFF81FFFFFFFFFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000
+      000000000000}
   end
   object mmPrincipal: TMainMenu
     Left = 448
@@ -6481,11 +6481,20 @@ object frmPrincipal: TfrmPrincipal
       ImageIndex = 1
       OnExecute = actReceitasExecute
     end
-    object actVendas: TAction
+    object actPedidos: TAction
       Category = 'Cadastros'
-      Caption = 'Vendas'
+      Caption = 'Pedidos'
       ImageIndex = 7
-      OnExecute = actVendasExecute
+      OnExecute = actPedidosExecute
+    end
+    object actIngredientes: TAction
+      Category = 'Cadastros'
+      Caption = 'Ingredientes'
+      ImageIndex = 4
+    end
+    object Action1: TAction
+      Category = 'Cadastros'
+      Caption = 'Action1'
     end
   end
 end

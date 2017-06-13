@@ -1,3 +1,10 @@
+--PESSOA
+codigo
+nome
+cpf/cnpj
+rg/ie
+endereco
+
 --INGREDIENTES
 codigo
 descricao
@@ -37,3 +44,17 @@ lista_produtos
   produto, quantidade, valor_unitario
 tipo_pedido (compra,venda)
 observacoes
+
+--ENCOMENDA
+codigo
+data_hora
+cliente
+lista_produtos
+observacoes
+prazo
+
+--PRECOS
+codigo
+produto
+preco
+data_hora

@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls,
   System.Win.TaskbarCore, Vcl.Taskbar, System.ImageList, Vcl.ImgList,
-  Vcl.ToolWin, Vcl.ButtonGroup, System.Actions, Vcl.ActnList, Vcl.Menus;
+  Vcl.ToolWin, Vcl.ButtonGroup, System.Actions, Vcl.ActnList, Vcl.Menus, uHelper,
+  Vcl.StdCtrls, Vcl.Mask;
 
 type
   TfrmPrincipal = class(TForm)
@@ -27,11 +28,14 @@ type
     mniClientes: TMenuItem;
     btnReceitas: TToolButton;
     actReceitas: TAction;
-    actVendas: TAction;
+    actPedidos: TAction;
     btnVendas: TToolButton;
+    actIngredientes: TAction;
+    btnIngredientes: TToolButton;
+    Action1: TAction;
     procedure actClientesExecute(Sender: TObject);
     procedure actReceitasExecute(Sender: TObject);
-    procedure actVendasExecute(Sender: TObject);
+    procedure actPedidosExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,7 +59,7 @@ begin
   ShowMessage('Receitas');
 end;
 
-procedure TfrmPrincipal.actVendasExecute(Sender: TObject);
+procedure TfrmPrincipal.actPedidosExecute(Sender: TObject);
 begin
   ShowMessage('Vendas');
 end;
