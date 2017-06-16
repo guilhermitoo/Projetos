@@ -1,0 +1,94 @@
+--PESSOAS
+codigo
+data_hora
+nome
+razao
+cpf/cnpj
+rg/ie
+cep
+logradouro
+numero
+bairro
+complemento
+cidade
+estado
+telefones (entidade fraca)
+emails (entidade fraca)
+
+--CLIENTES
+codigo_pessoa
+pontuacao_compra (decidir)
+
+--FORNECEDORES
+codigo_pessoa
+
+--PRODUTOS
+codigo
+descricao
+unidade
+
+--INGREDIENTES
+codigo
+descricao
+unidade
+
+--RECEITAS
+codigo
+data_hora
+descricao
+ingredientes
+  quantidade, medida, ingrediente
+modo_preparo (texto)
+produtos (lista de produtos que sao gerados ao concluir a receita)
+
+--PRECOS
+codigo
+data_hora
+produto
+data_expira (data em que irá expirar o preço, deve ser maior que data atual. Se vazio, preço é fixo)
+preco
+
+--UNIDADES
+codigo
+descricao
+sigla
+
+--MEDIDAS
+codigo
+descricao
+fator_conversao
+unidade (unidade referente a esta medida, ex: na medida ML, teremos litro como unidade e fator conversão 0,001)
+
+--VENDAS
+codigo
+data_hora
+cliente
+produtos
+  produto, quantidade, valor_unitario
+valor_total
+observacoes
+
+--COMPRAS
+codigo
+data_hora
+fornecedor
+produtos
+  produto, quantidade, valor_unitario
+valor_total
+observacoes
+
+--ENCOMENDAS
+codigo
+data_hora
+cliente
+produtos
+observacoes
+prazo
+
+--DESPESAS
+codigo
+data_hora
+descricao
+valor
+valor_fixo (boolean)
+mensal     (boolean)

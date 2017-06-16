@@ -1,0 +1,8 @@
+controlar vendas
+controlar encomendas
+controlar produtos
+controlar preços de cada produto
+controlar receitas
+controlar ingredientes gastos nas receitas
+controlar entrada e saida de dinheiro
+controlar outras despesas (aluguel, água, luz, telefone, internet). Algumas despesas devem ser mensais, registrando
