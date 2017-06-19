@@ -2,7 +2,34 @@ controlar vendas
 controlar encomendas
 controlar produtos
 controlar preços de cada produto
-controlar receitas
-controlar ingredientes gastos nas receitas
+controlar receitas e seus ingredientes
+controlar compras
 controlar entrada e saida de dinheiro
 controlar outras despesas (aluguel, água, luz, telefone, internet). Algumas despesas devem ser mensais, registrando
+
+
+VENDAS
+ CRUD, Histórico por período
+
+ENCOMENDAS
+ CRUD, Lista Diária, Histórico por período
+
+PRODUTOS
+ CRUD, Lista Vendas, Estoque
+
+PREÇOS
+ Inserção, Edição, Listagem
+
+RECEITAS
+ CRUD, Histórico por período
+
+INGREDIENTES
+ CRUD, Histórico uso, Estoque
+
+COMPRAS
+ CRUD, Histórico
+
+DESPESAS
+ CRUD, Histórico, 
+
+---Importante: Relatório de faturamento.
