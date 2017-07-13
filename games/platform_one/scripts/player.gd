@@ -25,6 +25,8 @@ const SLIDE_STOP_MIN_TRAVEL = 1.0 # One pixel
 var velocity = Vector2()
 var on_air_time = 100
 var jumping = false
+var nova_anim = "stopped"
+var anim = "stopped"
 
 var prev_jump_pressed = false
 
@@ -117,11 +119,31 @@ func _fixed_process(delta):
 	
 	on_air_time += delta
 	prev_jump_pressed = jump
+	
+	var chao = get_node("rayChao").is_colliding() || get_node("rayChao1").is_colliding()
+	var andando = walk_right || walk_left
+	
+	if andando:
+		if velocity.x > 0:
+			get_node("sprite").set_flip_h(false)
+		else:
+			get_node("sprite").set_flip_h(true)
+		
+	if chao:
+		if andando:
+			nova_anim = "walking"
+		else:
+			nova_anim = "stopped"
+	else: #NO AR
+		if velocity.y < 0: #SALTANDO
+			nova_anim = "jumping"
+		else: #CAINDO
+			nova_anim = "falling"
+		
+	if nova_anim != anim:
+		get_node("anim").play(nova_anim)
+		anim = nova_anim
 
-	if walk_right:
-		get_node("sprite").set_flip_h(false)
-	if walk_left:
-		get_node("sprite").set_flip_h(true)
 
 func _ready():
 	set_fixed_process(true)
