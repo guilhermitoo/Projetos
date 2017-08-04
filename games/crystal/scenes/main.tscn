@@ -1,5 +1,11 @@
-[gd_scene format=1]
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scenes/crystal.tscn" type="PackedScene" id=1]
 
 [node name="main" type="Node"]
+
+[node name="crystal" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 268.905, 142.18 )
 
 
