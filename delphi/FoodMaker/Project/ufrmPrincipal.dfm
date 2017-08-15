@@ -76,6 +76,9 @@ object frmPrincipal: TfrmPrincipal
     Width = 831
     Height = 300
     Align = alClient
+    BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 2
   end
   object pnlBottom: TPanel
@@ -84,6 +87,9 @@ object frmPrincipal: TfrmPrincipal
     Width = 1011
     Height = 69
     Align = alBottom
+    BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 3
   end
   object pnlRight: TPanel
@@ -92,6 +98,9 @@ object frmPrincipal: TfrmPrincipal
     Width = 99
     Height = 300
     Align = alRight
+    BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 4
   end
   object pnlLeft: TPanel
@@ -100,6 +109,9 @@ object frmPrincipal: TfrmPrincipal
     Width = 81
     Height = 300
     Align = alLeft
+    BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 5
   end
   object ilPrincipal: TImageList
