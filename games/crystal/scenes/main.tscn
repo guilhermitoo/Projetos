@@ -6,6 +6,7 @@
 
 [node name="crystal" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( 268.905, 142.18 )
+transform/pos = Vector2( 261.423, 56.7954 )
+gravity_scale = 10.0
 
 
