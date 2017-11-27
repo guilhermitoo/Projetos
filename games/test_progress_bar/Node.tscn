@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://pb_blue.png" type="Texture" id=1]
 
 [sub_resource type="GDScript" id=1]
 
@@ -59,7 +61,8 @@ range/exp_edit = false
 range/rounded = false
 texture/under = null
 texture/over = null
-texture/progress = null
+texture/progress = ExtResource( 1 )
+mode = 5
 radial_fill/fill_degrees = 360.0
 radial_fill/center_offset = Vector2( 0, 0 )
 
