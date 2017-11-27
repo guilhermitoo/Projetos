@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+
+
+func _on_Button_pressed():
+	get_owner().get_node(\"textureP\").set_value(get_owner().get_node(\"textureP\").get_value()+10);
+	pass # replace with function body
+"
+
+[sub_resource type="CanvasItemShader" id=2]
+
+_code = {
+"fragment": "",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=3]
+
+shader/shader = SubResource( 2 )
+shader/shading_mode = 0
+
+[sub_resource type="Theme" id=4]
+
+
+[node name="Node" type="Node"]
+
+[node name="textureP" type="TextureProgress" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 217.0
+margin/top = 96.0
+margin/right = 502.0
+margin/bottom = 136.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+texture/under = null
+texture/over = null
+texture/progress = null
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
+
+[node name="btn" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 283.0
+margin/top = 204.0
+margin/right = 358.0
+margin/bottom = 224.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+script/script = SubResource( 1 )
+
+[node name="p" type="ProgressBar" parent="."]
+
+material/material = SubResource( 3 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+theme/theme = SubResource( 4 )
+margin/left = 200.0
+margin/top = 155.0
+margin/right = 441.0
+margin/bottom = 171.0
+range/min = 1.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = true
+
+[connection signal="pressed" from="btn" to="btn" method="_on_Button_pressed"]
+
+
