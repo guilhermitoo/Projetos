@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://new_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Node.tres" type="Theme" id=2]
 
 [sub_resource type="GDScript" id=1]
 
@@ -15,7 +18,7 @@ func _ready():
 
 
 func _on_Button_pressed():
-	get_owner().get_node(\"textureP\").set_value(get_owner().get_node(\"textureP\").get_value()+10);
+	get_owner().get_node(\"p\").set_value(get_owner().get_node(\"p\").get_value()+5);
 	pass # replace with function body
 "
 
@@ -35,9 +38,6 @@ _code = {
 shader/shader = SubResource( 2 )
 shader/shading_mode = 0
 
-[sub_resource type="Theme" id=4]
-
-
 [node name="Node" type="Node"]
 
 [node name="textureP" type="TextureProgress" parent="."]
@@ -46,6 +46,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
 margin/left = 217.0
 margin/top = 96.0
 margin/right = 502.0
@@ -86,7 +87,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-theme/theme = SubResource( 4 )
+theme/theme = ExtResource( 2 )
 margin/left = 200.0
 margin/top = 155.0
 margin/right = 441.0
