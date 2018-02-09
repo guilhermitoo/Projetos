@@ -1,0 +1,4 @@
+inherited frmDefault1: TfrmDefault1
+  Caption = 'frmDefault1'
+  DesignerMasterStyle = 3
+end

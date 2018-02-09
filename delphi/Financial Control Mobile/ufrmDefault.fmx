@@ -1,0 +1,78 @@
+object frmDefault: TfrmDefault
+  Left = 0
+  Top = 0
+  Caption = 'frmMain'
+  ClientHeight = 423
+  ClientWidth = 311
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object lytHeader: TLayout
+    Align = Top
+    Size.Width = 311.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object rtgHeader: TRectangle
+      Align = Client
+      Fill.Color = claPalegreen
+      Size.Width = 311.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claPalegreen
+      object btn1: TButton
+        Align = FitLeft
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'detailstoolbutton'
+        TabOrder = 0
+        Text = 'btn1'
+      end
+    end
+    object lblTitle: TLabel
+      Align = Center
+      StyledSettings = [Size]
+      Size.Width = 118.000000000000000000
+      Size.Height = 34.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'listboxheaderlabel'
+      TextSettings.Font.Style = [fsBold]
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Finances'
+    end
+  end
+  object lytFooter: TLayout
+    Align = Bottom
+    Position.Y = 373.000000000000000000
+    Size.Width = 311.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object rtgFooter: TRectangle
+      Align = Client
+      Fill.Color = claPalegreen
+      Size.Width = 311.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claPalegreen
+    end
+  end
+  object lytCenter: TLayout
+    Align = Client
+    Size.Width = 311.000000000000000000
+    Size.Height = 323.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object rtgCenter: TRectangle
+      Align = Client
+      Fill.Color = claWhite
+      Size.Width = 311.000000000000000000
+      Size.Height = 323.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claWhite
+    end
+  end
+end

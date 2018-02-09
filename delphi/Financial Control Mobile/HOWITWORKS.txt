@@ -1,0 +1,16 @@
+Principal:
+Header: Título
+Center: Exibe as finanças do mês selecionado, um listview.
+	totalizador fixo.
+Footer: Botão de adicionar finança
+
+Adicionar finança:
+Header: Título
+Center: Campos para cadastrar um valor:
+		- data (vem preenchida com a data que estava sendo listada na tela anterior)
+		- descrição
+		- parcelamento (checkbox, se marcado, exibe a data final na frente para preencher)
+		- valor (positivo para crédito, negativo para débito)
+Footer: botão para gravar
+
+

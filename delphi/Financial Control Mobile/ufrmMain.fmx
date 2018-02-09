@@ -1,0 +1,72 @@
+inherited frmMain: TfrmMain
+  Caption = 'frmDefault1'
+  ClientWidth = 271
+  DesignerMasterStyle = 3
+  inherited lytHeader: TLayout
+    Size.Width = 271.000000000000000000
+    inherited rtgHeader: TRectangle
+      Size.Width = 271.000000000000000000
+      inherited btn1: TButton
+        Position.X = 223.000000000000000000
+      end
+    end
+  end
+  inherited lytFooter: TLayout
+    Size.Width = 271.000000000000000000
+    inherited rtgFooter: TRectangle
+      Size.Width = 271.000000000000000000
+      object btnNewFinance: TButton
+        Align = Center
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'additembutton'
+        TabOrder = 0
+        Text = '+'
+      end
+    end
+  end
+  inherited lytCenter: TLayout
+    Size.Width = 271.000000000000000000
+    inherited rtgCenter: TRectangle
+      Sides = [Left, Right]
+      Size.Width = 271.000000000000000000
+      object lytTotal: TLayout
+        Align = Bottom
+        Position.Y = 273.000000000000000000
+        Size.Width = 271.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+      object lytList: TLayout
+        Align = Client
+        Size.Width = 271.000000000000000000
+        Size.Height = 273.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lvFinances: TListView
+          ItemAppearanceClassName = 'TListItemAppearance'
+          ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+          HeaderAppearanceClassName = 'TListHeaderObjects'
+          FooterAppearanceClassName = 'TListHeaderObjects'
+          Align = Client
+          Margins.Left = 2.000000000000000000
+          Margins.Top = 2.000000000000000000
+          Margins.Right = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Size.Width = 267.000000000000000000
+          Size.Height = 269.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+        end
+      end
+    end
+  end
+  object Center: TBrushObject
+    StyleName = 'Center'
+    Brush.Color = claWhite
+    Left = 72
+    Top = 104
+  end
+end
