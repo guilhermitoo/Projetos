@@ -42,7 +42,6 @@ rect_min_size = Vector2( 150, 24 )
 caret_blink = true
 
 [node name="gc_tier" type="GridContainer" parent="vbx_filters/hbx_filters"]
-editor/display_folded = true
 margin_left = 160.0
 margin_right = 210.0
 margin_bottom = 42.0
@@ -61,7 +60,6 @@ text = "Todos"
 flat = false
 
 [node name="gc_level" type="GridContainer" parent="vbx_filters/hbx_filters"]
-editor/display_folded = true
 margin_left = 220.0
 margin_right = 270.0
 margin_bottom = 42.0
@@ -137,5 +135,4 @@ margin_left = 0.0
 margin_top = 456.0
 margin_right = 335.0
 margin_bottom = 566.0
-
 [connection signal="pressed" from="vbx_filters/hbx_filters/btn_search" to="." method="_on_Button_pressed"]

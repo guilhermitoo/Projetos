@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/item.gd" type="Script" id=1]
+[ext_resource path="res://font.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
 
 [node name="item" type="Panel"]
 anchor_right = 1.0
@@ -10,7 +14,11 @@ margin_top = 16.2852
 margin_right = -100.0
 margin_bottom = -673.715
 rect_min_size = Vector2( 335, 110 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="lbl_id" type="Label" parent="."]
 visible = false
@@ -45,9 +53,12 @@ margin_left = 59.0
 margin_top = 9.0
 margin_right = 320.0
 margin_bottom = 23.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
-text = "localized name"
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Master's Assassin Jacket"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="lbl_desc" type="Label" parent="."]
 margin_left = 14.0
@@ -60,4 +71,3 @@ text = "description
 
 "
 autowrap = true
-
