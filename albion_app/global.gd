@@ -27,3 +27,16 @@ const colors = {1:"a9a7a4",
 				6:"c49036",
 				7:"d5d34b",
 				8:"ffffff"}
+const tier_roman = {1: "I",
+					2: "II",
+					3: "III",
+					4: "IV",
+					5: "V",
+					6: "VI",
+					7: "VII",
+					8: "VIII"}
+					
+const URL_PRICES = "https://www.albion-online-data.com/api/v1/stats/Prices/"
+	
+	
+	
