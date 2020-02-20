@@ -115,4 +115,5 @@ func add_item(index):
 		it.LEVEL = 0
 	it.update()
 	v_itens.add_child(it)
+	it.request_prices()
 	pass

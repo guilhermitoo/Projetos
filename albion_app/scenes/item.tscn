@@ -12,9 +12,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 16.0
-margin_right = -100.0
-margin_bottom = -654.0
-rect_min_size = Vector2( 335, 130 )
+margin_right = -50.0
+margin_bottom = -533.0
+rect_min_size = Vector2( 385, 251 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -41,19 +41,19 @@ custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "0"
 
 [node name="lbl_level" type="Label" parent="."]
-margin_left = 3.0
-margin_top = 94.0
-margin_right = 13.0
-margin_bottom = 108.0
+margin_left = 373.244
+margin_top = 1.68869
+margin_right = 383.244
+margin_bottom = 15.6887
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "0"
 
 [node name="lbl_loc_name" type="Label" parent="."]
 margin_left = 5.0
-margin_top = 17.1426
-margin_right = 327.0
-margin_bottom = 42.1426
+margin_top = 17.0
+margin_right = 377.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Master's Assassin Jacket teste tes"
@@ -65,19 +65,27 @@ __meta__ = {
 [node name="lbl_desc" type="Label" parent="."]
 margin_left = 13.0
 margin_top = 43.0
-margin_right = 329.0
+margin_right = 375.0
 margin_bottom = 103.0
 custom_fonts/font = ExtResource( 3 )
 text = "description teste lore ipsum dolor sit amet asf"
 autowrap = true
 
-[node name="Button" type="Button" parent="."]
-margin_left = 227.062
-margin_top = 107.172
-margin_right = 332.062
-margin_bottom = 127.172
-
 [node name="http_request" type="HTTPRequest" parent="."]
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[node name="grid_prices" type="GridContainer" parent="."]
+margin_left = 15.0
+margin_top = 102.0
+margin_right = 369.0
+margin_bottom = 239.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 50
+columns = 2
+
+[node name="vb_names" type="VBoxContainer" parent="grid_prices"]
+
+[node name="vb_values" type="VBoxContainer" parent="grid_prices"]
+margin_left = 50.0
+margin_right = 50.0
+
 [connection signal="request_completed" from="http_request" to="." method="_on_http_request_request_completed"]
