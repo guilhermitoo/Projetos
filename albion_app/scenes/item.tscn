@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/item.gd" type="Script" id=1]
 [ext_resource path="res://font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://font_low.tres" type="DynamicFont" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -10,10 +11,10 @@ bg_color = Color( 1, 1, 1, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
-margin_top = 16.2852
-margin_right = -100.0
-margin_bottom = -673.715
-rect_min_size = Vector2( 335, 110 )
+margin_top = 16.0
+margin_right = -50.0
+margin_bottom = -533.0
+rect_min_size = Vector2( 385, 251 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -31,43 +32,60 @@ custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "ID"
 
 [node name="lbl_tier" type="Label" parent="."]
-margin_left = 5.42624
-margin_top = 2.99835
-margin_right = 33.4262
-margin_bottom = 16.9984
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 14.0
+margin_bottom = 15.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "0"
 
 [node name="lbl_level" type="Label" parent="."]
-margin_left = 101.452
-margin_top = 88.7359
-margin_right = 129.452
-margin_bottom = 102.736
+margin_left = 373.244
+margin_top = 1.68869
+margin_right = 383.244
+margin_bottom = 15.6887
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "0"
 
 [node name="lbl_loc_name" type="Label" parent="."]
-margin_left = 59.0
-margin_top = 9.0
-margin_right = 320.0
-margin_bottom = 23.0
+margin_left = 5.0
+margin_top = 17.0
+margin_right = 377.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Master's Assassin Jacket"
+text = "Master's Assassin Jacket teste tes"
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="lbl_desc" type="Label" parent="."]
-margin_left = 14.0
+margin_left = 13.0
 margin_top = 43.0
-margin_right = 322.0
-margin_bottom = 91.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
-text = "description
-
-"
+margin_right = 375.0
+margin_bottom = 103.0
+custom_fonts/font = ExtResource( 3 )
+text = "description teste lore ipsum dolor sit amet asf"
 autowrap = true
+
+[node name="http_request" type="HTTPRequest" parent="."]
+
+[node name="grid_prices" type="GridContainer" parent="."]
+margin_left = 15.0
+margin_top = 102.0
+margin_right = 369.0
+margin_bottom = 239.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 50
+columns = 2
+
+[node name="vb_names" type="VBoxContainer" parent="grid_prices"]
+
+[node name="vb_values" type="VBoxContainer" parent="grid_prices"]
+margin_left = 50.0
+margin_right = 50.0
+
+[connection signal="request_completed" from="http_request" to="." method="_on_http_request_request_completed"]

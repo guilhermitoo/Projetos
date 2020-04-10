@@ -107,6 +107,7 @@ func add_item(index):
 		it.LOCALIZED_DESCRIPTION = itens[index][global.desc_tag][global.language]
 	it.LOCALIZED_NAME = itens[index][global.name_tag][global.language]
 	var ut = itens[index][global.uniq_tag]
+	it.UNIQUE_NAME = ut
 	it.TIER = int(ut.substr(1,1))
 	if "@" in ut:
 		it.LEVEL = int(ut.substr(ut.length()-1,1))
@@ -114,4 +115,5 @@ func add_item(index):
 		it.LEVEL = 0
 	it.update()
 	v_itens.add_child(it)
+	it.request_prices()
 	pass
