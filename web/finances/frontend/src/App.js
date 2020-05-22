@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaHandPointDown, FaFileInvoice, FaWallet, FaChartArea, FaTrashAlt, FaEdit, FaTasks } from 'react-icons/fa';
 import './tailwind.generated.css';
 
 function App() {
@@ -8,29 +9,36 @@ function App() {
 	  
       <nav class="bg-gray-800 h-16 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-48"> 
         <div class="hidden md:block">
-          <h5 class="font-bold uppercase text-gray-100 text-center py-4 text-2xl border-b-2 border-gray-100">Finanças</h1>          
+          <h5 class="font-bold uppercase text-gray-100 text-center py-4 text-2xl border-b-2 border-gray-100">Finanças</h5>          
         </div>
 		
 		<div class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between md:pt-4">
 			<ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
-				<li class="mr-3 flex-1">
-					<a href="#" class="block pt-2 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-700 hover:border-pink-500">
-						<i class="fas fa-tasks pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Geral</span>
+				<li class="mr-3 flex-1">					
+					<a href="#" class="block pt-2 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-700 hover:border-pink-500 flex flex-col md:flex-row">
+						<FaTasks size={20} color="#FFF" class="w-full md:w-auto md:pl-4"/>
+						<span class="pb-1 pt-1 md:pl-4 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Geral</span>
 					</a>
 				</li>
 				<li class="mr-3 flex-1">
-					<a href="#" class="block pt-2 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-700 hover:border-purple-500">
-						<i class="fa fa-file-invoice-dollar pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Contas fixas</span>
+					<a href="#" class="block pt-2 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-700 hover:border-purple-500  flex flex-col md:flex-row">
+						{/* <i class="fa fa-file-invoice-dollar pr-0 md:pr-3"></i> */}
+						<FaFileInvoice size={20} color="#FFF" class="w-full md:w-auto md:pl-4"/>
+						<span class="pb-1 pt-1 md:pl-4 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Contas fixas</span>
 					</a>
 				</li>
 				<li class="mr-3 flex-1">
-					<a href="#" class="block pt-2 md:py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-700 hover:border-blue-600">
-						<i class="fas fa-wallet pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Gastos</span>
+					<a href="#" class="block pt-2 md:py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-700 hover:border-blue-600  flex flex-col md:flex-row">
+						{/* <i class="fas fa-wallet pr-0 md:pr-3"></i> */}
+						<FaWallet size={20} color="#FFF" class="w-full md:w-auto md:pl-4"/>
+						<span class="pb-1 pt-1 md:pl-4 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Gastos</span>
 					</a>
 				</li>
 				<li class="mr-3 flex-1">
-					<a href="#" class="block pt-2 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-700 hover:border-red-500">
-						<i class="fa fa-chart-area pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Estimativas</span>
+					<a href="#" class="block pt-2 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-700 hover:border-red-500  flex flex-col md:flex-row">
+						{/* <i class="fa fa-chart-area pr-0 md:pr-3"></i> */}
+						<FaChartArea size={20} color="#FFF" class="w-full md:w-auto md:pl-4"/>
+						<span class="pb-1 pt-1 md:pl-4 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Estimativas</span>
 					</a>
 				</li>
 			</ul>
@@ -71,7 +79,7 @@ function App() {
 							  <th class="px-2 py-2">Venc.</th>
 							  <th class="px-2 py-2">Valor</th>
 							  <th class="px-2 py-2">Categoria</th>
-							  <th class="px-2 py-2 w-4 right-0 text-center">Ações</th>
+							  <th class="px-2 py-2 w-4 right-0"></th>
 							</tr>
 						  </thead>
 						  <tbody>
@@ -80,20 +88,25 @@ function App() {
 							  <td class="px-2  py-2">28</td>
 							  <td class="px-2  py-2 text-red-500 font-semibold">207,35</td>
 							  <td class="px-2  py-2">Moradia</td>
-							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">Pagar</button></td>
+							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
+							  		<FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button></td>
 							</tr>
 							<tr class="bg-gray-100">
 							  <td class="px-2  py-2">Semae</td>
 							  <td class="px-2  py-2">02</td>
 							  <td class="px-2  py-2 text-red-500 font-semibold">40,22</td>
 							  <td class="px-2  py-2">Moradia</td>
-							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">Pagar</button></td>							</tr>
+							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
+									<FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button></td>
+							</tr>
 							<tr>
 							  <td class="px-2  py-2">Vivo Fibra</td>
 							  <td class="px-2  py-2">25</td>
 							  <td class="px-2  py-2 text-red-500 font-semibold">119,90</td>
 							  <td class="px-2  py-2">Moradia</td>
-							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">Pagar</button></td>							</tr>
+							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
+		  							<FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button></td>
+							</tr>
 						  </tbody>
 						</table>
 					</div>
@@ -160,7 +173,7 @@ function App() {
 							  <th class="px-2 py-2">Venc.</th>
 							  <th class="px-2 py-2">Valor</th>
 							  <th class="px-2 py-2">Categoria</th>
-							  <th class="px-2 py-2 w-4 right-0 text-center">Ações</th>
+							  <th class="px-2 py-2 w-4 right-0"></th>
 							</tr>
 						  </thead>
 						  <tbody>
@@ -169,14 +182,16 @@ function App() {
 							  <td class="px-2  py-2">5</td>
 							  <td class="px-2  py-2 text-blue-700 font-semibold">2207,35</td>
 							  <td class="px-2  py-2">Pessoal</td>
-							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">Receber</button></td>
+							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
+							  		<FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button></td>
 							</tr>
 							<tr class="bg-gray-100">
 							  <td class="px-2  py-2">Cartão Rosana (5/6)</td>
 							  <td class="px-2  py-2">15</td>
 							  <td class="px-2  py-2 text-blue-700 font-semibold">133,00</td>
 							  <td class="px-2  py-2">Emp. Cartão</td>
-							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">Receber</button></td>
+							  <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
+							  		<FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button></td>
 							</tr>
 						  </tbody>
 						</table>
@@ -241,10 +256,14 @@ function App() {
 								  <td class="px-2  py-2">
 								    <div class="w-20 flex">
 										<div class="w-1/2">
-											<button class="bg-blue-500 hover:bg-blue-700 rounded text-white w-8 h-6 fa fa-edit"></button>
+											<button class="bg-blue-500 hover:bg-blue-700 rounded text-white pt-1 pb-2 px-2 w-auto h-auto">
+												<FaEdit size={18} color="#FFF" />
+											</button>
 										</div>
 										<div class="w-1/2 flex flex-row-reverse">
-											<button class="bg-blue-500 hover:bg-blue-700 rounded text-white w-8 h-6 fa fa-trash-alt"></button>
+											<button class="bg-blue-500 hover:bg-blue-700 rounded text-white w-auto h-auto px-2">
+												<FaTrashAlt size={18} color="#FFF" />
+											</button>
 										</div>
 									</div>
 								  </td>
