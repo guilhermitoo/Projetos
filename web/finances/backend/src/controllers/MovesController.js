@@ -3,10 +3,16 @@ const global = require('../global');
 
 module.exports = {
    // get para listar o histórico de algum mês específico.
+   async getMonthID(month,year) {
+      const _month = await connection('month').where('month_number',month).andWhere('year',year).select('id').first();
+
+      return _month;
+   },
+
    async index(request, response) {
       const { month, year } = request.body;
 
-      const _month = await connection('month').where('month_number',month).andWhere('year',year).select('id').first();
+      const _month = await module.exports.getMonthID(month,year);
 
       if (_month){
          var month_id = _month.id;
@@ -15,6 +21,39 @@ module.exports = {
       }
 
       const moves = await connection('moves').where('month_id',month_id).select('*');
+
+      return response.json(moves);
+   },
+
+   async open_payments(request, response) {
+      const { month , year } = request.body;
+
+      const _month = await module.exports.getMonthID(month,year);
+
+      if (_month){
+         var month_id = _month.id;
+      } else {
+         return response.json({});
+      }
+
+      const bills = await connection('bills').select('*').whereNotIn('id',connection('moves').select('bill').where('month_id',month_id));
+
+      return response.json(bills);
+   },
+
+   async paid_payments(request, response) {
+      const { month , year } = request.body;
+
+      const _month = await module.exports.getMonthID(month,year);
+
+      if (_month){
+         var month_id = _month.id;
+      } else {
+         return response.json({});
+      }
+
+      const moves = await connection('moves').where('month_id',month_id).
+         andWhere('payment_receive','P').andWhereNot('bill',null).select('*');
 
       return response.json(moves);
    },

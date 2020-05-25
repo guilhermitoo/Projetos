@@ -14,6 +14,8 @@ routes.get('/bills', BillsController.index);
 
 routes.post('/move', MovesController.create);
 routes.get('/moves', MovesController.index);
+routes.get('/open_payments', MovesController.open_payments);
+routes.get('/paid_payments', MovesController.paid_payments);
 
 routes.post('/estimate', EstimatesController.create);
 routes.get('/estimates', EstimatesController.index);
