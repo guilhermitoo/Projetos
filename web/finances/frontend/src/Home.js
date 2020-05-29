@@ -2,103 +2,15 @@ import React from 'react';
 import { FaHandPointDown,  FaTrashAlt, FaEdit } from 'react-icons/fa';
 import './tailwind.generated.css';
 
+import Pagar from './Pagar';
+
 function Home() {
  
   return (
-    <div class="overflow-auto h-screen pb-24 md:pb-5">
-        <div class="p-2">				
-            <div class="bg-white rounded-lg shadow">
-                <div class="bg-red-300 border-b-2 border-red-400 rounded-tl-lg rounded-tr-lg p-2">
-                    <h5 class="font-bold uppercase text-red-600 text-center">Contas à pagar</h5>
-                </div>
-                
-                <div class="">
-                    <table class="table-auto w-full">
-                    <thead class="bg-red-300 text-red-600 border-b-2 border-red-400 text-left">
-                        <tr>
-                        <th class="px-2 py-2">Descrição</th>
-                        <th class="px-2 py-2">Venc.</th>
-                        <th class="px-2 py-2">Valor</th>
-                        <th class="px-2 py-2">Categoria</th>
-                        <th class="px-2 py-2 w-4 right-0"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td class="px-2  py-2">CPFL</td>
-                        <td class="px-2  py-2">28</td>
-                        <td class="px-2  py-2 text-red-500 font-semibold">207,35</td>
-                        <td class="px-2  py-2">Moradia</td>
-                        <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
-                                <FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button></td>
-                        </tr>
-                        <tr class="bg-gray-100">
-                        <td class="px-2  py-2">Semae</td>
-                        <td class="px-2  py-2">02</td>
-                        <td class="px-2  py-2 text-red-500 font-semibold">40,22</td>
-                        <td class="px-2  py-2">Moradia</td>
-                        <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
-                                <FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button></td>
-                        </tr>
-                        <tr>
-                        <td class="px-2  py-2">Vivo Fibra</td>
-                        <td class="px-2  py-2">25</td>
-                        <td class="px-2  py-2 text-red-500 font-semibold">119,90</td>
-                        <td class="px-2  py-2">Moradia</td>
-                        <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
-                                <FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button></td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="p-2">				
-            <div class="bg-white rounded-lg shadow">
-                <div class="bg-blue-300 border-b-2 border-blue-400 rounded-tl-lg rounded-tr-lg p-2">
-                    <h5 class="font-bold uppercase text-blue-700 text-center">Contas pagas</h5>
-                </div>
-                
-                <div class="">
-                    <table class="table-auto w-full">
-                    <thead class="bg-blue-300 text-blue-700 border-b-2 border-blue-400 text-left">
-                        <tr>
-                        <th class="px-2 py-2">Descrição</th>
-                        <th class="px-2 py-2">Dia</th>
-                        <th class="px-2 py-2">Valor</th>
-                        <th class="px-2 py-2">Categoria</th>
-                        <th class="px-2 py-2 w-20 right-0 text-center">Pagto.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td class="px-2  py-2">Fatura NB-Gui</td>
-                        <td class="px-2  py-2">20</td>
-                        <td class="px-2  py-2 text-red-500 font-semibold">1202,00</td>
-                        <td class="px-2  py-2">Pessoal</td>
-                        <td class="px-2  py-2">NB-Gui</td>
-                        </tr>							
-                        <tr class="bg-gray-100">
-                        <td class="px-2  py-2">IPTU</td>
-                        <td class="px-2  py-2">10</td>
-                        <td class="px-2  py-2 text-red-500 font-semibold">40,00</td>
-                        <td class="px-2  py-2">Moradia</td>
-                        <td class="px-2  py-2">NB-Ana</td>
-                        </tr>
-                        <tr>
-                        <td class="px-2  py-2">Financ. Moto</td>
-                        <td class="px-2  py-2">26</td>
-                        <td class="px-2  py-2 text-red-500 font-semibold">283,40</td>
-                        <td class="px-2  py-2">Transporte</td>
-                        <td class="px-2  py-2">BB-Gui</td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+    <div className="Home">
+        <div class="overflow-auto h-screen pb-24 md:pb-5">
+        <Pagar />
+        
         <div class="p-2">				
             <div class="bg-white rounded-lg shadow">
                 <div class="bg-orange-300 border-b-2 border-orange-400 rounded-tl-lg rounded-tr-lg p-2">
@@ -241,7 +153,8 @@ function Home() {
                 </div>
             </div>			
         </div>
-        <div class="pb-16"></div>        
+        <div class="pb-16"></div>     
+        </div>   
     </div>
   );
 }

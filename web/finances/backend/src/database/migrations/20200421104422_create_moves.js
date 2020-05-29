@@ -1,6 +1,7 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('moves',function(table){
+    return (
+    knex.schema.createTable('moves',function(table){
         table.increments().primary();
         
         table.integer('month_id').notNullable();
@@ -13,7 +14,10 @@ exports.up = function(knex) {
         table.integer('resolution_day').notNullable();
         table.enu('payment_receive',['P','R']).notNullable(); // P = pagamento, R = recebimento
         table.decimal('value').notNullable();
-    });
+        table.integer('payment_type').notNullable();
+        table.foreign('payment_type').references('id').inTable('payment_types');            
+    })
+    );
 };
 
 exports.down = function(knex) {

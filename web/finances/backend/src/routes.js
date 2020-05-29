@@ -4,6 +4,7 @@ const BillsController = require('./controllers/BillsController');
 const MovesController = require('./controllers/MovesController');
 const EstimatesController = require('./controllers/EstimatesController');
 const routes = express.Router();
+  
 
 routes.post('/category', CategoryController.create);
 routes.get('/categories', CategoryController.index);
@@ -14,8 +15,8 @@ routes.get('/bills', BillsController.index);
 
 routes.post('/move', MovesController.create);
 routes.get('/moves', MovesController.index);
-routes.get('/open_payments', MovesController.open_payments);
-routes.get('/paid_payments', MovesController.paid_payments);
+routes.get('/open', MovesController.open);
+routes.get('/paid', MovesController.paid);
 
 routes.post('/estimate', EstimatesController.create);
 routes.get('/estimates', EstimatesController.index);
