@@ -13,9 +13,7 @@ exports.up = function(knex) {
         table.foreign('bill').references('id').inTable('bills');  
         table.integer('resolution_day').notNullable();
         table.enu('payment_receive',['P','R']).notNullable(); // P = pagamento, R = recebimento
-        table.decimal('value').notNullable();
-        table.integer('payment_type').notNullable();
-        table.foreign('payment_type').references('id').inTable('payment_types');            
+        table.decimal('value').notNullable();          
     })
     );
 };

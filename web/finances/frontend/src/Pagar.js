@@ -79,7 +79,7 @@ function Pagar() {
                                 <tr key={pp.id}>
                                     <td class="px-2  py-2">{pp.description}</td>
                                     <td class="px-2  py-2">{pp.resolution_day}</td>
-                                    <td class="px-2  py-2 text-red-500 font-semibold">
+                                    <td class="px-2  py-2 text-green-500 font-semibold">
                                         {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pp.value)}
                                     </td>
                                     <td class="px-2  py-2">{pp.cat_description}</td>

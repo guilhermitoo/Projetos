@@ -37,10 +37,20 @@ module.exports = {
          return response.json({});
       }
       
-      const bills = await connection('bills').select('bills.*','categories.description as cat_description').
+      const bills = await connection('bills').select('bills.description',
+         'bills.category','bills.value','bills.due_day','bills.payment_receive',
+         'categories.description as cat_description').
          whereNotIn('bills.id',connection('moves').select('bill').where('month_id',month_id)).
          join('categories','bills.category','categories.id').
-         andWhere('bills.payment_receive',type.toUpperCase());
+         andWhere('bills.payment_receive',type.toUpperCase()).unionAll(
+            connection('invoices').select('invoices.description',
+            'invoices.category','invoices.value','invoices.due_day','invoices.payment_receive',
+            'categories.description as cat_description').
+            whereNotIn('invoices.id',connection('moves').select('invoice').where('month_id',month_id)).
+            join('categories','invoices.category','categories.id').
+            andWhere('invoices.payment_receive',type.toUpperCase()).
+            andWhere('month_id',month_id)
+         );
          
       return response.json(bills);
    },

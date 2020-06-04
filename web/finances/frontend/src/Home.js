@@ -153,7 +153,7 @@ function Home() {
                 </div>
             </div>			
         </div>
-        <div class="pb-16"></div>     
+        <div class="pb-24"></div>     
         </div>   
     </div>
   );
