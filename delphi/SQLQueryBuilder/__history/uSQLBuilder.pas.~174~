@@ -683,11 +683,6 @@ begin
   Result := PrepareWhere('where'+SP+field+SP+'is null',[],[]);
 end;
 
-function TSQLBuilder.WhereRaw(raw_condition: string): TSQLBuilder;
-begin
-  Result := PrepareWhere(raw_condition,[],[]);
-end;
-
 { TSQLBuilder }
 
 procedure TSQLBuilder.ResetStructure;

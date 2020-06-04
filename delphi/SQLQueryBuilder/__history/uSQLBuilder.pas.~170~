@@ -99,8 +99,6 @@ type
     function OrWhereBetween( field : string ; two_values : array of const ) : TSQLBuilder;
     function OrWhereNotBetween( field : string ; two_values : array of const ) : TSQLBuilder;
 
-    function WhereRaw( raw_condition : string ) : TSQLBuilder;
-
     function OrderBy( fields : array of const ) : TSQLBuilder;
     function OrderByRaw( sOrderBy : String ) : TSQLBuilder;
 
@@ -121,14 +119,14 @@ const
 
 { TSQLBuilderAux }
 
-function TSQLBuilder.AndWhereBetween(field: string;
+function TSQLBuilder.AndBetween(field: string;
   two_values: array of const): TSQLBuilder;
 begin
   Result := PrepareWhere('and'+SP+field+SP+'between'+SP+
        VarRecToStr(two_values[0])+SP+'and'+SP+VarRecToStr(two_values[1]),[],[]);
 end;
 
-function TSQLBuilder.AndWhereNotBetween(field: string;
+function TSQLBuilder.AndNotBetween(field: string;
   two_values: array of const): TSQLBuilder;
 begin
   Result := PrepareWhere('and'+SP+field+SP+'not between'+SP+
@@ -366,7 +364,7 @@ begin
   Result := Self;
 end;
 
-function TSQLBuilder.OrWhereNotBetween(field: string;
+function TSQLBuilder.OrNotBetween(field: string;
   two_values: array of const): TSQLBuilder;
 begin
   Result := PrepareWhere('or'+SP+field+SP+'not between'+SP+
@@ -681,11 +679,6 @@ end;
 function TSQLBuilder.WhereNull(field: string): TSQLBuilder;
 begin
   Result := PrepareWhere('where'+SP+field+SP+'is null',[],[]);
-end;
-
-function TSQLBuilder.WhereRaw(raw_condition: string): TSQLBuilder;
-begin
-  Result := PrepareWhere(raw_condition,[],[]);
 end;
 
 { TSQLBuilder }

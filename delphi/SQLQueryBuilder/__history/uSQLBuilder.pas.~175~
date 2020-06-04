@@ -685,7 +685,7 @@ end;
 
 function TSQLBuilder.WhereRaw(raw_condition: string): TSQLBuilder;
 begin
-  Result := PrepareWhere(raw_condition,[],[]);
+
 end;
 
 { TSQLBuilder }

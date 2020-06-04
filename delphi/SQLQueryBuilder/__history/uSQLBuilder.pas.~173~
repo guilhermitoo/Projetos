@@ -99,8 +99,6 @@ type
     function OrWhereBetween( field : string ; two_values : array of const ) : TSQLBuilder;
     function OrWhereNotBetween( field : string ; two_values : array of const ) : TSQLBuilder;
 
-    function WhereRaw( raw_condition : string ) : TSQLBuilder;
-
     function OrderBy( fields : array of const ) : TSQLBuilder;
     function OrderByRaw( sOrderBy : String ) : TSQLBuilder;
 
@@ -681,11 +679,6 @@ end;
 function TSQLBuilder.WhereNull(field: string): TSQLBuilder;
 begin
   Result := PrepareWhere('where'+SP+field+SP+'is null',[],[]);
-end;
-
-function TSQLBuilder.WhereRaw(raw_condition: string): TSQLBuilder;
-begin
-  Result := PrepareWhere(raw_condition,[],[]);
 end;
 
 { TSQLBuilder }
