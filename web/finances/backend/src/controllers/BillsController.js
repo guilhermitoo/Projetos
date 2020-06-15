@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const global = require('../global');
 
 module.exports = {
     async index(request, response) {
@@ -8,7 +9,9 @@ module.exports = {
     },
 
     async create(request, response){
-        const {description,category,value,due_day,payment_receive,fixed_value} = request.body;        
+        const {description,category,value,due_day,payment_receive,fixed_value,month,year} = request.body;        
+
+        var first_month = await global.getMonthID_(month,year);
 
         const [id] = await connection('bills').insert({
             description,
@@ -16,7 +19,8 @@ module.exports = {
             value,
             due_day,
             payment_receive,
-            fixed_value           
+            fixed_value,
+            first_month
         }, "id");
 
         return response.json({ id });

@@ -4,8 +4,9 @@ module.exports = {
 
   development: {
     client: 'postgresql',
+    wrapIdentifier: (value, origImpl, queryContext) => value,
     connection: {
-      host : 'localhost',
+      host : '0.0.0.0',
       database: 'finances',
       user:     'postgres',
       password: 'sysdba'

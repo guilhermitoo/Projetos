@@ -4,7 +4,7 @@ const global = require('../global');
 module.exports = {
    // get para listar o histórico de algum mês específico.
    
-   async getMonthID(month,year) {
+   async findMonthID(month,year) {
       const _month = await connection('month').where('month_number',month).andWhere('year',year).select('id').first();
 
       return _month;
@@ -13,13 +13,7 @@ module.exports = {
    async index(request, response) {
       const { month, year } = request.body;
 
-      const _month = await module.exports.getMonthID(month,year);
-
-      if (_month){
-         var month_id = _month.id;
-      } else {
-         return response.json({});
-      }
+      var month_id = await global.getMonthID_(month,year);
 
       const moves = await connection('moves').where('month_id',month_id).select('*');
 
@@ -29,69 +23,72 @@ module.exports = {
    async open(request, response) {
       const { month , year , type } = request.query;
 
-      const _month = await module.exports.getMonthID(month,year);
+      var month_id = await global.getMonthID_(month,year);
 
-      if (_month){
-         var month_id = _month.id;
-      } else {
-         return response.json({});
-      }
-      
-      const bills = await connection('bills').select('bills.*','categories.description as cat_description').
-         whereNotIn('bills.id',connection('moves').select('bill').where('month_id',month_id)).
+      var resp = { bills : [] }
+
+      resp.bills = await connection('bills').select('bills.description',
+         'null as invoice_id', 'bills.id as bill_id',
+         'bills.category','bills.value','bills.due_day','bills.payment_receive',
+         'categories.description as cat_description').
+         whereNotIn('bills.id',connection('moves').select('bill').where('month_id',month_id).andWhereNot('bill',null)).
          join('categories','bills.category','categories.id').
-         andWhere('bills.payment_receive',type.toUpperCase());
+         join('month as m','bills.first_month','m.id').
+         andWhere('bills.payment_receive',type.toUpperCase()).
+         andWhere('m.month_number','<=',month).andWhere('m.year','<=',year).
+         unionAll(
+            connection('invoices').select("invoices.description || '(' || invoices.portion || '/' || invoices.total_portion || ')'",
+            'invoices.id as invoice_id','null as bill_id',
+            'invoices.category','invoices.value','invoices.due_day','invoices.payment_receive',
+            'categories.description as cat_description').
+            whereNotIn('invoices.id',connection('moves').select('invoice').where('month_id',month_id).andWhereNot('invoice',null)).
+            join('categories','invoices.category','categories.id').
+            andWhere('invoices.payment_receive',type.toUpperCase()).
+            andWhere('month_id',month_id)
+         );
+
+         // ajustar depois
+         // "invoices.description || '(' || invoices.portion || '/' || invoices.total_portion || ')'"
          
-      return response.json(bills);
+      for (let index = 0; index < resp.bills.length; index++) {
+         const element = resp.bills[index];
+
+         resp.bills[index].id = index+1;
+      }
+
+      return response.json(resp);
    },
 
    async paid(request, response) {
       const { month , year , type } = request.query;
 
-      const _month = await module.exports.getMonthID(month,year);
+      var month_id = await global.getMonthID_(month,year);
 
-      if (_month){
-         var month_id = _month.id;
-      } else {
-         return response.json({});
-      }
-
-      const moves = await connection('moves').where('month_id',month_id).
-         andWhere('payment_receive',type.toUpperCase()).andWhereNot('bill',null).select('moves.*',
+      var resp = { bills : [] }
+   
+      resp.bills = await connection('moves').where('month_id',month_id).
+         andWhere('payment_receive',type.toUpperCase()).andWhereRaw('((bill is not null) or (invoice is not null))')
+                  .select('moves.*',
                   'categories.description as cat_description',
                   'payment_types.description as payment_type_description').
                   join('categories','moves.category','categories.id').
                   join('payment_types','moves.payment_type','payment_types.id');
 
-      return response.json(moves);
+      for (let index = 0; index < resp.bills.length; index++) {
+         const element = resp.bills[index];
+
+         resp.bills[index].id = index+1;
+      }
+
+      return response.json(resp);
    },
 
    async create(request, response) {
-      const {date, description, category, payment_receive, value} = request.body;
+      const {date, description, category, payment_receive, value, bill, payment_type, invoice } = request.body;
       
-      var dt = new Date(date);
-
-      var resolution_day = dt.getDate();
-      var month_number = dt.getMonth()+1; // Soma 1 pois o método retorna indexado em 0.
-      var year = dt.getFullYear();
-      var name = global.getMonthName(month_number);
-
-      const month = await connection('month').where('month_number',month_number).andWhere('year',year).select('id').first();      
-
-      // verificar se o mês existe. Caso não exista, cadastrar o mês
-      if (month) {
-         var month_id = month.id;
-      }
-      else {
-         var first_day = year+'-'+month_number+'-'+'01';
-
-         var [month_id] = await connection('month').insert({
-            name,
-            month_number,
-            year,
-            first_day
-         },"id");
-      };
+      var month = await global.getMonthID(date);
+      var resolution_day = month[0];
+      var month_id = month[1];            
 
       const [id] = await connection('moves').insert({
          month_id,
@@ -99,7 +96,10 @@ module.exports = {
          category,
          resolution_day,
          payment_receive,
-         value
+         value, 
+         bill, 
+         payment_type, 
+         invoice
       }, "id");
 
       return response.json({id});

@@ -4,37 +4,37 @@ import './tailwind.generated.css';
 
 import api from './services/api';
 
-function Pagar() {
+function Receber() {
     const _month = localStorage.getItem("_month");
     const _year = localStorage.getItem("_year");
-    const [openPayments,SetOpenPayments] = useState([]);
-    const [paidPayments,SetPaidPayments] = useState([]);
+    const [openReceitps,SetOpenReceitps] = useState([]);
+    const [paidReceipts,SetPaidReceipts] = useState([]);
 
     useEffect(()=>{
-        api.get('/open?year='+_year+'&month='+_month+'&type=P',{}).then(response => {
+        api.get('/open?year='+_year+'&month='+_month+'&type=R',{}).then(response => {
             if (Array.isArray(response.data["bills"])) {
-                SetOpenPayments(response.data.bills);
+                SetOpenReceitps(response.data.bills);
             }
         })
-        api.get('/paid?year='+_year+'&month='+_month+'&type=P',{}).then(response => {
+        api.get('/paid?year='+_year+'&month='+_month+'&type=R',{}).then(response => {
             if (Array.isArray(response.data["bills"])) {
-                SetPaidPayments(response.data.bills);
+                SetPaidReceipts(response.data.bills);
             }
         })
     },[_month,_year]);
 
     return (
 
-        <div className="Pagar">				
+        <div className="Receber">				
             <div class="p-2">
             <div class="bg-white rounded-lg shadow">
-                <div class="bg-red-300 border-b-2 border-red-400 rounded-tl-lg rounded-tr-lg p-2">
-                    <h5 class="font-bold uppercase text-red-600 text-center">Contas à pagar</h5>
+                <div class="bg-orange-300 border-b-2 border-orange-400 rounded-tl-lg rounded-tr-lg p-2">
+                    <h5 class="font-bold uppercase text-orange-700 text-center">Contas à receber</h5>
                 </div>
                 
                 <div class="">
                     <table class="table-auto w-full">
-                        <thead class="bg-red-300 text-red-600 border-b-2 border-red-400 text-left">
+                        <thead class="bg-orange-300 text-orange-700 border-b-2 border-orange-400 text-left">
                             <tr>
                             <th class="px-2 py-2">Descrição</th>
                             <th class="px-2 py-2">Venc.</th>
@@ -44,14 +44,14 @@ function Pagar() {
                             </tr>
                         </thead>
                         <tbody>
-                            {openPayments.map(op => (
-                                <tr key={op.id}>
-                                    <td class="px-2  py-2">{op.description}</td>
-                                    <td class="px-2  py-2">{op.due_day}</td>
-                                    <td class="px-2  py-2 text-red-500 font-semibold">
-                                        {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(op.value)}
+                            {openReceitps.map(or => (
+                                <tr key={or.id}>
+                                    <td class="px-2  py-2">{or.description}</td>
+                                    <td class="px-2  py-2">{or.due_day}</td>
+                                    <td class="px-2  py-2 text-green-600 font-semibold">
+                                        {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(or.value)}
                                     </td>
-                                    <td class="px-2  py-2">{op.cat_description}</td>
+                                    <td class="px-2  py-2">{or.cat_description}</td>
                                     <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
                                         <FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button>
                                     </td>
@@ -62,14 +62,14 @@ function Pagar() {
                 </div>
             </div>
             <div class="p-1"></div>
-            <div class="bg-white rounded-lg shadow">
-                <div class="bg-blue-300 border-b-2 border-blue-400 rounded-tl-lg rounded-tr-lg p-2">
-                    <h5 class="font-bold uppercase text-blue-700 text-center">Contas pagas</h5>
+            <div class="bg-white rounded-lg shadow">                
+                <div class="bg-green-300 border-b-2 border-green-400 rounded-tl-lg rounded-tr-lg p-2">
+                    <h5 class="font-bold uppercase text-green-700 text-center">Contas recebidas</h5>
                 </div>
                 
                 <div class="">
                     <table class="table-auto w-full">
-                    <thead class="bg-blue-300 text-blue-700 border-b-2 border-blue-400 text-left">
+                    <thead class="bg-green-300 text-green-700 border-b-2 border-green-400 text-left">                                    
                         <tr>
                         <th class="px-2 py-2">Descrição</th>
                         <th class="px-2 py-2">Dia</th>
@@ -79,15 +79,15 @@ function Pagar() {
                         </tr>
                     </thead>
                     <tbody>
-                        {paidPayments.map(pp => (
-                                <tr key={pp.id}>
-                                    <td class="px-2  py-2">{pp.description}</td>
-                                    <td class="px-2  py-2">{pp.resolution_day}</td>
+                        {paidReceipts.map(pr => (
+                                <tr key={pr.id}>
+                                    <td class="px-2  py-2">{pr.description}</td>
+                                    <td class="px-2  py-2">{pr.resolution_day}</td>
                                     <td class="px-2  py-2 text-green-500 font-semibold">
-                                        {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pp.value)}
+                                        {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pr.value)}
                                     </td>
-                                    <td class="px-2  py-2">{pp.cat_description}</td>
-                                    <td class="px-2  py-2">{pp.payment_type_description}</td>
+                                    <td class="px-2  py-2">{pr.cat_description}</td>
+                                    <td class="px-2  py-2">{pr.payment_type_description}</td>
                                 </tr>                            
                         ))}                                                
                     </tbody>
@@ -99,4 +99,4 @@ function Pagar() {
     );
 }
 
-export default Pagar;
+export default Receber;
