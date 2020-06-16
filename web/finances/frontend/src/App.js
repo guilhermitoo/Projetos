@@ -92,14 +92,14 @@ function App() {
 						<a href="#" class="block pt-2 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-700 hover:border-purple-500  flex flex-col md:flex-row">
 							{/* <i class="fa fa-file-invoice-dollar pr-0 md:pr-3"></i> */}
 							<FaFileInvoice size={20} color="#FFF" class="w-full md:w-auto md:pl-4"/>
-							<span class="pb-1 pt-1 md:pl-4 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Contas fixas</span>
+							<span class="pb-1 pt-1 md:pl-4 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Conta fixa</span>
 						</a>
 					</li>
 					<li class="mr-3 flex-1">
 						<a href="#" class="block pt-2 md:py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-700 hover:border-blue-600  flex flex-col md:flex-row">
 							{/* <i class="fas fa-wallet pr-0 md:pr-3"></i> */}
 							<FaWallet size={20} color="#FFF" class="w-full md:w-auto md:pl-4"/>
-							<span class="pb-1 pt-1 md:pl-4 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Gastos</span>
+							<span class="pb-1 pt-1 md:pl-4 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Fatura</span>
 						</a>
 					</li>
 					<li class="mr-3 flex-1">

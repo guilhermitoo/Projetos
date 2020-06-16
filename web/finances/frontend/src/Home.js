@@ -9,7 +9,7 @@ function Home() {
  
   return (
     <div className="Home">
-        <div class="overflow-auto h-screen pb-24 md:pb-5">
+        <div class="overflow-auto h-screen pb-24 md:pb-5 text-sm md:text-base">
         <Pagar />
         <Receber />
 
@@ -17,7 +17,7 @@ function Home() {
             <div class="md:w-2/3 md:pr-2 p-2 md:p-0">				
                 <div class="bg-white rounded-lg shadow">
                     <div class="bg-gray-300 border-b-2 border-gray-400 rounded-tl-lg rounded-tr-lg p-2">
-                        <h5 class="font-bold uppercase text-gray-700 text-center">Gastos/Ganhos registrados</h5>
+                        <h5 class="font-bold uppercase text-gray-700 text-center">Movimentações</h5>
                     </div>
                     
                     <div class="">

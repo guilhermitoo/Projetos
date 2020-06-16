@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const knex = require('knex');
 const global = require('../global');
 
 module.exports = {
@@ -34,10 +35,12 @@ module.exports = {
          whereNotIn('bills.id',connection('moves').select('bill').where('month_id',month_id).andWhereNot('bill',null)).
          join('categories','bills.category','categories.id').
          join('month as m','bills.first_month','m.id').
+         leftJoin('month as m2','bills.last_month','m2.id').
          andWhere('bills.payment_receive',type.toUpperCase()).
          andWhere('m.month_number','<=',month).andWhere('m.year','<=',year).
+         andWhereRaw('((bills.last_month is null) or ((m2.month_number >= '+month+') and (m2.year >= '+year+')))').            
          unionAll(
-            connection('invoices').select("invoices.description || '(' || invoices.portion || '/' || invoices.total_portion || ')'",
+            connection('invoices').select("invoices.description || ' (' || invoices.portion || '/' || invoices.total_portion || ')'",
             'invoices.id as invoice_id','null as bill_id',
             'invoices.category','invoices.value','invoices.due_day','invoices.payment_receive',
             'categories.description as cat_description').

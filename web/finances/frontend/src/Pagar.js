@@ -46,13 +46,13 @@ function Pagar() {
                         <tbody>
                             {openPayments.map(op => (
                                 <tr key={op.id}>
-                                    <td class="px-2  py-2">{op.description}</td>
-                                    <td class="px-2  py-2">{op.due_day}</td>
-                                    <td class="px-2  py-2 text-red-500 font-semibold">
+                                    <td class="px-2 py-2">{op.description}</td>
+                                    <td class="px-2 py-2">{op.due_day}</td>
+                                    <td class="px-2 py-2 text-red-500 font-semibold">
                                         {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(op.value)}
                                     </td>
-                                    <td class="px-2  py-2">{op.cat_description}</td>
-                                    <td class="px-2  py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
+                                    <td class="px-2 py-2">{op.cat_description}</td>
+                                    <td class="px-2 py-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2">
                                         <FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button>
                                     </td>
                                 </tr>                            
