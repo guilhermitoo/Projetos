@@ -16,13 +16,13 @@ function Home() {
         <div class="md:flex md:p-2">
             <div class="md:w-2/3 md:pr-2 p-2 md:p-0">				
                 <div class="bg-white rounded-lg shadow">
-                    <div class="bg-gray-300 border-b-2 border-gray-400 rounded-tl-lg rounded-tr-lg p-2">
+                    <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
                         <h5 class="font-bold uppercase text-gray-700 text-center">Movimentações</h5>
                     </div>
                     
                     <div class="">
                         <table class="table-auto w-full">
-                            <thead class="bg-gray-300 text-gray-700 border-b-2 border-gray-400 text-left">
+                            <thead class="bg-gray-400 text-gray-700 border-b-2 border-gray-400 text-left">
                             <tr>
                                 <th class="px-2 py-2">Descrição</th>
                                 <th class="px-2 py-2">Dia</th>
@@ -61,13 +61,13 @@ function Home() {
             
             <div class="md:w-1/3 p-2 md:p-0">				
                 <div class="bg-white rounded-lg shadow">
-                    <div class="bg-gray-300 border-b-2 border-gray-400 rounded-tl-lg rounded-tr-lg p-2">
+                    <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
                         <h5 class="font-bold uppercase text-gray-700 text-center">Estimativas</h5>
                     </div>
                     
                     <div class="">
                         <table class="table-auto w-full">
-                            <thead class="bg-gray-300 text-gray-700 border-b-2 border-gray-400 text-left">
+                            <thead class="bg-gray-400 text-gray-700 border-b-2 border-gray-500 text-left">
                             <tr>
                                 <th class="px-2 py-2">Categoria</th>
                                 <th class="px-2 py-2 text-right">Valor Estimado</th>
