@@ -1,4 +1,6 @@
 .selected {
     display: flex;
-    background-color: #4A5568;
+    background-color: #1a202c;
+    border-left-width: 4px;
+    border-color: #f7fafc;
 }

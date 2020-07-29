@@ -3,7 +3,19 @@ const global = require('../global');
 
 module.exports = {
     async index(request, response) {
-        const bills = await connection('bills').select('*');
+        //const bills = await connection('bills').select('*');
+
+        const bills = await connection('bills').select(
+        "bills.id",
+        "bills.description",
+        "categories.description as cat_description",
+        "mf.month_number || '/' || mf.year as first_date",
+        "ml.month_number || '/' || ml.year as last_date",
+        "bills.value",
+        "bills.due_day").
+        join('month as mf','bills.first_month','mf.id').
+        leftJoin('month as ml','bills.last_month','ml.id').
+        join('categories','bills.category','categories.id');
     
         return response.json(bills);
     },
