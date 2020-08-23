@@ -4,6 +4,8 @@ import './tailwind.generated.css';
 
 import api from './services/api';
 
+import "./table.css";
+
 function Pagar() {
     const _month = localStorage.getItem("_month");
     const _year = localStorage.getItem("_year");

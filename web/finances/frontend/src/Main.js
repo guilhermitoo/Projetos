@@ -7,7 +7,7 @@ import {
     HashRouter
   } from "react-router-dom";
 import App from "./App";
-import CadConta from "./CadConta";
+import CadConta from "./CadConta_list";
 import "./Main.css";
  
 class Main extends Component {
@@ -63,7 +63,7 @@ class Main extends Component {
                         <div class="block md:hidden md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between md:pt-4">
                             <ul className="header" class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
                                 <li class="mr-3 flex-1 pl-3">					                                                                                                                                                
-                                    <NavLink exact to="/"  class="selected">                                            
+                                    <NavLink exact to="/"  class="">                                            
                                     <div class="block pt-2 md:py-3 pl-1 align-middle border-b-2 border-gray-700 hover:border-pink-500 text-white no-underline flex flex-col md:flex-row md:w-32">                                        
                                         <FaTasks size={20} color="#FFF" class="w-full md:w-auto md:pl-2"/>
                                         <text class="pb-1 pt-1 md:pl-2 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Geral</text>                                    
