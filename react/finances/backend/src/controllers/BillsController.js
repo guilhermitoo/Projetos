@@ -23,6 +23,8 @@ module.exports = {
     async create(request, response){
         const {description,category,value,due_day,payment_receive,fixed_value,month,year} = request.body;        
 
+        //if ( description == "" ) { }
+
         var first_month = await global.getMonthID_(month,year);
 
         const [id] = await connection('bills').insert({

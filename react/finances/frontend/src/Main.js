@@ -7,7 +7,7 @@ import {
     HashRouter
   } from "react-router-dom";
 import App from "./App";
-import CadConta from "./CadConta_list";
+import CadConta from "./CadConta";
 import "./Main.css";
  
 class Main extends Component {
@@ -32,7 +32,7 @@ class Main extends Component {
                                     </NavLink>                                        
                                 </li>
                                 <li class="hover:bg-gray-900">
-                                    <NavLink to="/cad_conta" activeClassName="selected">
+                                    <NavLink to="/cad_conta/list" activeClassName="selected">
                                     <div class="align-middle flex flex-row py-4">
                                         <FaFileInvoice size={20} color="#FFF" class="w-auto md:pl-4"/>
                                         <text class="pl-4 text-lg text-gray-100">Conta fixa</text>                                        
@@ -101,7 +101,7 @@ class Main extends Component {
                     </div>   
                     <div className="content" class="main-content md:w-screen">
                         <Route exact path="/" component={App}/>
-                        <Route path="/cad_conta" component={CadConta}/>
+                        <Route path="/cad_conta/" component={CadConta}/>                    
                     </div>                                
                 </div>
             </div>
