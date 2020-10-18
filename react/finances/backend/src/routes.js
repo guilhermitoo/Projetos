@@ -13,8 +13,9 @@ routes.post('/category', CategoryController.create);
 routes.get('/categories', CategoryController.index);
 
 routes.post('/bill', BillsController.create);
-routes.delete('/bill', BillsController.delete);
+routes.delete('/bill/:id', BillsController.delete);
 routes.get('/bills', BillsController.index);
+routes.patch('/bill/close', BillsController.close);
 
 routes.post('/move', MovesController.create);
 routes.get('/moves', MovesController.index);
