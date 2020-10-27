@@ -1,13 +1,14 @@
 import React, { useEffect,useState } from "react";
-import api from './services/api';
+import api from '../services/api';
 import {
   NavLink,
   HashRouter
 } from "react-router-dom";
+import Header from "../Header";
 
-import "./table.css";
+import "../table.css";
 
-function CadConta_list() {
+function Bills() {
 
   const [bills,SetBills] = useState([]);
   const [bill,SetBill] = useState({value: 0});
@@ -45,12 +46,14 @@ function CadConta_list() {
   };
 
     return (
-      <div className="CadConta_list">
+      <div className="Bills">
+        <div class="flex-1 bg-gray-300 h-screen">
+          <Header name="Cadastro de Contas" />        
           <div class="md:overflow-auto h-screen">
             <HashRouter>
             
               <div class="pt-2 px-2">
-                <NavLink to="/cad_conta/crud" class="" >
+                <NavLink to="/bill" class="" >
                   <button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-4 py-2">Nova Conta</button>                                
                 </NavLink>
               </div>  
@@ -133,12 +136,13 @@ function CadConta_list() {
                 </table>                      
 
               </div>
-              <div class="md:pb-24"></div>                                                            
-            </HashRouter>
-          </div>                                
+            <div class="md:pb-24"></div>                                                            
+          </HashRouter>
+        </div>                                
       </div>
+    </div>
     );
   
 }
 
-export default CadConta_list;
+export default Bills;

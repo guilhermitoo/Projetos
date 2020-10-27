@@ -4,14 +4,14 @@ import {
     HashRouter
   } from "react-router-dom";
 
-import CategoryHeader from "./Header";
+import Header from "../Header";
 
 function Categories() {
     return (
         <HashRouter>
             <div className="Categories">
                 <div class="flex-1 bg-gray-300 h-screen">
-                    <CategoryHeader />
+                    <Header name="Cadastro de Categorias"/>
                     <div class="md:overflow-auto h-screen">
                         <div class="pt-2 px-2">
                             <NavLink to="/category/" class="" >

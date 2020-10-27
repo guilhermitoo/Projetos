@@ -7,7 +7,8 @@ import {
     HashRouter
   } from "react-router-dom";
 import App from "./App";
-import CadConta from "./CadConta";
+import Bills from "./Bills/Bills";
+import Bill from "./Bills/Bill";
 import "./Main.css";
 import Categories from "./Categories/Categories";
 import Cat from "./Categories/Category";
@@ -34,7 +35,7 @@ class Main extends Component {
                                     </NavLink>                                        
                                 </li>
                                 <li class="hover:bg-gray-900">
-                                    <NavLink to="/cad_conta/list" activeClassName="selected">
+                                    <NavLink to="/bills" activeClassName="selected">
                                     <div class="align-middle flex flex-row py-4">
                                         <FaFileInvoice size={20} color="#FFF" class="w-auto md:pl-4"/>
                                         <text class="pl-4 text-lg text-gray-100">Conta fixa</text>                                        
@@ -111,9 +112,10 @@ class Main extends Component {
                     </div>   
                     <div className="content" class="main-content md:w-screen">
                         <Route exact path="/" component={App}/>
-                        <Route path="/cad_conta/" component={CadConta}/>
-                        <Route path="/categories/" component={Categories}/>
-                        <Route path="/category/" component={Cat}/>
+                        <Route path="/bills" component={Bills}/>
+                        <Route path="/bill" component={Bill}/>                        
+                        <Route path="/categories" component={Categories}/>
+                        <Route path="/category" component={Cat}/>
                     </div>                                
                 </div>
             </div>
