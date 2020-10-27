@@ -43,8 +43,10 @@ module.exports = {
         }
         else {
             var first_day = year+'-'+month_number+'-'+'01';
+            var id = String(month_number)+year;
 
             var [month_id] = await connection('month').insert({
+                id,
                 name,
                 month_number,
                 year,

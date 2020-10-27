@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHandPointDown,  FaTrashAlt, FaEdit } from 'react-icons/fa';
+import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import './tailwind.generated.css';
 
 import Pagar from './Pagar';

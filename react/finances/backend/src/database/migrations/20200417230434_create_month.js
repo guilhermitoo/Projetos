@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('month',function(table){
-        table.increments().primary();
+        table.integer('id').primary();        
         
         table.string('name').notNullable();
         table.integer('month_number').notNullable();

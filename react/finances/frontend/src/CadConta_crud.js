@@ -18,9 +18,10 @@ function CadConta_crud() {
   useEffect(()=>{      
       api.get('/categories',{}).then(response => {
           if (Array.isArray(response.data)) {
-            setCategorias(response.data);
-            SetCategory(response.data[0].id);            
-                        
+            if (response.data.length > 0) {
+              setCategorias(response.data);            
+              SetCategory(response.data[0].id);            
+            }                        
           }
       });
 

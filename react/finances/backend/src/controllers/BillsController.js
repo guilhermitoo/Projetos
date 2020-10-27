@@ -46,13 +46,13 @@ module.exports = {
         var bill = [];
         bill = await connection('bills').select('id').where('id',id);
         if (bill.length <= 0) {
-            return response.status(401).json({error:"Conta não encontrada."});
+            return response.status(404).send();
         }
 
         var mov = [];
         mov = await connection('moves').select('id').where('bill',id);        
         if (mov.length > 0) {
-            return response.status(401).json({error:"Não é possível excluir uma conta com movimentações. Neste caso apenas é possível finalizar a conta."});
+            return response.status(200).json({erros:[{mensagem:'Não é possível excluir uma conta com movimentações. Neste caso apenas é possível finalizar a conta.'}]});
         }
 
         await connection('bills')
@@ -69,14 +69,14 @@ module.exports = {
         var bill = [];
         bill = await connection('bills').select('id').where('id',id);
         if (bill.length <= 0) {
-            return response.status(401).json({error:"Conta não encontrada."});
+            return response.status(402).json({error:"Conta não encontrada."});
         }
 
         // verifica se a conta já está fechada
         bill = [];
         bill = await connection('bills').select('id').where('id',id).whereNull('last_month');
         if (bill.length <= 0) {
-            return response.status(401).json({error:"Conta já está finalizada."});
+            return response.status(402).json({error:"Conta já está finalizada."});
         }
 
         // verifica se a data para fechamento é maior ou igual que a data da última movimentação
@@ -90,7 +90,7 @@ module.exports = {
             .limit(1);
         if (mov.length > 0) {                                      
             if (mov[0].first_day > mt[0].first_day) {
-                return response.status(401).json({error:"O mês para finalização deve ser maior ou igual ao mês da última movimentação."});   
+                return response.status(402).json({error:"O mês para finalização deve ser maior ou igual ao mês da última movimentação."});   
             }
         }
         
@@ -100,7 +100,7 @@ module.exports = {
             .join('month as m','bills.first_month','m.id').select('bills.id','m.first_day')
             .where('bills.id',id);
         if (mt[0].first_day < bill[0].first_day) {
-            return response.status(401).json({error:"O mês para finalização deve ser maior ou igual ao mês da abertura da conta."});    
+            return response.status(402).json({error:"O mês para finalização deve ser maior ou igual ao mês da abertura da conta."});    
         }
         
         await connection('bills')

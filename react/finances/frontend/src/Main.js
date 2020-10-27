@@ -9,6 +9,8 @@ import {
 import App from "./App";
 import CadConta from "./CadConta";
 import "./Main.css";
+import Categories from "./Categories/Categories";
+import Cat from "./Categories/Category";
  
 class Main extends Component {
   render() {
@@ -42,7 +44,7 @@ class Main extends Component {
                                 <li class="hover:bg-gray-900">
                                     <NavLink to="/cad_fatura" activeClassName="selected">
                                     <div class="align-middle flex flex-row py-4">
-                                        <FaFileInvoice size={20} color="#FFF" class="w-auto md:pl-4"/>
+                                        <FaWallet size={20} color="#FFF" class="w-auto md:pl-4"/>
                                         <text class="pl-4 text-lg text-gray-100">Fatura</text>                                        
                                     </div>
                                     </NavLink>
@@ -50,11 +52,19 @@ class Main extends Component {
                                 <li class="hover:bg-gray-900">
                                     <NavLink to="/estimate" activeClassName="selected">
                                     <div class="align-middle flex flex-row py-4">
-                                        <FaFileInvoice size={20} color="#FFF" class="w-auto md:pl-4"/>
+                                        <FaChartArea size={20} color="#FFF" class="w-auto md:pl-4"/>
                                         <text class="pl-4 text-lg text-gray-100">Estimativas</text>                                        
                                     </div>
                                     </NavLink>
-                                </li>                               
+                                </li>          
+                                <li class="hover:bg-gray-900">
+                                    <NavLink to="/categories" activeClassName="selected">
+                                    <div class="align-middle flex flex-row py-4">
+                                        <FaFileInvoice size={20} color="#FFF" class="w-auto md:pl-4"/>
+                                        <text class="pl-4 text-lg text-gray-100">Categorias</text>                                        
+                                    </div>
+                                    </NavLink>
+                                </li>                                                     
                                 
                             </ul>                        
                         </div>
@@ -71,7 +81,7 @@ class Main extends Component {
                                     </NavLink>                                        
                                 </li>
                                 <li class="mr-3 flex-1 pl-3">
-                                    <NavLink to="/cad_conta" class="" >
+                                    <NavLink to="/cad_conta/list" class="" >
                                     <div class="block pt-2 md:py-3 pl-1 text-white border-b-2 border-gray-700 hover:border-purple-500 no-underline md:py-2 align-middle flex flex-col md:flex-row md:w-32">
                                         <FaFileInvoice size={20} color="#FFF" class="w-full md:w-auto md:pl-2"/>
                                         <text class="pb-1 pt-1 md:pl-2 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Conta fixa</text>                                        
@@ -101,7 +111,9 @@ class Main extends Component {
                     </div>   
                     <div className="content" class="main-content md:w-screen">
                         <Route exact path="/" component={App}/>
-                        <Route path="/cad_conta/" component={CadConta}/>                    
+                        <Route path="/cad_conta/" component={CadConta}/>
+                        <Route path="/categories/" component={Categories}/>
+                        <Route path="/category/" component={Cat}/>
                     </div>                                
                 </div>
             </div>
