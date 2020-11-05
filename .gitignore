@@ -1,0 +1,10 @@
+
+*.identcache
+
+outros/compareauto/Project1.res
+
+outros/compareauto/Win32/
+
+outros/compareauto/__history/
+
+outros/compareauto/Project1.dproj.local
