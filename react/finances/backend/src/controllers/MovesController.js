@@ -36,9 +36,9 @@ module.exports = {
          join('categories','bills.category','categories.id').
          join('month as m','bills.first_month','m.id').
          leftJoin('month as m2','bills.last_month','m2.id').
-         andWhere('bills.payment_receive',type.toUpperCase()).
-         andWhere('m.month_number','<=',month).andWhere('m.year','<=',year).
-         andWhereRaw('((bills.last_month is null) or ((m2.month_number >= '+month+') and (m2.year >= '+year+')))').            
+         andWhere('bills.payment_receive',type.toUpperCase()). // verifica o tipo se é Pagar ou Receber
+         andWhereRaw('( ((m.month_number <= ? ) and (m.year <= ?)) or (m.year < ?))',[month,year,year]).
+         andWhereRaw('((bills.last_month is null) or ((m2.month_number >= ?) and (m2.year >= ?)))',[month,year]). 
          unionAll(
             connection('invoices').select("invoices.description || ' (' || invoices.portion || '/' || invoices.total_portion || ')'",
             'invoices.id as invoice_id','null as bill_id',

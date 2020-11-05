@@ -108,5 +108,44 @@ module.exports = {
             .update({last_month : last_month_id});
 
         return response.status(204).send();        
+    },
+
+    async pay(request,response){
+        const {id, month, year, resolution_day, payment_type, value} = request.body;
+
+        // verifica se a conta existe
+        var bill_exist = [];
+        bill_exist = await connection('bills').select('id').where('id',id);
+        if (bill_exist.length <= 0) {
+            return response.status(402).json({error:"Conta não encontrada."});
+        }
+
+        var month_id = await global.getMonthID_(month,year);
+
+        // verifica se a conta não está paga.
+        paym_move = await connection('moves').select('id').where('month_id',month_id).andWhere('bill',id);
+
+        if (paym_move.length > 0) {
+            return response.status(402).json({error:"Esta conta já está paga no mês "+month+"/"+year});               
+        }
+
+        var bills = await connection('bills').select('description','category').where('id',id);
+        var description = bills[0].description;
+        var category = bills[0].category;
+        var payment_receive = 'P';
+        var bill = id;        
+
+        const [id_move] = await connection('moves').insert({
+            month_id,
+            description,
+            category,
+            resolution_day,
+            payment_receive,
+            value, 
+            bill, 
+            payment_type, 
+        }, "id");
+
+        return response.status(204).send();
     }
 }
