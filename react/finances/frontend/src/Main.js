@@ -82,7 +82,7 @@ class Main extends Component {
                                     </NavLink>                                        
                                 </li>
                                 <li class="mr-3 flex-1 pl-3">
-                                    <NavLink to="/cad_conta/list" class="" >
+                                    <NavLink to="/bills" class="" >
                                     <div class="block pt-2 md:py-3 pl-1 text-white border-b-2 border-gray-700 hover:border-purple-500 no-underline md:py-2 align-middle flex flex-col md:flex-row md:w-32">
                                         <FaFileInvoice size={20} color="#FFF" class="w-full md:w-auto md:pl-2"/>
                                         <text class="pb-1 pt-1 md:pl-2 md:pt-0 md:pb-0 text-xs md:text-base text-gray-100 block md:inline-block">Conta fixa</text>                                        

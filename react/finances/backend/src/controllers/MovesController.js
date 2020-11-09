@@ -69,13 +69,13 @@ module.exports = {
 
       var resp = { bills : [] }
    
-      resp.bills = await connection('moves').where('month_id',month_id).
-         andWhere('payment_receive',type.toUpperCase()).andWhereRaw('((bill is not null) or (invoice is not null))')
-                  .select('moves.*',
-                  'categories.description as cat_description',
-                  'payment_types.description as payment_type_description').
-                  join('categories','moves.category','categories.id').
-                  join('payment_types','moves.payment_type','payment_types.id');
+      resp.bills = await connection('moves').select('moves.*',
+      'categories.description as cat_description',
+      'payment_types.description as payment_type_description').
+      join('categories','moves.category','categories.id').
+      join('payment_types','moves.payment_type','payment_types.id').
+         where('moves.month_id',month_id).
+         andWhere('moves.payment_receive',type.toUpperCase()).andWhereRaw('((bill is not null) or (invoice is not null))');
 
       for (let index = 0; index < resp.bills.length; index++) {
          const element = resp.bills[index];

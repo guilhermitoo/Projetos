@@ -5,6 +5,7 @@ const MovesController = require('./controllers/MovesController');
 const EstimatesController = require('./controllers/EstimatesController');
 const InvoicesControler = require('./controllers/InvoicesController');
 const MonthController = require('./controllers/MonthController');
+const PaymentTypesController = require('./controllers/PaymentTypeController');
 const routes = express.Router();
 
   
@@ -32,5 +33,7 @@ routes.get('/invoices', InvoicesControler.index);
 routes.get('/month_name', MonthController.getMonthName);
 routes.get('/months', MonthController.index);
 
+routes.post('/payment_type', PaymentTypesController.create);
+routes.get('/payment_types', PaymentTypesController.index);
 
 module.exports = routes;

@@ -28,36 +28,41 @@ module.exports = {
     },
 
     async getMonthID(date) {
-        var dt = new Date(date);
+        try {
+            var dt = new Date(date);
 
-        var day = dt.getDate();
-        var month_number = dt.getMonth()+1; // Soma 1 pois o método retorna indexado em 0.
-        var year = dt.getFullYear();               
-        var name = this.getMonthName(month_number);        
-  
-        const month = await connection('month').where('month_number',month_number).andWhere('year',year).select('id').first();        
+            var day = dt.getDate();
+            var month_number = dt.getMonth()+1; // Soma 1 pois o método retorna indexado em 0.
+            var year = dt.getFullYear();               
+            var name = this.getMonthName(month_number);        
+    
+            const month = await connection('month').where('month_number',month_number).andWhere('year',year).select('id').first();        
 
-        // verificar se o mês existe. Caso não exista, cadastrar o mês
-        if (month) {
-            var month_id = month.id;
+            // verificar se o mês existe. Caso não exista, cadastrar o mês
+            if (month) {
+                var month_id = month.id;
+            }
+            else {
+                var first_day = year+'-'+month_number+'-'+'01';
+                var id = String(month_number)+year;
+
+                var [month_id] = await connection('month').insert({
+                    id,
+                    name,
+                    month_number,
+                    year,
+                    first_day
+                },"id");            
+            };
+
+            var arr = new Array(2)
+            arr[0] = day;
+            arr[1] = month_id;
+            return arr;
         }
-        else {
-            var first_day = year+'-'+month_number+'-'+'01';
-            var id = String(month_number)+year;
-
-            var [month_id] = await connection('month').insert({
-                id,
-                name,
-                month_number,
-                year,
-                first_day
-            },"id");            
-        };
-
-        var arr = new Array(2)
-        arr[0] = day;
-        arr[1] = month_id;
-        return arr;
+        catch (e) {
+            return e;
+        }
     },
 
     async getNextMonth(date,index) {
