@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import { FaBlackTie, FaHandPointDown } from 'react-icons/fa';
+import { FaTrashAlt, FaHandPointDown } from 'react-icons/fa';
 import './tailwind.generated.css';
 import {useHistory} from "react-router-dom"; 
 import Modal from 'react-modal';
@@ -57,9 +57,10 @@ function Pagar() {
 
     function openModal(obj) {
         SetPaymentDescription(obj.description);        
-        SetResolutionDay(obj.due_day);
+        var dt = new Date();
+        SetResolutionDay(dt.getDate());
         SetValue(obj.value);
-        SetIdBill(obj.id);
+        SetIdBill(obj.bill_id);
         setIsOpen(true);
     }
 
@@ -109,6 +110,25 @@ function Pagar() {
             alert('Erro ao pagar conta, tente novamente.');
         }
     }
+
+    async function handleDeleteMove(move_id) {
+        if(move_id==null) {
+          return;
+        }
+        try {
+            if (window.confirm('Confirma exclusão?')) {
+              await api.delete(`/move/${move_id}`,{}).then(response => {
+                if (response.status === 200) {
+                  alert(response.data.erros[0].mensagem);
+                } else {
+                  loadBills();
+                }                      
+              });          
+            }        
+        } catch (err) {
+            alert('Erro ao excluir movimentação, tente novamente.');
+        };
+      };
 
     return (
 
@@ -160,9 +180,9 @@ function Pagar() {
                     <table class="table-auto w-full">
                         <thead class="bg-red-300 text-red-600 border-b-2 border-red-400 text-left">
                             <tr>
-                            <th class="px-2 py-2">Descrição</th>
-                            <th class="px-2 py-2">Venc.</th>
-                            <th class="px-2 py-2">Valor</th>
+                            <th class="px-2 py-2 w-1/3">Descrição</th>
+                            <th class="px-2 py-2 w-1/5">Venc.</th>
+                            <th class="px-2 py-2 w-1/5">Valor</th>
                             <th class="px-2 py-2">Categoria</th>
                             <th class="px-2 py-2 w-4 right-0"></th>
                             </tr>
@@ -176,9 +196,9 @@ function Pagar() {
                                         {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(op.value)}
                                     </td>
                                     <td class="px-2 py-2">{op.cat_description}</td>
-                                    <td class="px-2 py-2"><button onClick={() => openModal(op)} class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2" 
+                                    <td class="px-2"><button onClick={() => openModal(op)} class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2" 
                                         id={"btnPay"+op.id}>
-                                        <FaHandPointDown size={20} color="#FFF" class="w-4 py-1 h-6"/></button>
+                                        <FaHandPointDown size={12} color="#FFF" class="w-4 py-1 h-6"/></button>
                                     </td>
                                 </tr>                            
                             ))}                        
@@ -188,7 +208,7 @@ function Pagar() {
             </div>
             <div class="p-1"></div>
             <div class="bg-white rounded-lg shadow">
-                <div class="bg-blue-300 border-b-2 border-blue-400 rounded-tl-lg rounded-tr-lg p-2">
+                <div class="bg-blue-300 border-b-2 border-blue-400 p-2 rounded-t-lg">
                     <h5 class="font-bold uppercase text-blue-700 text-center">Contas pagas</h5>
                 </div>
                 
@@ -196,23 +216,28 @@ function Pagar() {
                     <table class="table-auto w-full">
                     <thead class="bg-blue-300 text-blue-700 border-b-2 border-blue-400 text-left">
                         <tr>
-                        <th class="px-2 py-2">Descrição</th>
-                        <th class="px-2 py-2">Dia</th>
-                        <th class="px-2 py-2">Valor</th>
+                        <th class="px-2 py-2 w-1/3">Descrição</th>
+                        <th class="px-2 py-2 w-1/5">Dia</th>
+                        <th class="px-2 py-2 w-1/5">Valor</th>
                         <th class="px-2 py-2">Categoria</th>
-                        <th class="px-2 py-2 w-20 right-0 text-center">Pagto.</th>
+                        <th class="px-2 py-2 w-1/6 text-center">Pagto.</th>
+                        <th class="px-2 py-2 right-0 w-4"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         {paidPayments.map(pp => (
-                                <tr key={pp.id}>
+                                <tr key={pp.id} >
                                     <td class="px-2  py-2">{pp.description}</td>
                                     <td class="px-2  py-2">{pp.resolution_day}</td>
                                     <td class="px-2  py-2 text-green-500 font-semibold">
                                         {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pp.value)}
                                     </td>
                                     <td class="px-2  py-2">{pp.cat_description}</td>
-                                    <td class="px-2  py-2">{pp.payment_type_description}</td>
+                                    <td class="px-2  py-2 text-center">{pp.payment_type_description}</td>
+                                    <td class="px-2"><button class="bg-blue-500 hover:bg-blue-700 rounded w-auto text-center font-bold text-white px-2" 
+                                        id={"btnDel"+pp.id} onClick={() => handleDeleteMove(pp.move_id)}> 
+                                        <FaTrashAlt size={12} color="#FFF" class="w-4 py-1 h-6"/></button>
+                                    </td>
                                 </tr>                            
                         ))}                                                
                     </tbody>

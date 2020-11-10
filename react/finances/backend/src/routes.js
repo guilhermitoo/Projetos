@@ -21,6 +21,8 @@ routes.patch('/bill/pay', BillsController.pay);
 
 routes.post('/move', MovesController.create);
 routes.get('/moves', MovesController.index);
+routes.delete('/move/:id', MovesController.delete);
+
 routes.get('/open', MovesController.open);
 routes.get('/paid', MovesController.paid);
 

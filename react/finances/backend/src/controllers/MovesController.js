@@ -69,7 +69,7 @@ module.exports = {
 
       var resp = { bills : [] }
    
-      resp.bills = await connection('moves').select('moves.*',
+      resp.bills = await connection('moves').select('moves.id as move_id, moves.*',
       'categories.description as cat_description',
       'payment_types.description as payment_type_description').
       join('categories','moves.category','categories.id').
@@ -106,5 +106,21 @@ module.exports = {
       }, "id");
 
       return response.json({id});
-   }
+   },
+
+   async delete(request,response){
+      const { id } = request.params;
+
+      var move = [];
+      move = await connection('moves').select('id').where('id',id);
+      if (move.length <= 0) {
+          return response.status(404).send();
+      }
+
+      await connection('moves')
+          .where('id',id)
+          .delete();
+
+      return response.status(204).send();
+  }
 }
