@@ -3,16 +3,15 @@ import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import './tailwind.generated.css';
 
 import Pagar from './Pagar';
-import Receber from './Receber';
 
 function Home() {
 
   return (
     <div className="Home">
-        <div class="overflow-auto h-screen pb-24 md:pb-5 text-sm md:text-base">           
+        <div class="overflow-auto h-screen pb-24 md:pb-5 text-xs md:text-base">           
 
-            <Pagar />
-            <Receber />
+            <Pagar type='P' />
+            <Pagar type='R' />
 
             <div class="md:flex md:p-2">
                 <div class="md:w-2/3 md:pr-2 p-2 md:p-0">				

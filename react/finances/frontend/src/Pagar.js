@@ -25,7 +25,7 @@ const customStyles = {
 
   Modal.setAppElement('#root')
 
-function Pagar() {    
+function Pagar(props) {    
     const [modalIsOpen,setIsOpen] = useState(false);        
     const _month = localStorage.getItem("_month");
     const _year = localStorage.getItem("_year");
@@ -65,12 +65,12 @@ function Pagar() {
     }
 
     function loadBills() {
-        api.get('/open?year='+_year+'&month='+_month+'&type=P',{}).then(response => {
+        api.get('/open?year='+_year+'&month='+_month+'&type='+props.type,{}).then(response => {
             if (Array.isArray(response.data["bills"])) {
                 SetOpenPayments(response.data.bills);
             }
         });
-        api.get('/paid?year='+_year+'&month='+_month+'&type=P',{}).then(response => {
+        api.get('/paid?year='+_year+'&month='+_month+'&type='+props.type,{}).then(response => {
             if (Array.isArray(response.data["bills"])) {
                 SetPaidPayments(response.data.bills);
             }
@@ -93,11 +93,27 @@ function Pagar() {
         SetValue(0);
     }
 
+    function GetTextoPagarReceber() {
+        if (props.type == 'P') {
+            return 'Pagar'
+        } else {
+            return 'Receber'
+        }
+    }
+
+    function GetTextPagoRecebido() {
+        if (props.type == 'P') {
+            return 'Pagas'
+        } else {
+            return 'Recebidas'
+        }
+    }
+
     async function handlePay(e) {
         e.preventDefault();
 
         const data= {
-            id : id_bill, month : _month, year : _year, resolution_day, payment_type, value
+            id : id_bill, month : _month, year : _year, resolution_day, payment_type, value, payment_receive : props.type
         };
 
         try {
@@ -107,7 +123,7 @@ function Pagar() {
             closeModal();
             resetPayment();
         } catch(err){
-            alert('Erro ao pagar conta, tente novamente.');
+            alert('Erro ao '+GetTextoPagarReceber()+' conta, tente novamente.');
         }
     }
 
@@ -132,13 +148,14 @@ function Pagar() {
 
     return (
 
-        <div className="Pagar">	
+        <div className={GetTextoPagarReceber()}>	
+            {props.texto_pagar}
             <Modal
             isOpen={modalIsOpen}            
             onRequestClose={closeModal}
             style={customStyles}>                                                    
                 <div class="h-auto w-auto flex flex-col m-4">  
-                    <text class="font-semibold text-lg">Pagar {payment_description} </text>
+                    <text class="font-semibold text-lg">{GetTextoPagarReceber()} {payment_description} </text>
                     <form onSubmit={handlePay}>
                         <div class="mt-4">
                             <text class="" >Dia do Pagamento</text>
@@ -172,19 +189,19 @@ function Pagar() {
 
             <div class="p-2">
             <div class="bg-white rounded-lg shadow">
-                <div class="bg-red-300 border-b-2 border-red-400 rounded-tl-lg rounded-tr-lg p-2">
-                    <h5 class="font-bold uppercase text-red-600 text-center">Contas à pagar</h5>
+                <div class="bg-gray-700 border-b-2 border-gray-900 rounded-tl-lg rounded-tr-lg ">
+                    <h5 class="font-bold text-xl text-white text-center">Contas a {GetTextoPagarReceber()}</h5>
                 </div>
                 
                 <div class="">
                     <table class="table-auto w-full">
-                        <thead class="bg-red-300 text-red-600 border-b-2 border-red-400 text-left">
+                        <thead class="bg-gray-700 text-white border-b-2 border-gray-900 text-left">
                             <tr>
-                            <th class="px-2 py-2 w-1/3">Descrição</th>
-                            <th class="px-2 py-2 w-1/5">Venc.</th>
-                            <th class="px-2 py-2 w-1/5">Valor</th>
-                            <th class="px-2 py-2">Categoria</th>
-                            <th class="px-2 py-2 w-4 right-0"></th>
+                            <th class="px-2  w-1/3">Descrição</th>
+                            <th class="px-2  w-1/5">Venc.</th>
+                            <th class="px-2  w-1/5">Valor</th>
+                            <th class="px-2 ">Categoria</th>
+                            <th class="px-2  w-4 right-0"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -208,20 +225,20 @@ function Pagar() {
             </div>
             <div class="p-1"></div>
             <div class="bg-white rounded-lg shadow">
-                <div class="bg-blue-300 border-b-2 border-blue-400 p-2 rounded-t-lg">
-                    <h5 class="font-bold uppercase text-blue-700 text-center">Contas pagas</h5>
+                <div class="bg-gray-700 border-b-2 border-gray-900  rounded-t-lg">
+                    <h5 class="font-bold text-xl text-white text-center">Contas {GetTextPagoRecebido()}</h5>
                 </div>
                 
                 <div class="">
                     <table class="table-auto w-full">
-                    <thead class="bg-blue-300 text-blue-700 border-b-2 border-blue-400 text-left">
+                    <thead class="bg-gray-700 text-white border-b-2 border-gray-900 text-left">
                         <tr>
-                        <th class="px-2 py-2 w-1/3">Descrição</th>
-                        <th class="px-2 py-2 w-1/5">Dia</th>
-                        <th class="px-2 py-2 w-1/5">Valor</th>
-                        <th class="px-2 py-2">Categoria</th>
-                        <th class="px-2 py-2 w-1/6 text-center">Pagto.</th>
-                        <th class="px-2 py-2 right-0 w-4"></th>
+                        <th class="px-2 w-1/3">Descrição</th>
+                        <th class="px-2 w-1/5">Dia</th>
+                        <th class="px-2 w-1/5">Valor</th>
+                        <th class="px-2">Categoria</th>
+                        <th class="px-2 w-1/6 text-center">Pagto.</th>
+                        <th class="px-2 right-0 w-4"></th>
                         </tr>
                     </thead>
                     <tbody >

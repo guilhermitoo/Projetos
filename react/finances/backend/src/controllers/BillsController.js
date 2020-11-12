@@ -111,7 +111,7 @@ module.exports = {
     },
 
     async pay(request,response){
-        const {id, month, year, resolution_day, payment_type, value} = request.body;
+        const {id, month, year, resolution_day, payment_type, value, payment_receive} = request.body;
 
         // verifica se a conta existe
         var bill_exist = [];
@@ -132,7 +132,6 @@ module.exports = {
         var bills = await connection('bills').select('description','category').where('id',id);
         var description = bills[0].description;
         var category = bills[0].category;
-        var payment_receive = 'P';
         var bill = id;        
 
         const [id_move] = await connection('moves').insert({
