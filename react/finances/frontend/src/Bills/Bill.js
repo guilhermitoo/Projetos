@@ -46,8 +46,6 @@ function Bill() {
     const data= {
       description, category, value, due_day, payment_receive, month, year
     };
-
-    console.log(data);
     
     try {
       await api.post('bill', data, {});
@@ -64,10 +62,6 @@ function Bill() {
           <Header name="Cadastro de Contas" />
         
           <form onSubmit={handleNewBill} class="flex p-2 flex-col">          
-            <div class="hidden">
-              <text class="">Código do cadastro (ID)</text>  
-              <input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"></input>        
-            </div>
             <text class="">Descrição</text>  
             <input value={description} onChange={e => SetDescription(e.target.value)}
               class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"></input>

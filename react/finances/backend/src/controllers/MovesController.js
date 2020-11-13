@@ -49,9 +49,6 @@ module.exports = {
             andWhere('invoices.payment_receive',type.toUpperCase()).
             andWhere('month_id',month_id)
          );
-
-         // ajustar depois
-         // "invoices.description || '(' || invoices.portion || '/' || invoices.total_portion || ')'"
          
       for (let index = 0; index < resp.bills.length; index++) {
          const element = resp.bills[index];

@@ -1,7 +1,6 @@
 import React, {useEffect,useState} from 'react';
 import { FaTrashAlt, FaHandPointDown } from 'react-icons/fa';
 import './tailwind.generated.css';
-import {useHistory} from "react-router-dom"; 
 import Modal from 'react-modal';
 
 import api from './services/api';
@@ -33,8 +32,6 @@ function Pagar(props) {
     const [paidPayments,SetPaidPayments] = useState([]);
     const [payment_types,SetPaymentTypes] = useState([]);    
     const [payment_description,SetPaymentDescription] = useState('');
-
-    const history = useHistory();
 
     // variável para controle nos modais de pagamento
     const [id_bill,SetIdBill] = useState(-1);    
@@ -94,7 +91,7 @@ function Pagar(props) {
     }
 
     function GetTextoPagarReceber() {
-        if (props.type == 'P') {
+        if (props.type === 'P') {
             return 'Pagar'
         } else {
             return 'Receber'
@@ -102,7 +99,7 @@ function Pagar(props) {
     }
 
     function GetTextPagoRecebido() {
-        if (props.type == 'P') {
+        if (props.type === 'P') {
             return 'Pagas'
         } else {
             return 'Recebidas'
