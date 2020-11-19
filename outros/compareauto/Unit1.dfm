@@ -19,14 +19,11 @@ object Form1: TForm1
     Top = 41
     Width = 1045
     Height = 600
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 0
-    ExplicitHeight = 660
     object TabSheet1: TTabSheet
       Caption = 'Modelo'
-      ExplicitHeight = 632
       object DBGrid1: TDBGrid
         Left = 0
         Top = 35
@@ -93,15 +90,12 @@ object Form1: TForm1
           Caption = 'Abrir'
           TabOrder = 1
           OnClick = btnOpenVehiclesClick
-          ExplicitLeft = 11
-          ExplicitTop = 6
         end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Coment'#225'rios'
       ImageIndex = 1
-      ExplicitHeight = 632
       object DBGrid2: TDBGrid
         Left = 0
         Top = 35
@@ -169,8 +163,157 @@ object Form1: TForm1
           Caption = 'Abrir'
           TabOrder = 1
           OnClick = btnOpenCommentsClick
-          ExplicitLeft = 11
-          ExplicitTop = 6
+        end
+        object Button1: TButton
+          AlignWithMargins = True
+          Left = 263
+          Top = 3
+          Width = 130
+          Height = 29
+          Align = alLeft
+          Caption = 'Ajustar model_id'
+          TabOrder = 2
+          OnClick = Button1Click
+        end
+      end
+    end
+    object tsImportarComentarios: TTabSheet
+      Caption = 'Importar Ajustes Coment'#225'rios'
+      ImageIndex = 2
+      object dbgrdImpComments: TDBGrid
+        Left = 0
+        Top = 35
+        Width = 1037
+        Height = 502
+        Align = alClient
+        DataSource = dsImportComments
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'id_comentario'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'marca_ok'
+            Width = 100
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'modelo_ok'
+            Width = 100
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'marca_id'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'modelo_id'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'positivo'
+            Width = 250
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'negativo'
+            Width = 250
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'estrelas'
+            Visible = True
+          end>
+      end
+      object pnl2: TPanel
+        Left = 0
+        Top = 537
+        Width = 1037
+        Height = 35
+        Align = alBottom
+        BevelOuter = bvNone
+        TabOrder = 1
+        object btnUpdateDatabase: TButton
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 102
+          Height = 29
+          Align = alLeft
+          Caption = 'Salvar no banco'
+          TabOrder = 0
+          OnClick = btnUpdateDatabaseClick
+        end
+      end
+      object Panel7: TPanel
+        Left = 0
+        Top = 0
+        Width = 1037
+        Height = 35
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 2
+        object btnOpenFile: TButton
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 86
+          Height = 29
+          Align = alLeft
+          Caption = 'Abrir arquivo'
+          TabOrder = 0
+          OnClick = btnOpenFileClick
+        end
+        object btnReadFile: TButton
+          AlignWithMargins = True
+          Left = 688
+          Top = 3
+          Width = 86
+          Height = 29
+          Align = alLeft
+          Caption = 'Ler arquivo'
+          TabOrder = 1
+          OnClick = btnReadFileClick
+        end
+        object edtFile: TEdit
+          AlignWithMargins = True
+          Left = 98
+          Top = 6
+          Width = 581
+          Height = 23
+          Margins.Left = 6
+          Margins.Top = 6
+          Margins.Right = 6
+          Margins.Bottom = 6
+          Align = alLeft
+          ReadOnly = True
+          TabOrder = 2
+          ExplicitHeight = 21
+        end
+        object btnLoadBrandAndModelId: TButton
+          AlignWithMargins = True
+          Left = 780
+          Top = 3
+          Width = 189
+          Height = 29
+          Align = alLeft
+          Caption = 'Carregar ID da marca e do modelo'
+          TabOrder = 3
+          OnClick = btnLoadBrandAndModelIdClick
         end
       end
     end
@@ -183,9 +326,6 @@ object Form1: TForm1
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 440
-    ExplicitTop = 328
-    ExplicitWidth = 185
     object pnl1: TPanel
       Left = 484
       Top = 0
@@ -194,7 +334,6 @@ object Form1: TForm1
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 0
       object lbl1: TLabel
         AlignWithMargins = True
         Left = 3
@@ -213,9 +352,6 @@ object Form1: TForm1
         Height = 21
         Align = alBottom
         TabOrder = 0
-        ExplicitLeft = 32
-        ExplicitTop = 8
-        ExplicitWidth = 121
       end
     end
     object Panel3: TPanel
@@ -226,7 +362,6 @@ object Form1: TForm1
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 8
       object Label2: TLabel
         AlignWithMargins = True
         Left = 3
@@ -256,7 +391,6 @@ object Form1: TForm1
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitLeft = 8
       object Label3: TLabel
         AlignWithMargins = True
         Left = 3
@@ -286,7 +420,6 @@ object Form1: TForm1
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 3
-      ExplicitLeft = 8
       object Label4: TLabel
         AlignWithMargins = True
         Left = 3
@@ -316,7 +449,6 @@ object Form1: TForm1
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 4
-      ExplicitLeft = 0
       object Label5: TLabel
         AlignWithMargins = True
         Left = 3
@@ -348,8 +480,6 @@ object Form1: TForm1
       Caption = 'Conectar'
       TabOrder = 5
       OnClick = btnConnectClick
-      ExplicitTop = 10
-      ExplicitHeight = 25
     end
     object chkDesabilitaControles: TCheckBox
       Left = 912
@@ -370,9 +500,6 @@ object Form1: TForm1
       item
         Width = 50
       end>
-    ExplicitLeft = 520
-    ExplicitTop = 288
-    ExplicitWidth = 0
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -402,7 +529,7 @@ object Form1: TForm1
     SQL.Strings = (
       
         'SELECT vm.id, b.description AS Marca, m.description AS Modelo, v' +
-        'm.positive AS Comentario '
+        'm.positive AS Comentario, v.model_id'
       'FROM vehicle_comments vm'
       'JOIN vehicles v ON ( v.id = vm.vehicle_id )'
       'JOIN brands b ON ( b.id = v.brand_id )'
@@ -442,6 +569,13 @@ object Form1: TForm1
       Required = True
       OnGetText = fdqCommentsComentarioGetText
       BlobType = ftMemo
+    end
+    object fdqCommentsmodel_id: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'model_id'
+      Origin = 'model_id'
+      ProviderFlags = []
+      ReadOnly = True
     end
   end
   object dsComments: TDataSource
@@ -495,5 +629,50 @@ object Form1: TForm1
     Connection = FDConnection1
     Left = 280
     Top = 280
+  end
+  object cdsImportComments: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 416
+    Top = 160
+    object cdsImportCommentsid_comentario: TIntegerField
+      FieldName = 'id_comentario'
+    end
+    object cdsImportCommentsmarca_ok: TStringField
+      FieldName = 'marca_ok'
+      Size = 255
+    end
+    object cdsImportCommentsmodelo_ok: TStringField
+      FieldName = 'modelo_ok'
+      Size = 255
+    end
+    object cdsImportCommentsmarca_id: TIntegerField
+      FieldName = 'marca_id'
+    end
+    object cdsImportCommentsmodelo_id: TIntegerField
+      FieldName = 'modelo_id'
+    end
+    object cdsImportCommentspositivo: TMemoField
+      FieldName = 'positivo'
+      OnGetText = cdsImportCommentspositivoGetText
+      BlobType = ftMemo
+    end
+    object cdsImportCommentsnegativo: TMemoField
+      FieldName = 'negativo'
+      OnGetText = cdsImportCommentsnegativoGetText
+      BlobType = ftMemo
+    end
+    object cdsImportCommentsestrelas: TIntegerField
+      FieldName = 'estrelas'
+    end
+  end
+  object dsImportComments: TDataSource
+    DataSet = cdsImportComments
+    Left = 324
+    Top = 145
+  end
+  object dlgOpen1: TOpenDialog
+    Left = 140
+    Top = 169
   end
 end
