@@ -21,8 +21,8 @@ module.exports = {
     },
 
     async getMonthID_(month,year) {
-        var dt = new Date(year,month-1,1);
-        var rt = await module.exports.getMonthID(dt)
+        let dt = new Date(year,month-1,1);
+        let rt = await module.exports.getMonthID(dt);
 
         return rt[1];
     },
@@ -35,7 +35,7 @@ module.exports = {
             var month_number = dt.getMonth()+1; // Soma 1 pois o método retorna indexado em 0.
             var year = dt.getFullYear();               
             var name = this.getMonthName(month_number);        
-    
+
             const month = await connection('month').where('month_number',month_number).andWhere('year',year).select('id').first();        
 
             // verificar se o mês existe. Caso não exista, cadastrar o mês

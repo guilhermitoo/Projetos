@@ -6,10 +6,10 @@ module.exports = {
     client: 'postgresql',
     wrapIdentifier: (value, origImpl, queryContext) => value,
     connection: {
-      host : '0.0.0.0',
+      host : 'localhost',
       database: 'finances',
       user:     'postgres',
-      password: 'sysdba'
+      password: 'masterkey'
     },
     pool: {
       min: 2,

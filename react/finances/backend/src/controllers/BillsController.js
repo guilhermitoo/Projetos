@@ -66,7 +66,7 @@ module.exports = {
         const {id,month,year} = request.body;
 
         // verifica se a conta existe
-        var bill = [];
+        let bill = [];
         bill = await connection('bills').select('id').where('id',id);
         if (bill.length <= 0) {
             return response.status(402).json({error:"Conta não encontrada."});
@@ -80,9 +80,9 @@ module.exports = {
         }
 
         // verifica se a data para fechamento é maior ou igual que a data da última movimentação
-        var mov = [];
-        var mt = [];
-        var last_month_id = await global.getMonthID_(month,year);
+        let mov = [];
+        let mt = [];
+        let last_month_id = await global.getMonthID_(month,year);
         mt = await connection('month').select('first_day').where('id',last_month_id);               
         mov = await connection('moves').join('month as m','moves.month_id','m.id').select('moves.id','m.first_day')
             .where('moves.bill',3)

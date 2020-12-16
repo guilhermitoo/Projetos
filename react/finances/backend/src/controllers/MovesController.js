@@ -14,19 +14,23 @@ module.exports = {
    async index(request, response) {
       const { month, year } = request.body;
 
-      var month_id = await global.getMonthID_(month,year);
+      // new Promise((resolve) => {  
+      //    resolve(global.getMonthID_(month,year));
+      // }).then((val) => (resolve) => {
+      //    resolve(connection('moves').where('month_id',val).select('*'));
+      // }).then((moves) => {
+      //    return response.json(moves);
+      // });
 
-      const moves = await connection('moves').where('month_id',month_id).select('*');
-
+      let mid = await global.getMonthID_(month,year);
+      let moves = await connection('moves').where('month_id',mid).select('*');
       return response.json(moves);
    },
 
    async open(request, response) {
-      const { month , year , type } = request.query;
-
-      var month_id = await global.getMonthID_(month,year);
-
-      var resp = { bills : [] }
+      const { month , year , type } = request.query; 
+      let resp = { bills : [] };
+      let month_id = await global.getMonthID_(month,year);
 
       resp.bills = await connection('bills').select('bills.description',
          'null as invoice_id', 'bills.id as bill_id',
