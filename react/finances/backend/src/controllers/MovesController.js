@@ -66,16 +66,18 @@ module.exports = {
    async paid(request, response) {
       const { month , year , type } = request.query;
 
-      var month_id = await global.getMonthID_(month,year);
+      let mid = await global.getMonthID_(month,year);
 
-      var resp = { bills : [] }
-   
+      let resp = { bills : [] }
+
+      console.log(mid);
+      
       resp.bills = await connection('moves').select('moves.id as move_id, moves.*',
       'categories.description as cat_description',
       'payment_types.description as payment_type_description').
       join('categories','moves.category','categories.id').
       join('payment_types','moves.payment_type','payment_types.id').
-         where('moves.month_id',month_id).
+         where('moves.month_id',mid).
          andWhere('moves.payment_receive',type.toUpperCase()).andWhereRaw('((bill is not null) or (invoice is not null))');
 
       for (let index = 0; index < resp.bills.length; index++) {

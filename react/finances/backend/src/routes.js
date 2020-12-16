@@ -12,6 +12,7 @@ const routes = express.Router();
 
 routes.post('/category', CategoryController.create);
 routes.get('/categories', CategoryController.index);
+routes.delete('/category/:id', CategoryController.delete);
 
 routes.post('/bill', BillsController.create);
 routes.delete('/bill/:id', BillsController.delete);

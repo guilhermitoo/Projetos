@@ -21,21 +21,21 @@ function Categories() {
 
     async function handleDelete(id) {
         if(id==null) {
-        return;
+            return;
         }
-        try {
-            if (window.confirm('Confirma exclusão?')) {
+            
+        if (window.confirm('Confirma exclusão?')) {
             await api.delete(`/category/${id}`,{}).then(response => {
                 if (response.status === 200) {
-                alert(response.data.erros[0].mensagem);
+                    alert(response.data.erros[0].mensagem);
                 } else {
-                SetCategories(categories.filter(categories => categories.id !== id));                  
+                    SetCategories(categories.filter(categories => categories.id !== id));                  
                 }                      
+            }).catch((err) => {
+                alert(`Erro ao excluir categoria. ${err}`);
             });          
-            }        
-        } catch (err) {
-            alert('Erro ao excluir categoria, tente novamente.');
-        };
+        }        
+        
     };
 
     return (
